@@ -38,9 +38,9 @@
 			[
 				{
 					"directoryIndex" : 0,
-					"id" : "ExternalQuickSort::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-ExternalQuickSort-Debug-8ae958764fefd58172c2.json",
-					"name" : "ExternalQuickSort",
+					"id" : "test::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-test-Debug-fa3ab4c570447494e518.json",
+					"name" : "test",
 					"projectIndex" : 0
 				}
 			]

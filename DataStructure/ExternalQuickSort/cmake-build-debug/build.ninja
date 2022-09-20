@@ -41,38 +41,60 @@ include CMakeFiles/rules.ninja
 
 cmake_ninja_workdir = D$:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/cmake-build-debug/
 # =============================================================================
-# Object build statements for EXECUTABLE target ExternalQuickSort
+# Object build statements for EXECUTABLE target test
 
 
 #############################################
-# Order-only phony target for ExternalQuickSort
+# Order-only phony target for test
 
-build cmake_object_order_depends_target_ExternalQuickSort: phony || CMakeFiles/ExternalQuickSort.dir
+build cmake_object_order_depends_target_test: phony || CMakeFiles/test.dir
 
-build CMakeFiles/ExternalQuickSort.dir/main.cpp.obj: CXX_COMPILER__ExternalQuickSort_Debug D$:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/main.cpp || cmake_object_order_depends_target_ExternalQuickSort
-  DEP_FILE = CMakeFiles\ExternalQuickSort.dir\main.cpp.obj.d
+build CMakeFiles/test.dir/main.cpp.obj: CXX_COMPILER__test_Debug D$:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/main.cpp || cmake_object_order_depends_target_test
+  DEP_FILE = CMakeFiles\test.dir\main.cpp.obj.d
   FLAGS = -g -std=gnu++14
-  OBJECT_DIR = CMakeFiles\ExternalQuickSort.dir
-  OBJECT_FILE_DIR = CMakeFiles\ExternalQuickSort.dir
+  INCLUDES = -ID:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/header -ID:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/src
+  OBJECT_DIR = CMakeFiles\test.dir
+  OBJECT_FILE_DIR = CMakeFiles\test.dir
+
+build CMakeFiles/test.dir/src/DoubleEndedPriorityQueue.cpp.obj: CXX_COMPILER__test_Debug D$:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/src/DoubleEndedPriorityQueue.cpp || cmake_object_order_depends_target_test
+  DEP_FILE = CMakeFiles\test.dir\src\DoubleEndedPriorityQueue.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  INCLUDES = -ID:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/header -ID:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/src
+  OBJECT_DIR = CMakeFiles\test.dir
+  OBJECT_FILE_DIR = CMakeFiles\test.dir\src
+
+build CMakeFiles/test.dir/src/ExternalQS.cpp.obj: CXX_COMPILER__test_Debug D$:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/src/ExternalQS.cpp || cmake_object_order_depends_target_test
+  DEP_FILE = CMakeFiles\test.dir\src\ExternalQS.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  INCLUDES = -ID:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/header -ID:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/src
+  OBJECT_DIR = CMakeFiles\test.dir
+  OBJECT_FILE_DIR = CMakeFiles\test.dir\src
+
+build CMakeFiles/test.dir/test.cpp.obj: CXX_COMPILER__test_Debug D$:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/test.cpp || cmake_object_order_depends_target_test
+  DEP_FILE = CMakeFiles\test.dir\test.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  INCLUDES = -ID:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/header -ID:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/src
+  OBJECT_DIR = CMakeFiles\test.dir
+  OBJECT_FILE_DIR = CMakeFiles\test.dir
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target ExternalQuickSort
+# Link build statements for EXECUTABLE target test
 
 
 #############################################
-# Link the executable ExternalQuickSort.exe
+# Link the executable test.exe
 
-build ExternalQuickSort.exe: CXX_EXECUTABLE_LINKER__ExternalQuickSort_Debug CMakeFiles/ExternalQuickSort.dir/main.cpp.obj
+build test.exe: CXX_EXECUTABLE_LINKER__test_Debug CMakeFiles/test.dir/main.cpp.obj CMakeFiles/test.dir/src/DoubleEndedPriorityQueue.cpp.obj CMakeFiles/test.dir/src/ExternalQS.cpp.obj CMakeFiles/test.dir/test.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   LINK_PATH = -LD:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/header   -LD:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/src
-  OBJECT_DIR = CMakeFiles\ExternalQuickSort.dir
+  OBJECT_DIR = CMakeFiles\test.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_FILE = ExternalQuickSort.exe
-  TARGET_IMPLIB = libExternalQuickSort.dll.a
-  TARGET_PDB = ExternalQuickSort.exe.dbg
+  TARGET_FILE = test.exe
+  TARGET_IMPLIB = libtest.dll.a
+  TARGET_PDB = test.exe.dbg
 
 
 #############################################
@@ -100,7 +122,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 # Target aliases.
 
-build ExternalQuickSort: phony ExternalQuickSort.exe
+build test: phony test.exe
 
 # =============================================================================
 # Folder targets.
@@ -110,7 +132,7 @@ build ExternalQuickSort: phony ExternalQuickSort.exe
 #############################################
 # Folder: D:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/cmake-build-debug
 
-build all: phony ExternalQuickSort.exe
+build all: phony test.exe
 
 # =============================================================================
 # Built-in targets

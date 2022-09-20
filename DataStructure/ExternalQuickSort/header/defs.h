@@ -1,0 +1,4 @@
+#define MIDDLE_SIZE 10000
+#define SMALL_SIZE 500
+#define LARGE_SIZE 500
+#define INPUT_SIZE 100

@@ -1,0 +1,7 @@
+# ninja log v5
+1	30	0	D:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/cmake-build-debug/CMakeFiles/cmake.verify_globs	2ef873b95295a497
+15	221	6853432746672233	CMakeFiles/test.dir/src/ExternalQS.cpp.obj	223bb814c0296daa
+879	1024	6853453952007037	test.exe	c35e194211d83cfa
+5	222	6853432746682235	CMakeFiles/test.dir/CMakeFiles/3.23.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.obj	3456be140e27f8d6
+0	84	6853443680848536	CMakeFiles/test.dir/main.cpp.obj	b360310a6a985bd2
+4	879	6853453950566712	CMakeFiles/test.dir/test.cpp.obj	f767471e3541c42f
