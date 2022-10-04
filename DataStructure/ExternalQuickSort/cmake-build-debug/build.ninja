@@ -41,38 +41,82 @@ include CMakeFiles/rules.ninja
 
 cmake_ninja_workdir = D$:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/cmake-build-debug/
 # =============================================================================
+# Object build statements for STATIC_LIBRARY target ExternalQSlib
+
+
+#############################################
+# Order-only phony target for ExternalQSlib
+
+build cmake_object_order_depends_target_ExternalQSlib: phony || CMakeFiles/ExternalQSlib.dir
+
+build CMakeFiles/ExternalQSlib.dir/src/ExternalQS.cpp.obj: CXX_COMPILER__ExternalQSlib_Debug D$:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/src/ExternalQS.cpp || cmake_object_order_depends_target_ExternalQSlib
+  DEP_FILE = CMakeFiles\ExternalQSlib.dir\src\ExternalQS.cpp.obj.d
+  FLAGS = -g
+  INCLUDES = -ID:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/header -ID:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/src
+  OBJECT_DIR = CMakeFiles\ExternalQSlib.dir
+  OBJECT_FILE_DIR = CMakeFiles\ExternalQSlib.dir\src
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target ExternalQSlib
+
+
+#############################################
+# Link the static library libExternalQSlib.a
+
+build libExternalQSlib.a: CXX_STATIC_LIBRARY_LINKER__ExternalQSlib_Debug CMakeFiles/ExternalQSlib.dir/src/ExternalQS.cpp.obj
+  LANGUAGE_COMPILE_FLAGS = -g
+  OBJECT_DIR = CMakeFiles\ExternalQSlib.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = libExternalQSlib.a
+  TARGET_PDB = ExternalQSlib.a.dbg
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target PriorityDequelib
+
+
+#############################################
+# Order-only phony target for PriorityDequelib
+
+build cmake_object_order_depends_target_PriorityDequelib: phony || CMakeFiles/PriorityDequelib.dir
+
+build CMakeFiles/PriorityDequelib.dir/src/PriorityDeque.cpp.obj: CXX_COMPILER__PriorityDequelib_Debug D$:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/src/PriorityDeque.cpp || cmake_object_order_depends_target_PriorityDequelib
+  DEP_FILE = CMakeFiles\PriorityDequelib.dir\src\PriorityDeque.cpp.obj.d
+  FLAGS = -g
+  INCLUDES = -ID:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/header -ID:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/src
+  OBJECT_DIR = CMakeFiles\PriorityDequelib.dir
+  OBJECT_FILE_DIR = CMakeFiles\PriorityDequelib.dir\src
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target PriorityDequelib
+
+
+#############################################
+# Link the static library libPriorityDequelib.a
+
+build libPriorityDequelib.a: CXX_STATIC_LIBRARY_LINKER__PriorityDequelib_Debug CMakeFiles/PriorityDequelib.dir/src/PriorityDeque.cpp.obj
+  LANGUAGE_COMPILE_FLAGS = -g
+  OBJECT_DIR = CMakeFiles\PriorityDequelib.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = libPriorityDequelib.a
+  TARGET_PDB = PriorityDequelib.a.dbg
+
+# =============================================================================
 # Object build statements for EXECUTABLE target test
 
 
 #############################################
 # Order-only phony target for test
 
-build cmake_object_order_depends_target_test: phony || CMakeFiles/test.dir
-
-build CMakeFiles/test.dir/main.cpp.obj: CXX_COMPILER__test_Debug D$:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/main.cpp || cmake_object_order_depends_target_test
-  DEP_FILE = CMakeFiles\test.dir\main.cpp.obj.d
-  FLAGS = -g -std=gnu++14
-  INCLUDES = -ID:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/header -ID:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/src
-  OBJECT_DIR = CMakeFiles\test.dir
-  OBJECT_FILE_DIR = CMakeFiles\test.dir
-
-build CMakeFiles/test.dir/src/DoubleEndedPriorityQueue.cpp.obj: CXX_COMPILER__test_Debug D$:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/src/DoubleEndedPriorityQueue.cpp || cmake_object_order_depends_target_test
-  DEP_FILE = CMakeFiles\test.dir\src\DoubleEndedPriorityQueue.cpp.obj.d
-  FLAGS = -g -std=gnu++14
-  INCLUDES = -ID:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/header -ID:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/src
-  OBJECT_DIR = CMakeFiles\test.dir
-  OBJECT_FILE_DIR = CMakeFiles\test.dir\src
-
-build CMakeFiles/test.dir/src/ExternalQS.cpp.obj: CXX_COMPILER__test_Debug D$:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/src/ExternalQS.cpp || cmake_object_order_depends_target_test
-  DEP_FILE = CMakeFiles\test.dir\src\ExternalQS.cpp.obj.d
-  FLAGS = -g -std=gnu++14
-  INCLUDES = -ID:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/header -ID:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/src
-  OBJECT_DIR = CMakeFiles\test.dir
-  OBJECT_FILE_DIR = CMakeFiles\test.dir\src
+build cmake_object_order_depends_target_test: phony || cmake_object_order_depends_target_ExternalQSlib cmake_object_order_depends_target_PriorityDequelib
 
 build CMakeFiles/test.dir/test.cpp.obj: CXX_COMPILER__test_Debug D$:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/test.cpp || cmake_object_order_depends_target_test
+  DEFINES = -DASSET_DIR=\"D:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/data\"
   DEP_FILE = CMakeFiles\test.dir\test.cpp.obj.d
-  FLAGS = -g -std=gnu++14
+  FLAGS = -g
   INCLUDES = -ID:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/header -ID:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/src
   OBJECT_DIR = CMakeFiles\test.dir
   OBJECT_FILE_DIR = CMakeFiles\test.dir
@@ -85,10 +129,9 @@ build CMakeFiles/test.dir/test.cpp.obj: CXX_COMPILER__test_Debug D$:/xrCLang/Sel
 #############################################
 # Link the executable test.exe
 
-build test.exe: CXX_EXECUTABLE_LINKER__test_Debug CMakeFiles/test.dir/main.cpp.obj CMakeFiles/test.dir/src/DoubleEndedPriorityQueue.cpp.obj CMakeFiles/test.dir/src/ExternalQS.cpp.obj CMakeFiles/test.dir/test.cpp.obj
+build test.exe: CXX_EXECUTABLE_LINKER__test_Debug CMakeFiles/test.dir/test.cpp.obj | libExternalQSlib.a libPriorityDequelib.a || libExternalQSlib.a libPriorityDequelib.a
   FLAGS = -g
-  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
-  LINK_PATH = -LD:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/header   -LD:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/src
+  LINK_LIBRARIES = libExternalQSlib.a  libPriorityDequelib.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\test.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -122,6 +165,10 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 # Target aliases.
 
+build ExternalQSlib: phony libExternalQSlib.a
+
+build PriorityDequelib: phony libPriorityDequelib.a
+
 build test: phony test.exe
 
 # =============================================================================
@@ -132,7 +179,7 @@ build test: phony test.exe
 #############################################
 # Folder: D:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/cmake-build-debug
 
-build all: phony test.exe
+build all: phony libExternalQSlib.a libPriorityDequelib.a test.exe
 
 # =============================================================================
 # Built-in targets

@@ -1,3 +1,5 @@
+D:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/cmake-build-debug/CMakeFiles/ExternalQSlib.dir
+D:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/cmake-build-debug/CMakeFiles/PriorityDequelib.dir
 D:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/cmake-build-debug/CMakeFiles/test.dir
 D:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/cmake-build-debug/CMakeFiles/edit_cache.dir
 D:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/cmake-build-debug/CMakeFiles/rebuild_cache.dir

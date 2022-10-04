@@ -15,7 +15,9 @@
 					"source" : ".",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1,
+						2
 					]
 				}
 			],
@@ -30,7 +32,9 @@
 					"name" : "ExternalQuickSort",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1,
+						2
 					]
 				}
 			],
@@ -38,8 +42,22 @@
 			[
 				{
 					"directoryIndex" : 0,
+					"id" : "ExternalQSlib::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ExternalQSlib-Debug-29338c0bd6755b150911.json",
+					"name" : "ExternalQSlib",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "PriorityDequelib::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-PriorityDequelib-Debug-7bdd52cf9bae6129a701.json",
+					"name" : "PriorityDequelib",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
 					"id" : "test::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-test-Debug-fa3ab4c570447494e518.json",
+					"jsonFile" : "target-test-Debug-4e2e8757d083d13358ba.json",
 					"name" : "test",
 					"projectIndex" : 0
 				}

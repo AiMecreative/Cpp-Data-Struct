@@ -14,7 +14,8 @@
 		"commands" : 
 		[
 			"add_executable",
-			"link_directories",
+			"target_link_libraries",
+			"target_compile_definitions",
 			"include_directories",
 			"target_sources"
 		],
@@ -30,25 +31,31 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 13,
+				"line" : 16,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 6,
+				"line" : 18,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 7,
+				"line" : 19,
 				"parent" : 0
 			},
 			{
 				"command" : 3,
 				"file" : 0,
-				"line" : 14,
+				"line" : 6,
+				"parent" : 0
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 17,
 				"parent" : 0
 			}
 		]
@@ -60,19 +67,23 @@
 			[
 				{
 					"fragment" : "-g"
-				},
+				}
+			],
+			"defines" : 
+			[
 				{
-					"fragment" : "-std=gnu++14"
+					"backtrace" : 3,
+					"define" : "ASSET_DIR=\"D:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/data\""
 				}
 			],
 			"includes" : 
 			[
 				{
-					"backtrace" : 3,
+					"backtrace" : 4,
 					"path" : "D:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/header"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 4,
 					"path" : "D:/xrCLang/Self-Study-For-Cpp/DataStructure/ExternalQuickSort/src"
 				}
 			],
@@ -83,15 +94,23 @@
 				[
 					1
 				],
-				"standard" : "14"
+				"standard" : "17"
 			},
 			"sourceIndexes" : 
 			[
-				3,
-				4,
-				5,
-				6
+				0
 			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "ExternalQSlib::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "PriorityDequelib::@6890427a1f51a3e7e1df"
 		}
 	],
 	"id" : "test::@6890427a1f51a3e7e1df",
@@ -109,13 +128,13 @@
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "-LD:\\xrCLang\\Self-Study-For-Cpp\\DataStructure\\ExternalQuickSort\\header",
-				"role" : "libraryPath"
+				"fragment" : "libExternalQSlib.a",
+				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "-LD:\\xrCLang\\Self-Study-For-Cpp\\DataStructure\\ExternalQuickSort\\src",
-				"role" : "libraryPath"
+				"fragment" : "libPriorityDequelib.a",
+				"role" : "libraries"
 			},
 			{
 				"fragment" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
@@ -134,65 +153,20 @@
 	"sourceGroups" : 
 	[
 		{
-			"name" : "Header Files",
-			"sourceIndexes" : 
-			[
-				0,
-				1,
-				2
-			]
-		},
-		{
 			"name" : "Source Files",
 			"sourceIndexes" : 
 			[
-				3,
-				4,
-				5,
-				6
+				0
 			]
 		}
 	],
 	"sources" : 
 	[
 		{
-			"backtrace" : 4,
-			"path" : "header/DoubleEndedPriorityQueue.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 4,
-			"path" : "header/ExternalQS.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 4,
-			"path" : "header/defs.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 4,
-			"compileGroupIndex" : 0,
-			"path" : "main.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 4,
-			"compileGroupIndex" : 0,
-			"path" : "src/DoubleEndedPriorityQueue.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 4,
-			"compileGroupIndex" : 0,
-			"path" : "src/ExternalQS.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 4,
+			"backtrace" : 5,
 			"compileGroupIndex" : 0,
 			"path" : "test.cpp",
-			"sourceGroupIndex" : 1
+			"sourceGroupIndex" : 0
 		}
 	],
 	"type" : "EXECUTABLE"
