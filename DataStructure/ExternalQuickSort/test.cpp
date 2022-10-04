@@ -12,7 +12,7 @@ int main(int argc, char **argv) {
     const std::string file_loc = ASSET_DIR "/source_data.txt";
     const std::string rand_type = "int";
 
-    sortOp.generate_rand(file_loc, rand_type, 0, 100, data_size);
+    sortOp.generate_rand(rand_type, 0, 100, data_size);
 
     sortOp.qsDeque(qs_deque, data_size);
 
