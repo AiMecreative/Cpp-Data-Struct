@@ -81,23 +81,46 @@ void PriorityDeque<T>::push(T elem) {
         Deque.push_back(newNode);
         elemCount += 1;
 
-        if (elemCount == 0) {
+        if (Deque.size() == 1) {
             return;
         } else {
             // elemCount >= 2
-            int child = Deque.size() - 1;
-            int parent = (Deque.size() - 1 - (Deque.size() % 2)) / 2;
-            while (Deque.at(child).left < Deque.at(parent).left) {
+            int child;
+            int parent;
+            for (child = Deque.size(), parent = (Deque.size() - 1 - (Deque.size() % 2)) / 2;
+                 parent >= 0;
+                 child = parent, parent = (parent - ((parent + 1) % 2)) / 2) {
                 if (Deque.at(child).left > Deque.at(child).right) {
                     std::swap(Deque.at(child).left, Deque.at(child).right);
                 }
-                std::swap(Deque.at(child).left, Deque.at(parent).left);
-                child = parent;
-                parent = (parent - ((parent + 1) % 2)) / 2;
+                if (Deque.at(child).left < Deque.at(parent).left) {
+                    std::swap(Deque.at(child).left, Deque.at(parent).left);
+                }
             }
         }
     } else {
         // elemCount % 2 == 1
+        Deque.back().right = elem;
+        if (Deque.back().left > Deque.back().right) {
+            std::swap(Deque.back().left, Deque.back().right);
+        }
+        elemCount += 1;
+        if (Deque.size() == 1) {
+            return;
+        } else {
+            int child;
+            int parent;
+            for (child = Deque.size(), parent = (Deque.size() - 1 - (Deque.size() % 2)) / 2;
+                 parent >= 0;
+                 child = parent, parent = (parent - ((parent + 1) % 2)) / 2) {
+                if (Deque.at(child).left > Deque.at(child).right) {
+                    std::swap(Deque.at(child).left, Deque.at(child).right);
+                }
+                if (Deque.at(child).right > Deque.at(parent).right) {
+                    std::swap(Deque.at(child).right, Deque.at(parent).right);
+                }
+            }
+        }
     }
 }
 
@@ -113,11 +136,18 @@ void PriorityDeque<T>::popMin() {
 
 template<typename T>
 T PriorityDeque<T>::getMax() {
+    if (Deque.empty()) {
+        throw std::runtime_error("empty Deque can't getMax!");
+    }
+    return Deque.front().right;
 }
 
 template<typename T>
 T PriorityDeque<T>::getMin() {
-
+    if (Deque.empty()) {
+        throw std::runtime_error("empty Deque can't getMin");
+    }
+    return Deque.front().left;
 }
 
 template<typename T>
