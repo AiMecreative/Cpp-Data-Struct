@@ -22,7 +22,6 @@ public:
     const std::string temp_loc;
     const std::string result_loc;
 
-    //TODO: 实现下面的函数
     ExternalQS() {
         qs_queue = new PriorityDeque<T>;
     }
@@ -126,30 +125,42 @@ void ExternalQS<T>::replace(const std::string &loc_result, const std::string &lo
     }
     std::ofstream result_file{loc_result};
     std::ifstream temp_file{loc_temp};
+    bool flag = false; // used for change min or max in middle_buf, false--min, true--max
     T mid_max = qs_queue->getMax();
     T mid_min = qs_queue->getMin();
     while (!input_buf.empty()) {
         T input_elem = input_buf.front();
         input_buf.pop_front();
         if (input_elem < mid_min) {
+            small_buf.push_front(input_elem);
             // write back the small part when small_buf is full
             if (small_buf.size() == SMALL_SIZE) {
                 // small_buf write to result file
                 write(result_loc, small_buf, p_small, small_buf.size(), p_small);
             }
-            small_buf.push_front(input_elem);
         }
         else if (input_elem > mid_max) {
+            large_buf.push_front(input_elem);
             // write back the large part when large_buf is full or all data has been detected
             if (large_buf.size() == LARGE_SIZE) {
                 // large_buf write to temp file, write to result file after middle data is written
                 write(temp_loc, large_buf, p_large, large_buf.size(), p_large);
             }
-            large_buf.push_front(input_elem);
         }
         else {
-            //mid_min < input_elem < mid_max
-
+            //TODO: mid_min < input_elem < mid_max
+            if (qs_queue->Deque.size() == MIDDLE_SIZE) {
+                if (flag) {
+                    small_buf.push_front(qs_queue->getMin());
+                    qs_queue->popMin();
+                    flag = false;
+                } else {
+                    large_buf.push_front(qs_queue->getMax());
+                    qs_queue->popMax();
+                    flag = true;
+                }
+                qs_queue->push(input_elem);
+            }
         }
     }
 }
@@ -166,7 +177,7 @@ void ExternalQS<T>::sort() {
         indices.pop_front();
         indices.pop_back();
 
-        int p_file = 0; // used for original file
+        int p_file = 0;  // used for original file
         int p_small = 0; // used for write small to file
         int p_large = 0; // used for write large to file
         read_to_mid(left, MIDDLE_SIZE, p_file);
@@ -189,7 +200,6 @@ void ExternalQS<T>::sort() {
 
         p_file = p_small;
         qs_queue->write(result_loc, p_file, qs_queue->Deque.size(), p_file);
-//        write(result_loc, qs_queue->Deque, p_file, qs_queue->Deque.size(), p_file);
 
         p_large = p_file;
         write_t2r(result_loc, temp_loc, p_file, p_file);
