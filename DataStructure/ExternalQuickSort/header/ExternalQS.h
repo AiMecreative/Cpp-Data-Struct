@@ -12,8 +12,6 @@
 template<typename T>
 class ExternalQS {
 private:
-    bool small_full;
-    bool large_full;
     std::deque<T> input_buf;
     std::deque<T> small_buf;
     std::deque<T> large_buf;
@@ -27,8 +25,6 @@ public:
     //TODO: 实现下面的函数
     ExternalQS() {
         qs_queue = new PriorityDeque<T>;
-        small_full = false;
-        large_full = false;
     }
 
     ~ExternalQS() = default;
@@ -43,18 +39,6 @@ public:
     // load data into input buffer
     void read_to_input(int file_base, int buf_size, int &p_file);
 
-    // get the pivot
-    void partition(int &left_pivot, int &right_pivot);
-
-    // get the index queue
-    void qsDeque(std::deque<int> &qs_deque, int data_size);
-
-    // load data from middle memo to small memo
-    void to_small(int file_base, int size, int &p_file);
-
-    // load data from middle memo to large memo
-    void to_large(int file_base, int size, int &p_file);
-
     // write into disk when small or large memo is full
     void write(const std::string &loc, std::deque<T> buffer, int file_base, int size, int &p_file);
 
@@ -62,7 +46,7 @@ public:
     void write_t2r(const std::string &loc_result, const std::string &loc_temp, int file_base, int &p_file);
 
     // insert element into middle memo
-    void replace();
+    void replace(const std::string &loc_result, const std::string &loc_temp, int &p_small, int &p_large);
 
     // sort recursively and store the elements into txt
     void sort();
@@ -104,57 +88,14 @@ void ExternalQS<T>::read_to_input(int file_base, int buf_size, int &p_file) {
 }
 
 template<typename T>
-void ExternalQS<T>::partition(int &left_pivot, int &right_pivot) {
-
-}
-
-template<typename T>
-void ExternalQS<T>::qsDeque(std::deque<int> &qs_deque, int data_size) {
-    qs_deque.push_front(0);
-    qs_deque.push_back(data_size - 1);
-
-    while (!qs_deque.empty()) {
-        int left = qs_deque.front();
-        int right = qs_deque.back();
-        qs_deque.pop_front();
-        qs_deque.pop_back();
-
-        if (left < right) {
-            int left_pivot;
-            int right_pivot;
-            partition(left_pivot, right_pivot);
-            if (left < left_pivot) {
-                qs_deque.push_front(left);
-                qs_deque.push_back(left_pivot);
-            }
-            if (right > right_pivot) {
-                qs_deque.push_front(right);
-                qs_deque.push_back(right_pivot);
-            }
-        }
-    }
-}
-
-template<typename T>
-void ExternalQS<T>::to_small(int file_base, int size, int &p_file) {
-    // the writing condition is confirmed by the function `replace`, which gives the file base and data size
-}
-
-template<typename T>
-void ExternalQS<T>::to_large(int file_base, int size, int &p_file) {
-
-}
-
-template<typename T>
 void ExternalQS<T>::write(const std::string &_loc, std::deque<T> buffer, int file_base, int size, int &p_file) {
-    if (!buffer)
+    if (buffer.empty())
         return;
     std::ofstream write_file{_loc};
     assert(write_file.is_open());
     write_file.seekp(file_base, std::ios::beg);
-    for (int i = 0; i < size; ++i) {
-        buffer.front() >> write_file;
-        buffer.pop_front();
+    for (auto it = buffer.begin(); it != buffer.end(); ++it) {
+        write_file << *it;
     }
     p_file = write_file.tellp() / sizeof(T) - 1;
     write_file.close();
@@ -162,34 +103,53 @@ void ExternalQS<T>::write(const std::string &_loc, std::deque<T> buffer, int fil
 
 template<typename T>
 void ExternalQS<T>::write_t2r(const std::string &loc_result, const std::string &loc_temp, int file_base, int &p_file) {
-    std::ifstream result_file{loc_result};
-    std::ofstream temp_file{loc_temp};
+    std::ofstream result_file{loc_result};
+    std::ifstream temp_file{loc_temp};
     assert(result_file.is_open() || temp_file.is_open());
-    result_file.seekg(file_base, std::ios::beg);
+    result_file.seekp(file_base, std::ios::beg);
     while (!temp_file.eof()) {
         T elem;
         temp_file >> elem;
-        elem >> result_file;
+        result_file << elem;
     }
-    p_file = result_file.tellg() / sizeof(T) - 1;
+    p_file = result_file.tellp() / sizeof(T) - 1;
     result_file.close();
     temp_file.close();
 }
 
 template<typename T>
-void ExternalQS<T>::replace() {
+void ExternalQS<T>::replace(const std::string &loc_result, const std::string &loc_temp, int &p_small, int &p_large) {
+    // the input two pointers means where to start
+    // the return of the two pointers means the size
     if (input_buf.empty()) {
         return;
     }
+    std::ofstream result_file{loc_result};
+    std::ifstream temp_file{loc_temp};
     T mid_max = qs_queue->getMax();
     T mid_min = qs_queue->getMin();
-    while (input_buf.empty()) {
+    while (!input_buf.empty()) {
         T input_elem = input_buf.front();
-        input_buf.pop();
+        input_buf.pop_front();
         if (input_elem < mid_min) {
+            // write back the small part when small_buf is full
             if (small_buf.size() == SMALL_SIZE) {
-                small_full = true;
+                // small_buf write to result file
+                write(result_loc, small_buf, p_small, small_buf.size(), p_small);
             }
+            small_buf.push_front(input_elem);
+        }
+        else if (input_elem > mid_max) {
+            // write back the large part when large_buf is full or all data has been detected
+            if (large_buf.size() == LARGE_SIZE) {
+                // large_buf write to temp file, write to result file after middle data is written
+                write(temp_loc, large_buf, p_large, large_buf.size(), p_large);
+            }
+            large_buf.push_front(input_elem);
+        }
+        else {
+            //mid_min < input_elem < mid_max
+
         }
     }
 }
@@ -199,6 +159,7 @@ void ExternalQS<T>::sort() {
     std::deque<int> indices;
     indices.push_front(0);  // storage left flag
     indices.push_back(qs_queue->Deque.size() - 1);  // storage right flag
+
     while (!indices.empty()) {
         int left = indices.front();
         int right = indices.back();
@@ -209,24 +170,35 @@ void ExternalQS<T>::sort() {
         int p_small = 0; // used for write small to file
         int p_large = 0; // used for write large to file
         read_to_mid(left, MIDDLE_SIZE, p_file);
+
         while (p_file < right) {
             read_to_input(p_file, INPUT_SIZE, p_file);
-            replace();
-            // write back the small part when small_buf is full or all data has been detected
-            if (small_buf.size() == SMALL_SIZE || p_file == right) {
-                // small_buf write to result file
+            replace(result_loc, temp_loc, p_small, p_large);
+
+            // if all data have been detected, must be written
+            // file is over but there are still elements in small_buf
+            if (p_file == right && p_small != SMALL_SIZE) {
                 write(result_loc, small_buf, p_small, small_buf.size(), p_small);
             }
-            // write back the large part when large_buf is full or all data has been detected
-            if (large_buf.size() == LARGE_SIZE || p_file == right) {
-                // large_buf write to temp file, write to result file after middle data is written
+
+            // file is over but there are still elements in large_buf
+            if (p_file == right && p_large != LARGE_SIZE) {
                 write(temp_loc, large_buf, p_large, large_buf.size(), p_large);
             }
         }
-        write(result_loc, qs_queue->Deque, p_small, qs_queue->Deque.size(), p_small);
-        write_t2r(result_loc, temp_loc, p_small, p_small);
-        // after all data has been detected, partition the small and large part again
 
+        p_file = p_small;
+        qs_queue->write(result_loc, p_file, qs_queue->Deque.size(), p_file);
+//        write(result_loc, qs_queue->Deque, p_file, qs_queue->Deque.size(), p_file);
+
+        p_large = p_file;
+        write_t2r(result_loc, temp_loc, p_file, p_file);
+
+        // after all data has been detected, partition the small and large part again
+        indices.push_front(left);
+        indices.push_back(p_small);
+        indices.push_front(p_large);
+        indices.push_back(right);
     }
 }
 
