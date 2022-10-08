@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <fstream>
 #include <cassert>
+#include <iostream>
 #include "defs.h"
 
 template<typename T>
@@ -75,13 +76,14 @@ bool PriorityDeque<T>::backRightNull() {
 
 template<typename T>
 void PriorityDeque<T>::adjust() {
+    std::cout << "****function adjust()" << std::endl;
     if (elemCount == 0) {
         return;
     } else if (elemCount % 2 == 0) {
         // elemCount >= 2, even
         int child;
         int parent;
-        for (child = Deque.size(), parent = (Deque.size() - 1 - (Deque.size() % 2)) / 2;
+        for (child = Deque.size() - 1, parent = (Deque.size() - 1 - (Deque.size() % 2)) / 2;
              parent >= 0;
              child = parent, parent = (parent - ((parent + 1) % 2)) / 2) {
             if (Deque.at(child).left > Deque.at(child).right && child != Deque.size() - 1) {
@@ -97,7 +99,7 @@ void PriorityDeque<T>::adjust() {
         // elemCount % 2 == 1
         int child;
         int parent;
-        for (child = Deque.size(), parent = (Deque.size() - 1 - (Deque.size() % 2)) / 2;
+        for (child = Deque.size() - 1, parent = (Deque.size() - 1 - (Deque.size() % 2)) / 2;
              parent >= 0;
              child = parent, parent = (parent - ((parent + 1) % 2)) / 2) {
             if (Deque.at(child).left > Deque.at(child).right && child != Deque.size() - 1) {
@@ -114,6 +116,7 @@ void PriorityDeque<T>::adjust() {
 
 template<typename T>
 void PriorityDeque<T>::push(T elem) {
+    std::cout << "******function push()" << std::endl;
     if (elemCount % 2 == 0) {
         node<T> newNode;
         int init = 0;
@@ -134,6 +137,7 @@ void PriorityDeque<T>::push(T elem) {
 
 template<typename T>
 void PriorityDeque<T>::popMax() {
+    std::cout << "**function popMax()" << std::endl;
     if (Deque.empty()) {
         throw std::runtime_error("empty Deque can't popMax");
     }
@@ -159,6 +163,7 @@ void PriorityDeque<T>::popMax() {
 
 template<typename T>
 void PriorityDeque<T>::popMin() {
+    std::cout << "**function popMin()" << std::endl;
     int init = 0;
     if (Deque.empty()) {
         throw std::runtime_error("empty Deque can't popMax");
@@ -207,17 +212,18 @@ int PriorityDeque<T>::getElemCount() {
 
 template<typename T>
 void PriorityDeque<T>::write(const std::string &loc, int file_base, int size, int &p_file) {
+    std::cout << "function Priority::write()" << std::endl;
     if (Deque.empty()) {
         return;
     }
-    std::ifstream write_file{loc};
+    std::ofstream write_file{loc};
     assert(write_file.is_open() && write_file.good());
-    write_file.seekg(file_base, std::ios::beg);
+    write_file.seekp(file_base, std::ios::beg);
     while (!Deque.empty()) {
         T value = getMin();
         popMin();
-        write_file << value;
+        write_file << value << " ";
     }
-    p_file = write_file.tellg() / sizeof(T) - 1;
+    p_file = write_file.tellp() / sizeof(T) - 1;
     write_file.close();
 }
