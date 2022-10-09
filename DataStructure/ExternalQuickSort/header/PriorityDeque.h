@@ -169,13 +169,20 @@ void PriorityDeque<T>::popMax() {
             Deque.front().right = Deque.back().right;
             Deque.back().right = *(T *) &init;
             Deque.back().rNull = true;
+            elemCount -= 1;
         } else {
-            Deque.front().right = Deque.at(Deque.size() - 2).right;
-            Deque.at(Deque.size() - 2).right = Deque.back().left;
-            Deque.pop_back();
-            adjust();
+            if (!Deque.back().rNull) {
+                Deque.front().right = Deque.back().right;
+                Deque.pop_back();
+                elemCount -= 1;
+            } else {
+                Deque.front().right = Deque.at(Deque.size() - 2).right;
+                Deque.at(Deque.size() - 2).right = Deque.back().left;
+                Deque.pop_back();
+                elemCount -= 1;
+                adjust();
+            }
         }
-        elemCount -= 1;
         // rebuild from top to bottom
         int parent = 0;
         int lchild = parent * 2 + 1;
@@ -188,14 +195,14 @@ void PriorityDeque<T>::popMax() {
             if (rchild < Deque.size() &&
                 Deque.at(rchild).right > Deque.at(parent).right &&
                 Deque.at(lchild).right < Deque.at(rchild).right &&
-                !Deque.at(lchild).rNull) {
+                !Deque.at(rchild).rNull) {
                 next = rchild;
             }
-            if (Deque.at(lchild).left > Deque.at(lchild).right) {
-                std::swap(Deque.at(lchild).left, Deque.at(rchild).right);
-            }
             if (parent != next) {
-            std::swap(Deque.at(parent).right, Deque.at(next).right);
+                std::swap(Deque.at(parent).right, Deque.at(next).right);
+                if (Deque.at(next).left > Deque.at(next).right) {
+                    std::swap(Deque.at(next).left, Deque.at(next).right);
+                }
             } else {
                 break;
             }
@@ -230,19 +237,21 @@ void PriorityDeque<T>::popMin() {
             Deque.front().left = Deque.back().left;
             Deque.back().left = *(T *) &init;
             Deque.back().lNull = true;
+            elemCount -= 1;
         } else {
             if (!Deque.back().lNull) {
                 Deque.front().left = Deque.back().left;
                 Deque.pop_back();
+                elemCount -= 1;
             } else {
                 // back node has no left, has only right part
                 Deque.front().left = Deque.at(Deque.size() - 2).left;
                 Deque.at(Deque.size() - 2).left = Deque.back().right;
                 Deque.pop_back();
+                elemCount -= 1;
                 adjust();
             }
         }
-        elemCount -= 1;
         // rebuild from top to bottom
         int parent = 0;
         int lchild = parent * 2 + 1;
@@ -258,11 +267,11 @@ void PriorityDeque<T>::popMin() {
                 !Deque.at(rchild).lNull) {
                 next = rchild;
             }
-            if (Deque.at(lchild).left > Deque.at(lchild).right) {
-                std::swap(Deque.at(lchild).left, Deque.at(rchild).right);
-            }
             if (next != parent) {
                 std::swap(Deque.at(parent).left, Deque.at(next).left);
+                if (Deque.at(next).left > Deque.at(next).right) {
+                    std::swap(Deque.at(next).left, Deque.at(next).right);
+                }
             } else {
                 break;
             }
