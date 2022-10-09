@@ -45,7 +45,9 @@ public:
     void write_t2r(const std::string &loc_result, const std::string &loc_temp, int file_base, long long &p_file);
 
     // insert element into middle memo
-    void replace(const std::string &loc_result, const std::string &loc_temp, long long &p_small, long long &p_large);
+    void replace(const std::string &loc_result, const std::string &loc_temp,
+                 int &small_count, int &large_count,
+                 long long &p_small, long long &p_large);
 
     // sort recursively and store the elements into txt
     void sort();
@@ -55,8 +57,7 @@ public:
 };
 
 template<typename T>
-void
-ExternalQS<T>::read_to_mid(int file_base, int buf_size, long long &p_file) {
+void ExternalQS<T>::read_to_mid(int file_base, int buf_size, long long &p_file) {
     std::cout << "--function read_to_mid()" << std::endl;
     std::ifstream read_file{loc};
     int read_count = 0;
@@ -94,41 +95,39 @@ void ExternalQS<T>::write(const std::string &_loc, std::deque<T> &buffer, int fi
     std::cout << "----function write()" << std::endl;
     if (buffer.empty())
         return;
-    std::ofstream write_file{_loc};
-    assert(write_file.is_open());
+    std::fstream write_file{_loc, std::ios::in | std::ios::out}; // append write
+    assert(write_file.is_open() && write_file.good());
     write_file.seekp(file_base, std::ios::beg);
     for (auto it = buffer.begin(); it != buffer.end(); ++it) {
         write_file << *it << " ";
     }
-//    p_file = file_base + size;
     p_file = write_file.tellp();
     write_file.close();
     buffer.clear();
 }
 
 template<typename T>
-void
-ExternalQS<T>::write_t2r(const std::string &loc_result, const std::string &loc_temp, int file_base, long long &p_file) {
+void ExternalQS<T>::write_t2r(const std::string &loc_result, const std::string &loc_temp,
+                              int file_base, long long &p_file) {
     std::cout << "----function write_t2r()" << std::endl;
-    std::ofstream result_file{loc_result};
-    std::ifstream temp_file{loc_temp};
-//    int size = 0;
-    assert(result_file.is_open() && temp_file.is_open());
+    std::fstream result_file{loc_result, std::ios::in | std::ios::out};
+    std::fstream temp_file{loc_temp, std::ios::in | std::ios::out};
+    assert(result_file.is_open() && result_file.good() && temp_file.is_open() && temp_file.good());
     result_file.seekp(file_base, std::ios::beg);
     while (!temp_file.eof()) {
         T elem;
         temp_file >> elem;
         result_file << elem << " ";
     }
-//    p_file = file_base + size;
     p_file = result_file.tellp();
     result_file.close();
     temp_file.close();
 }
 
 template<typename T>
-void ExternalQS<T>::replace(const std::string &loc_result, const std::string &loc_temp, long long &p_small,
-                            long long &p_large) {
+void ExternalQS<T>::replace(const std::string &loc_result, const std::string &loc_temp,
+                            int &small_count, int &large_count,
+                            long long &p_small, long long &p_large) {
     std::cout << "------function replace()" << std::endl;
     // the input two pointers means where to start
     // the return of the two pointers means the size
@@ -150,10 +149,12 @@ void ExternalQS<T>::replace(const std::string &loc_result, const std::string &lo
 
         if (small_buf.size() == SMALL_SIZE) {
             // small_buf write to result file
+            small_count += SMALL_SIZE;
             write(result_loc, small_buf, p_small, p_small);
         }
         if (large_buf.size() == LARGE_SIZE) {
             // large_buf write to temp file, write to result file after middle data is written
+            large_count += LARGE_SIZE;
             write(temp_loc, large_buf, p_large, p_large);
         }
         if (input_elem < mid_min) {
@@ -180,6 +181,8 @@ void ExternalQS<T>::replace(const std::string &loc_result, const std::string &lo
             }
         }
     }
+    result_file.close();
+    temp_file.close();
 }
 
 template<typename T>
@@ -212,18 +215,17 @@ void ExternalQS<T>::sort() {
             read_to_input(p_file, input_size, p_file);
             data_count += input_buf.size();
 
-            replace(result_loc, temp_loc, p_small, p_large);
+            replace(result_loc, temp_loc,
+                    small_count, large_count,
+                    p_small, p_large);
         }
-
-        write(result_loc, small_buf, p_small, p_small);
-        write(temp_loc, large_buf, p_large, p_large);
         small_count += small_buf.size();
         large_count += large_buf.size();
+        write(result_loc, small_buf, p_small, p_small);
+        write(temp_loc, large_buf, p_large, p_large);
 
         p_file = p_small;
         qs_queue->write(result_loc, p_file, p_file);
-
-        p_large = p_file;
         write_t2r(result_loc, temp_loc, p_file, p_file);
 
         // after all data has been detected, partition the small and large part again
