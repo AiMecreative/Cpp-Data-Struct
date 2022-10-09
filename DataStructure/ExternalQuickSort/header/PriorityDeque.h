@@ -64,7 +64,6 @@ PriorityDeque<T>::~PriorityDeque() = default;
 
 template<typename T>
 void PriorityDeque<T>::adjust() {
-    std::cout << "****function adjust()" << std::endl;
     if (elemCount == 0) {
         return;
     } else {
@@ -105,7 +104,6 @@ void PriorityDeque<T>::adjust() {
 
 template<typename T>
 void PriorityDeque<T>::push(T elem) {
-    std::cout << "******function push()" << std::endl;
     int init = 0;
     if (elemCount == 0) {
         node<T> newNode;
@@ -149,7 +147,6 @@ void PriorityDeque<T>::push(T elem) {
 
 template<typename T>
 void PriorityDeque<T>::popMax() {
-    std::cout << "**function popMax()" << std::endl;
     if (Deque.empty()) {
         throw std::runtime_error("empty Deque can't popMax");
     }
@@ -216,7 +213,6 @@ void PriorityDeque<T>::popMax() {
 
 template<typename T>
 void PriorityDeque<T>::popMin() {
-    std::cout << "**function popMin()" << std::endl;
     if (Deque.empty()) {
         throw std::runtime_error("empty Deque can't popMax");
     }
@@ -306,7 +302,6 @@ int PriorityDeque<T>::getElemCount() {
 
 template<typename T>
 void PriorityDeque<T>::write(const std::string &loc, int file_base, long long &p_file) {
-    std::cout << "function Priority::write()" << std::endl;
     if (Deque.empty()) {
         return;
     }
@@ -316,7 +311,7 @@ void PriorityDeque<T>::write(const std::string &loc, int file_base, long long &p
     while (!Deque.empty()) {
         T value = getMin();
         popMin();
-        write_file << value << " ";
+        write_file << value << "\t";
     }
     p_file = write_file.tellp();
     write_file.close();

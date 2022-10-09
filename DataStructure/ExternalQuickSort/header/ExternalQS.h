@@ -7,6 +7,7 @@
 #include <iostream>
 #include <cassert>
 #include <random>
+#include <cstdio>
 #include <queue>
 
 template<typename T>
@@ -18,9 +19,8 @@ private:
 public:
     PriorityDeque<T> *qs_queue; // middle
 
-    const std::string loc = "./data/sorted.txt";
-    const std::string temp_loc = "./data/temp_file.txt";
-//    const std::string result_loc = "./data/sorted.txt";
+    std::string loc = "./data/target_file.txt";
+    std::string temp_loc = "./data/temp_file.txt";
 
     ExternalQS() {
         qs_queue = new PriorityDeque<T>;
@@ -29,7 +29,7 @@ public:
     ~ExternalQS() = default;
 
     // generate rand number and write to txt
-    void generate_rand(const std::string &type_name,
+    void generate_rand(std::string &type_name,
                        int bottom, int top, int count);
 
     // read in data from txt, `p_file` is the tail of file
@@ -39,14 +39,14 @@ public:
     void read_to_input(int file_base, int buf_size, long long &p_file);
 
     // write into disk when small or large memo is full
-    void write(const std::string &loc, std::deque<T> &buffer, int file_base, long long &p_file);
+    void write(std::string &loc, std::deque<T> &buffer, int file_base, long long &p_file);
 
     // write temp_file to result_file
-    void write_t2r(const std::string &loc_result, const std::string &loc_temp,
+    void write_t2r(std::string &loc_result, std::string &loc_temp,
                    int file_base, int large_count, long long &p_file);
 
     // insert element into middle memo
-    void replace(const std::string &loc_result, const std::string &loc_temp,
+    void replace(std::string &loc_result, std::string &loc_temp,
                  int &small_count, int &large_count,
                  long long &p_small, long long &p_large);
 
@@ -59,8 +59,7 @@ public:
 
 template<typename T>
 void ExternalQS<T>::read_to_mid(int file_base, int buf_size, long long &p_file) {
-    std::cout << "--function read_to_mid()" << std::endl;
-    std::ifstream read_file{loc};
+    std::fstream read_file{loc, std::ios::in | std::ios::out};
     int read_count = 0;
     assert(read_file.is_open());
     read_file.seekg(file_base, std::ios::beg); // read from 0 + file_base
@@ -69,15 +68,13 @@ void ExternalQS<T>::read_to_mid(int file_base, int buf_size, long long &p_file) 
         read_file >> temp;
         qs_queue->push(temp);
     }
-//    p_file = file_base + buf_size;            // get the file pointer (the last index)
     p_file = read_file.tellg();
     read_file.close();
 }
 
 template<typename T>
 void ExternalQS<T>::read_to_input(int file_base, int buf_size, long long &p_file) {
-    std::cout << "--function read_to_input()" << std::endl;
-    std::ifstream read_file{loc};
+    std::fstream read_file{loc, std::ios::in | std::ios::out};
     int read_count = 0;
     assert(read_file.is_open());
     read_file.seekg(file_base, std::ios::beg); // read from 0 + file_base
@@ -86,21 +83,19 @@ void ExternalQS<T>::read_to_input(int file_base, int buf_size, long long &p_file
         read_file >> temp;
         input_buf.push_back(temp);
     }
-//    p_file = file_base + buf_size; // get the file pointer (the last index)
     p_file = read_file.tellg();
     read_file.close();
 }
 
 template<typename T>
-void ExternalQS<T>::write(const std::string &_loc, std::deque<T> &buffer, int file_base, long long &p_file) {
-    std::cout << "----function write()" << std::endl;
+void ExternalQS<T>::write(std::string &_loc, std::deque<T> &buffer, int file_base, long long &p_file) {
     if (buffer.empty())
         return;
-    std::fstream write_file{_loc, std::ios::in | std::ios::out}; // append write
+    std::fstream write_file{_loc, std::ios::in | std::ios::out};
     assert(write_file.is_open() && write_file.good());
     write_file.seekp(file_base, std::ios::beg);
     for (auto it = buffer.begin(); it != buffer.end(); ++it) {
-        write_file << *it << " ";
+        write_file << *it << "\t";
     }
     p_file = write_file.tellp();
     write_file.close();
@@ -108,9 +103,8 @@ void ExternalQS<T>::write(const std::string &_loc, std::deque<T> &buffer, int fi
 }
 
 template<typename T>
-void ExternalQS<T>::write_t2r(const std::string &loc_result, const std::string &loc_temp,
+void ExternalQS<T>::write_t2r(std::string &loc_result, std::string &loc_temp,
                               int file_base, int large_count, long long &p_file) {
-    std::cout << "----function write_t2r()" << std::endl;
     std::fstream result_file{loc_result, std::ios::in | std::ios::out};
     std::fstream temp_file{loc_temp, std::ios::in | std::ios::out};
     int read_count = 0;
@@ -119,7 +113,7 @@ void ExternalQS<T>::write_t2r(const std::string &loc_result, const std::string &
     while (read_count < large_count && !temp_file.eof()) {
         T elem;
         temp_file >> elem;
-        result_file << elem << " ";
+        result_file << elem << "\t";
         read_count += 1;
     }
     p_file = result_file.tellp();
@@ -128,18 +122,17 @@ void ExternalQS<T>::write_t2r(const std::string &loc_result, const std::string &
 }
 
 template<typename T>
-void ExternalQS<T>::replace(const std::string &loc_result, const std::string &loc_temp,
+void ExternalQS<T>::replace(std::string &loc_result, std::string &loc_temp,
                             int &small_count, int &large_count,
                             long long &p_small, long long &p_large) {
-    std::cout << "------function replace()" << std::endl;
     // the input two pointers means where to start
     // the return of the two pointers means the size
     if (input_buf.empty()) {
         return;
     }
 
-    std::ofstream result_file{loc_result};
-    std::ifstream temp_file{loc_temp};
+    std::fstream result_file{loc_result, std::ios::in | std::ios::out};
+    std::fstream temp_file{loc_temp, std::ios::in | std::ios::out};
 
     bool flag = false; // used for change min or max in middle_buf, false--min, true--max
 
@@ -167,7 +160,6 @@ void ExternalQS<T>::replace(const std::string &loc_result, const std::string &lo
             // write back the large part when large_buf is full or all data has been detected
             large_buf.push_back(input_elem);
         } else {
-            std::cout << "deque size = " << qs_queue->getElemCount() << std::endl;
             if (qs_queue->getElemCount() == MIDDLE_SIZE) {
                 if (flag) {
                     T pop_min = qs_queue->getMin();
@@ -190,7 +182,6 @@ void ExternalQS<T>::replace(const std::string &loc_result, const std::string &lo
 
 template<typename T>
 void ExternalQS<T>::sort() {
-    std::cout << "function sort()" << std::endl;
     std::deque<int> indices;
     std::deque<long long> file_locs;      // storage the file pointers
     indices.push_front(0);             // storage left flag
@@ -208,8 +199,8 @@ void ExternalQS<T>::sort() {
         long long file_base = file_locs.front();  // used for original file
         file_locs.pop_front();
 
-        long long p_file = 0;
-        long long p_small = 0; // used for write small to file
+        long long p_file = file_base;
+        long long p_small = file_base; // used for write small to file
         long long p_large = 0; // used for write large to file
 
         int data_count = 0;
@@ -219,7 +210,7 @@ void ExternalQS<T>::sort() {
         read_to_mid(file_base, middle_size, p_file);
         data_count += qs_queue->getElemCount();
 
-        while (data_count < right - left + 1) {
+        while (data_count < data_size) {
 
             int input_size = std::min(data_size - data_count, INPUT_SIZE);
             read_to_input(p_file, input_size, p_file);
@@ -249,37 +240,34 @@ void ExternalQS<T>::sort() {
         // after all data has been detected, partition the small and large part again
         // closed intervals
         // if left part exists
-        if (left < small_count) {
+        if (small_count > 0) {
             indices.push_front(left);
-            indices.push_back(small_count - 1);
+            indices.push_back(left + small_count - 1);
         }
         // if right part exists
-        if (right > DATA_SIZE - large_count) {
-            indices.push_front(DATA_SIZE - large_count);
+        if (large_count > 0) {
+            indices.push_front(right - large_count);
             indices.push_back(right);
         }
-        std::cout << left << " " << small_count << " " << large_count << " " << right << std::endl;
     }
 }
 
 template<typename T>
 void ExternalQS<T>::show(int offset, int elem_num) {
-    std::cout << "--function show()" << std::endl;
     std::ifstream show_file{loc};
     assert(show_file.is_open() && show_file.good());
     show_file.seekg(offset, std::ios::beg);
     for (int i = 0; i < elem_num; ++i) {
         T elem;
         show_file >> elem;
-        std::cout << elem << " ";
+        std::cout << elem << "\t";
     }
     std::cout << std::endl;
 }
 
 template<typename T>
-void
-ExternalQS<T>::generate_rand(const std::string &type_name, int bottom, int top, int count) {
-    std::cout << "--function generate_rand()" << std::endl;
+void ExternalQS<T>::generate_rand(std::string &type_name, int bottom,
+                                  int top, int count) {
     std::ofstream write_file{loc};
     assert(write_file.is_open() && write_file.good());
     std::default_random_engine generator(time(nullptr));
@@ -288,8 +276,6 @@ ExternalQS<T>::generate_rand(const std::string &type_name, int bottom, int top, 
         for (int i = 0; i < count; ++i) {
             T temp = rand_int(generator);
             write_file << temp << "\t";
-            if (i % 100 == 0 && i != 0)
-                write_file << "\n";
         }
     } else {
         static_assert(std::is_floating_point<T>::value, "Real Number required.");
@@ -297,8 +283,6 @@ ExternalQS<T>::generate_rand(const std::string &type_name, int bottom, int top, 
         for (int i = 0; i < count; ++i) {
             T temp = rand_real(generator);
             write_file << temp << "\t";
-            if (i % 100 == 0 && i != 0)
-                write_file << "\n";
         }
     }
     write_file.close();
