@@ -19,8 +19,8 @@ private:
 public:
     PriorityDeque<T> *qs_queue; // middle
 
-    std::string loc = "./data/target_file.txt";
-    std::string temp_loc = "./data/temp_file.txt";
+    const std::string loc = "./data/target_file.txt";
+    const std::string temp_loc = "./data/temp_file.txt";
 
     ExternalQS() {
         qs_queue = new PriorityDeque<T>;
@@ -29,7 +29,7 @@ public:
     ~ExternalQS() = default;
 
     // generate rand number and write to txt
-    void generate_rand(std::string &type_name,
+    void generate_rand(const std::string &type_name,
                        int bottom, int top, int count);
 
     // read in data from txt, `p_file` is the tail of file
@@ -39,14 +39,14 @@ public:
     void read_to_input(int file_base, int buf_size, long long &p_file);
 
     // write into disk when small or large memo is full
-    void write(std::string &loc, std::deque<T> &buffer, int file_base, long long &p_file);
+    void write(const std::string &loc, std::deque<T> &buffer, int file_base, long long &p_file);
 
     // write temp_file to result_file
-    void write_t2r(std::string &loc_result, std::string &loc_temp,
+    void write_t2r(const std::string &loc_result,const std::string &loc_temp,
                    int file_base, int large_count, long long &p_file);
 
     // insert element into middle memo
-    void replace(std::string &loc_result, std::string &loc_temp,
+    void replace(const std::string &loc_result, const std::string &loc_temp,
                  int &small_count, int &large_count,
                  long long &p_small, long long &p_large);
 
@@ -88,7 +88,7 @@ void ExternalQS<T>::read_to_input(int file_base, int buf_size, long long &p_file
 }
 
 template<typename T>
-void ExternalQS<T>::write(std::string &_loc, std::deque<T> &buffer, int file_base, long long &p_file) {
+void ExternalQS<T>::write(const std::string &_loc, std::deque<T> &buffer, int file_base, long long &p_file) {
     if (buffer.empty())
         return;
     std::fstream write_file{_loc, std::ios::in | std::ios::out};
@@ -103,7 +103,7 @@ void ExternalQS<T>::write(std::string &_loc, std::deque<T> &buffer, int file_bas
 }
 
 template<typename T>
-void ExternalQS<T>::write_t2r(std::string &loc_result, std::string &loc_temp,
+void ExternalQS<T>::write_t2r(const std::string &loc_result, const std::string &loc_temp,
                               int file_base, int large_count, long long &p_file) {
     std::fstream result_file{loc_result, std::ios::in | std::ios::out};
     std::fstream temp_file{loc_temp, std::ios::in | std::ios::out};
@@ -122,7 +122,7 @@ void ExternalQS<T>::write_t2r(std::string &loc_result, std::string &loc_temp,
 }
 
 template<typename T>
-void ExternalQS<T>::replace(std::string &loc_result, std::string &loc_temp,
+void ExternalQS<T>::replace(const std::string &loc_result, const std::string &loc_temp,
                             int &small_count, int &large_count,
                             long long &p_small, long long &p_large) {
     // the input two pointers means where to start
@@ -266,11 +266,11 @@ void ExternalQS<T>::show(int offset, int elem_num) {
 }
 
 template<typename T>
-void ExternalQS<T>::generate_rand(std::string &type_name, int bottom,
+void ExternalQS<T>::generate_rand(const std::string &type_name, int bottom,
                                   int top, int count) {
     std::ofstream write_file{loc};
     assert(write_file.is_open() && write_file.good());
-    std::default_random_engine generator(time(nullptr));
+    static std::default_random_engine generator(time(nullptr));
     if constexpr (std::is_integral<T>::value) { // confirm the type of data when compiling
         static std::uniform_int_distribution<T> rand_int(bottom, top);
         for (int i = 0; i < count; ++i) {
