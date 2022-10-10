@@ -1,14 +1,11 @@
 #pragma once
 
-#include "defs.h"
-#include "PriorityDeque.h"
 #include <string>
-#include <fstream>
-#include <iostream>
-#include <cassert>
 #include <random>
 #include <cstdio>
-#include <queue>
+#include <chrono>
+#include "defs.h"
+#include "PriorityDeque.h"
 
 template<typename T>
 class ExternalQS {
@@ -16,14 +13,25 @@ private:
     std::deque<T> input_buf;
     std::deque<T> small_buf;
     std::deque<T> large_buf;
+
+    //store the time spent
+    // 0 for sort time
+    // 1 for read time
+    // 2 for write time
+    std::vector<long long> timeInfo;
+
+    // store the IO times, 0 for read, 1 for write
+    std::vector<int> ioInfo;
 public:
-    PriorityDeque<T> *qs_queue; // middle
+    PriorityDeque<T> *qs_queue;   // middle
 
     const std::string loc = "./data/target_file.txt";
     const std::string temp_loc = "./data/temp_file.txt";
 
     ExternalQS() {
         qs_queue = new PriorityDeque<T>;
+        timeInfo.assign(3, 0);
+        ioInfo.assign(2, 0);
     }
 
     ~ExternalQS() = default;
@@ -42,7 +50,7 @@ public:
     void write(const std::string &loc, std::deque<T> &buffer, int file_base, long long &p_file);
 
     // write temp_file to result_file
-    void write_t2r(const std::string &loc_result,const std::string &loc_temp,
+    void write_t2r(const std::string &loc_result, const std::string &loc_temp,
                    int file_base, int large_count, long long &p_file);
 
     // insert element into middle memo
@@ -53,8 +61,8 @@ public:
     // sort recursively and store the elements into txt
     void sort();
 
-    // show the first elem_num elements of the result
-    void show(int offset, int elem_num);
+    // print the time and IO information
+    void printInfo();
 };
 
 template<typename T>
@@ -63,11 +71,17 @@ void ExternalQS<T>::read_to_mid(int file_base, int buf_size, long long &p_file) 
     int read_count = 0;
     assert(read_file.is_open());
     read_file.seekg(file_base, std::ios::beg); // read from 0 + file_base
+    auto start = std::chrono::system_clock::now();
+    auto end = start;
     for (read_count; read_count < buf_size && !read_file.eof(); ++read_count) {
         T temp;
+        start = std::chrono::system_clock::now();
         read_file >> temp;
+        end = std::chrono::system_clock::now();
         qs_queue->push(temp);
+        timeInfo[1] += std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
     }
+    ioInfo[0] += buf_size;
     p_file = read_file.tellg();
     read_file.close();
 }
@@ -78,11 +92,17 @@ void ExternalQS<T>::read_to_input(int file_base, int buf_size, long long &p_file
     int read_count = 0;
     assert(read_file.is_open());
     read_file.seekg(file_base, std::ios::beg); // read from 0 + file_base
+    auto start = std::chrono::system_clock::now();
+    auto end = start;
     for (read_count; read_count < buf_size && !read_file.eof(); ++read_count) {
         T temp;
+        start = std::chrono::system_clock::now();
         read_file >> temp;
+        end = std::chrono::system_clock::now();
         input_buf.push_back(temp);
+        timeInfo[1] += std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
     }
+    ioInfo[0] += buf_size;
     p_file = read_file.tellg();
     read_file.close();
 }
@@ -94,9 +114,15 @@ void ExternalQS<T>::write(const std::string &_loc, std::deque<T> &buffer, int fi
     std::fstream write_file{_loc, std::ios::in | std::ios::out};
     assert(write_file.is_open() && write_file.good());
     write_file.seekp(file_base, std::ios::beg);
+    auto start = std::chrono::system_clock::now();
+    auto end = start;
     for (auto it = buffer.begin(); it != buffer.end(); ++it) {
+        start = std::chrono::system_clock::now();
         write_file << *it << "\t";
+        end = std::chrono::system_clock::now();
+        timeInfo[2] += std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
     }
+    ioInfo[1] += buffer.size();
     p_file = write_file.tellp();
     write_file.close();
     buffer.clear();
@@ -110,12 +136,22 @@ void ExternalQS<T>::write_t2r(const std::string &loc_result, const std::string &
     int read_count = 0;
     assert(result_file.is_open() && result_file.good() && temp_file.is_open() && temp_file.good());
     result_file.seekp(file_base, std::ios::beg);
+    auto start = std::chrono::system_clock::now();
+    auto mid_time = start;
+    auto end = start;
     while (read_count < large_count && !temp_file.eof()) {
         T elem;
+        start = std::chrono::system_clock::now();
         temp_file >> elem;
+        mid_time = std::chrono::system_clock::now();
         result_file << elem << "\t";
+        end = std::chrono::system_clock::now();
         read_count += 1;
+        timeInfo[1] += std::chrono::duration_cast<std::chrono::microseconds>(mid_time - start).count();
+        timeInfo[2] += std::chrono::duration_cast<std::chrono::microseconds>(end - mid_time).count();
     }
+    ioInfo[0] += large_count;
+    ioInfo[1] += large_count;
     p_file = result_file.tellp();
     result_file.close();
     temp_file.close();
@@ -182,6 +218,7 @@ void ExternalQS<T>::replace(const std::string &loc_result, const std::string &lo
 
 template<typename T>
 void ExternalQS<T>::sort() {
+    auto start = std::chrono::system_clock::now();
     std::deque<int> indices;
     std::deque<long long> file_locs;      // storage the file pointers
     indices.push_front(0);             // storage left flag
@@ -250,19 +287,8 @@ void ExternalQS<T>::sort() {
             indices.push_back(right);
         }
     }
-}
-
-template<typename T>
-void ExternalQS<T>::show(int offset, int elem_num) {
-    std::ifstream show_file{loc};
-    assert(show_file.is_open() && show_file.good());
-    show_file.seekg(offset, std::ios::beg);
-    for (int i = 0; i < elem_num; ++i) {
-        T elem;
-        show_file >> elem;
-        std::cout << elem << "\t";
-    }
-    std::cout << std::endl;
+    auto end = std::chrono::system_clock::now();
+    timeInfo[0] += std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
 }
 
 template<typename T>
@@ -286,4 +312,14 @@ void ExternalQS<T>::generate_rand(const std::string &type_name, int bottom,
         }
     }
     write_file.close();
+}
+
+template<typename T>
+void ExternalQS<T>::printInfo() {
+    std::cout << "Data " << DATA_SIZE << " | Middle_buf " << MIDDLE_SIZE << std::endl;
+    std::cout << "Input_buf " << INPUT_SIZE << " | Small_buf " << SMALL_SIZE << " | Large_buf " << LARGE_SIZE << std::endl;
+    std::cout << std::endl;
+    std::cout << "External quick sort time " << timeInfo[0] / 1000 << " ms" << std::endl;
+    std::cout << "Read times " << ioInfo[0] << " | read time " << timeInfo[1] << " us" << std::endl;
+    std::cout << "Write times " << ioInfo[1] << " | write time " << timeInfo[2] << " us" << std::endl;
 }

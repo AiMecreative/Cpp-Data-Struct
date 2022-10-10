@@ -7,7 +7,7 @@ int main(int argc, char **argv) {
 
     sortOp.generate_rand(rand_type, 0, 100, data_size);
     sortOp.sort();
-    sortOp.show(0, 100);
+    sortOp.printInfo();
 
     return 0;
 }
