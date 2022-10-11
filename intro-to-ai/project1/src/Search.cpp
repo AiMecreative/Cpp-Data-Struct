@@ -69,7 +69,6 @@ namespace search {
                 }
             }
         }
-
         return {Action::FAILURE};
     }
 
@@ -82,11 +81,11 @@ namespace search {
                 else
                     cutoff occurred?←false
                     for each action in problem.ACTIONS(node.STATE) do
-                    child ←CHILD-NODE(problem, node, action)
-                    result ←RECURSIVE-DLS(child , problem, limit − 1)
-                    if result = cutoff then cutoff occurred?←true
-                    else if result != failure then return result
-                    if cutoff occurred? then return cutoff else return failure
+                        child ←CHILD-NODE(problem, node, action)
+                        result ←RECURSIVE-DLS(child , problem, limit − 1)
+                        if result = cutoff then cutoff occurred?←true
+                        else if result != failure then return result
+        if cutoff occurred? then return cutoff else return failure
 
         * Reference:
         * Figure 3.17 A recursive implementation of depth-limited tree search.
@@ -95,7 +94,30 @@ namespace search {
         * 需要使用problem.freeMemory(nodePtr)管理内存
         */
         // TODO
+        bool cutFlag;
+        if (problem.isGoal(node.state)) {
+            return getSolution(node);
+        } else if (limit == 0) {
+            return {Action::CUTOFF};
+        } else {
+            cutFlag = false;
+            for (Action action: problem.getValidActions(node.state)) {
+                Node *child = new Node(childNode(problem, node, action, 1));
+                problem.nodePtrs.insert(child);
 
+                std::vector<Action> result = recursiveDLS(*child, problem, limit - 1);
+                if (std::vector<Action>{Action::CUTOFF} == result) {
+                    cutFlag = true;
+                } else if (std::vector<Action>{Action::FAILURE} != result) {
+                    return result;
+                }
+            }
+            if (cutFlag) {
+                return {Action::CUTOFF};
+            } else {
+                return {Action::FAILURE};
+            }
+        }
         return {};
     }
 
@@ -143,14 +165,14 @@ namespace search {
         problem.nodePtrs.insert(initNode);
 
         std::priority_queue<Node *, std::vector<Node *>, Node::cmp> frontier;
-        std::map<std::vector<int>, Node* > stateNodePtrMap;
-        std::set<std::vector<int> > explored;
+        std::map<std::vector<int>, Node *> stateNodePtrMap;
+        std::set<std::vector<int>> explored;
         auto ex_it = explored.begin();
 
         if (problem.isGoal(initNode->state)) return {};
 
         frontier.push(initNode);
-        stateNodePtrMap.insert(std::pair<std::vector<int>, Node*> (initNode->state, initNode));
+        stateNodePtrMap.insert(std::pair<std::vector<int>, Node *>(initNode->state, initNode));
 
         while (!frontier.empty()) {
             Node *current = frontier.top();
@@ -165,12 +187,13 @@ namespace search {
 
             for (Action action: problem.getValidActions(current->state)) {
                 Node *child = new Node(childNode(problem, *current, action, 1));
+                problem.nodePtrs.insert(child);
                 child->cost += heuristicFunc(child->state, problem.goalState);
                 if (!inSet(explored, child->state) && !inMap(stateNodePtrMap, child->state)) {
                     frontier.push(child);
-                    stateNodePtrMap.insert(std::pair<std::vector<int>, Node*>(child->state, child));
+                    stateNodePtrMap.insert(std::pair<std::vector<int>, Node *>(child->state, child));
                 } else if (inMap(stateNodePtrMap, child->state) && child->cost > frontier.top()->cost) {
-                    child = frontier.top();
+                    updateNode(frontier, frontier.top(), child);
                     if (problem.isGoal(child->state)) return getSolution(*child);
                 }
             }
