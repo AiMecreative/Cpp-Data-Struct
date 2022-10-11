@@ -27,7 +27,7 @@ public:
     std::vector<Action> getValidActions(std::vector<int> &state);    // 对应problem.ACTIONS函数
     bool isValidAction(std::vector<int> &state, Action action);
 
-    bool isSolution(std::vector<Action> &solution, std::vector<int> initState);
+    bool isSolution(std::vector<Action> &solution, std::vector<int> initSta);
 
     void updateInitState();        // 随机出一个的新的初始状态，并更新
     void printState(std::vector<int> &state);
@@ -37,5 +37,5 @@ public:
     void freeMemory();    // 用于内存管理，释放储存在nodePtrs中指针所指向的内存
     void freeMemory(Node *node);    // 用于内存管理，在实现DLS需要调用
 private:
-    int getAgent(std::vector<int> &state);
+    unsigned int getAgent(std::vector<int> &state);
 };

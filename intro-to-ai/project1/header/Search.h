@@ -17,8 +17,8 @@ namespace search {
     bool inMap(std::map<std::vector<int>, Node *> &map, std::vector<int> &state);
 
     // 把oldNode的数据替换为newNode中的数据，oldNode需要为frontier中的元素
-    void
-    updateNode(std::priority_queue<Node *, std::vector<Node *>, Node::cmp> &frontier, Node *oldNode, Node *newNode);
+    void updateNode(std::priority_queue<Node *, std::vector<Node *>, Node::cmp> &frontier, // TODO: 否定之否定
+                    Node *oldNode, Node *newNode);
 
     // breadth first search 算法
     std::vector<Action> bfs(Problem &problem);

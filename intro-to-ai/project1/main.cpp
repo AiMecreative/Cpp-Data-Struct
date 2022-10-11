@@ -15,11 +15,11 @@ void printStats(std::vector<std::pair<int, float>> &statistics) {
     }
 }
 
-void doExperiment(int iteration, int problemSize, int suffleSteps, searchFunc searchFunc) {
+void doExperiment(int iteration, int problemSize, int shuffleSteps, searchFunc searchFunc) {
     std::vector<std::pair<int, float>> statistics;
 
     for (int i = 0; i < iteration; i++) {
-        Problem problem(problemSize, suffleSteps);
+        Problem problem(problemSize, shuffleSteps);
         problem.printState(problem.initState);
 
         clock_t t = clock();
@@ -41,10 +41,10 @@ void doExperiment(int iteration, int problemSize, int suffleSteps, searchFunc se
 void testSearchFunction(searchFunc searchFunc) {
     int iteration = 50;
     int size = 3;
-    int suffleSteps = 30;
+    int shuffleSteps = 30;
 
     for (int i = 1; i <= iteration; i++) {
-        Problem problem(size, suffleSteps);
+        Problem problem(size, shuffleSteps);
         std::vector<Action> solution = searchFunc(problem);
         if (solution == std::vector<Action>({Action::CUTOFF})) {
             std::cout << "Iteration " << i << ": CUTOFF\n";
