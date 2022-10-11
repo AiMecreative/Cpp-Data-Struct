@@ -30,13 +30,13 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 23,
+				"line" : 31,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 25,
+				"line" : 33,
 				"parent" : 0
 			},
 			{
@@ -48,7 +48,7 @@
 			{
 				"command" : 3,
 				"file" : 0,
-				"line" : 24,
+				"line" : 32,
 				"parent" : 0
 			}
 		]
@@ -92,22 +92,6 @@
 	[
 		{
 			"backtrace" : 2,
-			"id" : "Actionlib::@6890427a1f51a3e7e1df"
-		},
-		{
-			"backtrace" : 2,
-			"id" : "Heuristiclib::@6890427a1f51a3e7e1df"
-		},
-		{
-			"backtrace" : 2,
-			"id" : "Nodelib::@6890427a1f51a3e7e1df"
-		},
-		{
-			"backtrace" : 2,
-			"id" : "Problemlib::@6890427a1f51a3e7e1df"
-		},
-		{
-			"backtrace" : 2,
 			"id" : "Searchlib::@6890427a1f51a3e7e1df"
 		}
 	],
@@ -123,26 +107,6 @@
 			{
 				"fragment" : "",
 				"role" : "flags"
-			},
-			{
-				"backtrace" : 2,
-				"fragment" : "libActionlib.a",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 2,
-				"fragment" : "libHeuristiclib.a",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 2,
-				"fragment" : "libNodelib.a",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 2,
-				"fragment" : "libProblemlib.a",
-				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,

@@ -95,7 +95,8 @@ namespace search {
         * 需要使用problem.freeMemory(nodePtr)管理内存
         */
         // TODO
-        return std::vector<Action>();
+
+        return {};
     }
 
     std::vector<Action> dls(Problem &problem, int limit) {
@@ -142,19 +143,20 @@ namespace search {
         problem.nodePtrs.insert(initNode);
 
         std::priority_queue<Node *, std::vector<Node *>, Node::cmp> frontier;
-        std::set<std::vector<int> > frontierSet;
+        std::map<std::vector<int>, Node* > stateNodePtrMap;
         std::set<std::vector<int> > explored;
         auto ex_it = explored.begin();
 
         if (problem.isGoal(initNode->state)) return {};
 
         frontier.push(initNode);
-        frontierSet.insert(initNode->state);
+        stateNodePtrMap.insert(std::pair<std::vector<int>, Node*> (initNode->state, initNode));
 
         while (!frontier.empty()) {
             Node *current = frontier.top();
+
             frontier.pop();
-            frontierSet.erase(initNode->state);
+            stateNodePtrMap.erase(current->state);
 
             if (problem.isGoal(current->state))
                 return getSolution(*current);
@@ -162,17 +164,13 @@ namespace search {
             explored.insert(ex_it, current->state);
 
             for (Action action: problem.getValidActions(current->state)) {
-                Node *child = new Node(current, action, 0, current->state);
-                child->cost += heuristic::manhattan(child->state, problem.goalState);
-                if (!inSet(explored, child->state) && !inSet(frontierSet, child->state)) {
+                Node *child = new Node(childNode(problem, *current, action, 1));
+                child->cost += heuristicFunc(child->state, problem.goalState);
+                if (!inSet(explored, child->state) && !inMap(stateNodePtrMap, child->state)) {
                     frontier.push(child);
-                    frontierSet.insert(child->state);
-                } else if (inSet(frontierSet, child->state) && child->cost > frontier.top()->cost) {
-                    Node *temp = child;
-                    frontierSet.erase(frontier.top()->state);
+                    stateNodePtrMap.insert(std::pair<std::vector<int>, Node*>(child->state, child));
+                } else if (inMap(stateNodePtrMap, child->state) && child->cost > frontier.top()->cost) {
                     child = frontier.top();
-                    frontier.pop();
-                    frontier.push(temp);
                     if (problem.isGoal(child->state)) return getSolution(*child);
                 }
             }

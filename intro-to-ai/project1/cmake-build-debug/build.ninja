@@ -41,134 +41,6 @@ include CMakeFiles/rules.ninja
 
 cmake_ninja_workdir = D$:/xrCLang/Self-Study-For-Cpp/intro-to-ai/project1/cmake-build-debug/
 # =============================================================================
-# Object build statements for STATIC_LIBRARY target Actionlib
-
-
-#############################################
-# Order-only phony target for Actionlib
-
-build cmake_object_order_depends_target_Actionlib: phony || CMakeFiles/Actionlib.dir
-
-build CMakeFiles/Actionlib.dir/src/Action.cpp.obj: CXX_COMPILER__Actionlib_Debug D$:/xrCLang/Self-Study-For-Cpp/intro-to-ai/project1/src/Action.cpp || cmake_object_order_depends_target_Actionlib
-  DEP_FILE = CMakeFiles\Actionlib.dir\src\Action.cpp.obj.d
-  FLAGS = -g
-  INCLUDES = -ID:/xrCLang/Self-Study-For-Cpp/intro-to-ai/project1/header -ID:/xrCLang/Self-Study-For-Cpp/intro-to-ai/project1/src
-  OBJECT_DIR = CMakeFiles\Actionlib.dir
-  OBJECT_FILE_DIR = CMakeFiles\Actionlib.dir\src
-
-
-# =============================================================================
-# Link build statements for STATIC_LIBRARY target Actionlib
-
-
-#############################################
-# Link the static library libActionlib.a
-
-build libActionlib.a: CXX_STATIC_LIBRARY_LINKER__Actionlib_Debug CMakeFiles/Actionlib.dir/src/Action.cpp.obj
-  LANGUAGE_COMPILE_FLAGS = -g
-  OBJECT_DIR = CMakeFiles\Actionlib.dir
-  POST_BUILD = cd .
-  PRE_LINK = cd .
-  TARGET_FILE = libActionlib.a
-  TARGET_PDB = Actionlib.a.dbg
-
-# =============================================================================
-# Object build statements for STATIC_LIBRARY target Heuristiclib
-
-
-#############################################
-# Order-only phony target for Heuristiclib
-
-build cmake_object_order_depends_target_Heuristiclib: phony || CMakeFiles/Heuristiclib.dir
-
-build CMakeFiles/Heuristiclib.dir/src/Heuristic.cpp.obj: CXX_COMPILER__Heuristiclib_Debug D$:/xrCLang/Self-Study-For-Cpp/intro-to-ai/project1/src/Heuristic.cpp || cmake_object_order_depends_target_Heuristiclib
-  DEP_FILE = CMakeFiles\Heuristiclib.dir\src\Heuristic.cpp.obj.d
-  FLAGS = -g
-  INCLUDES = -ID:/xrCLang/Self-Study-For-Cpp/intro-to-ai/project1/header -ID:/xrCLang/Self-Study-For-Cpp/intro-to-ai/project1/src
-  OBJECT_DIR = CMakeFiles\Heuristiclib.dir
-  OBJECT_FILE_DIR = CMakeFiles\Heuristiclib.dir\src
-
-
-# =============================================================================
-# Link build statements for STATIC_LIBRARY target Heuristiclib
-
-
-#############################################
-# Link the static library libHeuristiclib.a
-
-build libHeuristiclib.a: CXX_STATIC_LIBRARY_LINKER__Heuristiclib_Debug CMakeFiles/Heuristiclib.dir/src/Heuristic.cpp.obj
-  LANGUAGE_COMPILE_FLAGS = -g
-  OBJECT_DIR = CMakeFiles\Heuristiclib.dir
-  POST_BUILD = cd .
-  PRE_LINK = cd .
-  TARGET_FILE = libHeuristiclib.a
-  TARGET_PDB = Heuristiclib.a.dbg
-
-# =============================================================================
-# Object build statements for STATIC_LIBRARY target Nodelib
-
-
-#############################################
-# Order-only phony target for Nodelib
-
-build cmake_object_order_depends_target_Nodelib: phony || CMakeFiles/Nodelib.dir
-
-build CMakeFiles/Nodelib.dir/src/Node.cpp.obj: CXX_COMPILER__Nodelib_Debug D$:/xrCLang/Self-Study-For-Cpp/intro-to-ai/project1/src/Node.cpp || cmake_object_order_depends_target_Nodelib
-  DEP_FILE = CMakeFiles\Nodelib.dir\src\Node.cpp.obj.d
-  FLAGS = -g
-  INCLUDES = -ID:/xrCLang/Self-Study-For-Cpp/intro-to-ai/project1/header -ID:/xrCLang/Self-Study-For-Cpp/intro-to-ai/project1/src
-  OBJECT_DIR = CMakeFiles\Nodelib.dir
-  OBJECT_FILE_DIR = CMakeFiles\Nodelib.dir\src
-
-
-# =============================================================================
-# Link build statements for STATIC_LIBRARY target Nodelib
-
-
-#############################################
-# Link the static library libNodelib.a
-
-build libNodelib.a: CXX_STATIC_LIBRARY_LINKER__Nodelib_Debug CMakeFiles/Nodelib.dir/src/Node.cpp.obj
-  LANGUAGE_COMPILE_FLAGS = -g
-  OBJECT_DIR = CMakeFiles\Nodelib.dir
-  POST_BUILD = cd .
-  PRE_LINK = cd .
-  TARGET_FILE = libNodelib.a
-  TARGET_PDB = Nodelib.a.dbg
-
-# =============================================================================
-# Object build statements for STATIC_LIBRARY target Problemlib
-
-
-#############################################
-# Order-only phony target for Problemlib
-
-build cmake_object_order_depends_target_Problemlib: phony || CMakeFiles/Problemlib.dir
-
-build CMakeFiles/Problemlib.dir/src/Problem.cpp.obj: CXX_COMPILER__Problemlib_Debug D$:/xrCLang/Self-Study-For-Cpp/intro-to-ai/project1/src/Problem.cpp || cmake_object_order_depends_target_Problemlib
-  DEP_FILE = CMakeFiles\Problemlib.dir\src\Problem.cpp.obj.d
-  FLAGS = -g
-  INCLUDES = -ID:/xrCLang/Self-Study-For-Cpp/intro-to-ai/project1/header -ID:/xrCLang/Self-Study-For-Cpp/intro-to-ai/project1/src
-  OBJECT_DIR = CMakeFiles\Problemlib.dir
-  OBJECT_FILE_DIR = CMakeFiles\Problemlib.dir\src
-
-
-# =============================================================================
-# Link build statements for STATIC_LIBRARY target Problemlib
-
-
-#############################################
-# Link the static library libProblemlib.a
-
-build libProblemlib.a: CXX_STATIC_LIBRARY_LINKER__Problemlib_Debug CMakeFiles/Problemlib.dir/src/Problem.cpp.obj
-  LANGUAGE_COMPILE_FLAGS = -g
-  OBJECT_DIR = CMakeFiles\Problemlib.dir
-  POST_BUILD = cd .
-  PRE_LINK = cd .
-  TARGET_FILE = libProblemlib.a
-  TARGET_PDB = Problemlib.a.dbg
-
-# =============================================================================
 # Object build statements for STATIC_LIBRARY target Searchlib
 
 
@@ -177,8 +49,36 @@ build libProblemlib.a: CXX_STATIC_LIBRARY_LINKER__Problemlib_Debug CMakeFiles/Pr
 
 build cmake_object_order_depends_target_Searchlib: phony || CMakeFiles/Searchlib.dir
 
+build CMakeFiles/Searchlib.dir/src/Action.cpp.obj: CXX_COMPILER__Searchlib_Debug D$:/xrCLang/Self-Study-For-Cpp/intro-to-ai/project1/src/Action.cpp || cmake_object_order_depends_target_Searchlib
+  DEP_FILE = CMakeFiles\Searchlib.dir\src\Action.cpp.obj.d
+  FLAGS = -g
+  INCLUDES = -ID:/xrCLang/Self-Study-For-Cpp/intro-to-ai/project1/header -ID:/xrCLang/Self-Study-For-Cpp/intro-to-ai/project1/src
+  OBJECT_DIR = CMakeFiles\Searchlib.dir
+  OBJECT_FILE_DIR = CMakeFiles\Searchlib.dir\src
+
+build CMakeFiles/Searchlib.dir/src/Node.cpp.obj: CXX_COMPILER__Searchlib_Debug D$:/xrCLang/Self-Study-For-Cpp/intro-to-ai/project1/src/Node.cpp || cmake_object_order_depends_target_Searchlib
+  DEP_FILE = CMakeFiles\Searchlib.dir\src\Node.cpp.obj.d
+  FLAGS = -g
+  INCLUDES = -ID:/xrCLang/Self-Study-For-Cpp/intro-to-ai/project1/header -ID:/xrCLang/Self-Study-For-Cpp/intro-to-ai/project1/src
+  OBJECT_DIR = CMakeFiles\Searchlib.dir
+  OBJECT_FILE_DIR = CMakeFiles\Searchlib.dir\src
+
+build CMakeFiles/Searchlib.dir/src/Problem.cpp.obj: CXX_COMPILER__Searchlib_Debug D$:/xrCLang/Self-Study-For-Cpp/intro-to-ai/project1/src/Problem.cpp || cmake_object_order_depends_target_Searchlib
+  DEP_FILE = CMakeFiles\Searchlib.dir\src\Problem.cpp.obj.d
+  FLAGS = -g
+  INCLUDES = -ID:/xrCLang/Self-Study-For-Cpp/intro-to-ai/project1/header -ID:/xrCLang/Self-Study-For-Cpp/intro-to-ai/project1/src
+  OBJECT_DIR = CMakeFiles\Searchlib.dir
+  OBJECT_FILE_DIR = CMakeFiles\Searchlib.dir\src
+
 build CMakeFiles/Searchlib.dir/src/Search.cpp.obj: CXX_COMPILER__Searchlib_Debug D$:/xrCLang/Self-Study-For-Cpp/intro-to-ai/project1/src/Search.cpp || cmake_object_order_depends_target_Searchlib
   DEP_FILE = CMakeFiles\Searchlib.dir\src\Search.cpp.obj.d
+  FLAGS = -g
+  INCLUDES = -ID:/xrCLang/Self-Study-For-Cpp/intro-to-ai/project1/header -ID:/xrCLang/Self-Study-For-Cpp/intro-to-ai/project1/src
+  OBJECT_DIR = CMakeFiles\Searchlib.dir
+  OBJECT_FILE_DIR = CMakeFiles\Searchlib.dir\src
+
+build CMakeFiles/Searchlib.dir/src/Heuristic.cpp.obj: CXX_COMPILER__Searchlib_Debug D$:/xrCLang/Self-Study-For-Cpp/intro-to-ai/project1/src/Heuristic.cpp || cmake_object_order_depends_target_Searchlib
+  DEP_FILE = CMakeFiles\Searchlib.dir\src\Heuristic.cpp.obj.d
   FLAGS = -g
   INCLUDES = -ID:/xrCLang/Self-Study-For-Cpp/intro-to-ai/project1/header -ID:/xrCLang/Self-Study-For-Cpp/intro-to-ai/project1/src
   OBJECT_DIR = CMakeFiles\Searchlib.dir
@@ -192,7 +92,7 @@ build CMakeFiles/Searchlib.dir/src/Search.cpp.obj: CXX_COMPILER__Searchlib_Debug
 #############################################
 # Link the static library libSearchlib.a
 
-build libSearchlib.a: CXX_STATIC_LIBRARY_LINKER__Searchlib_Debug CMakeFiles/Searchlib.dir/src/Search.cpp.obj
+build libSearchlib.a: CXX_STATIC_LIBRARY_LINKER__Searchlib_Debug CMakeFiles/Searchlib.dir/src/Action.cpp.obj CMakeFiles/Searchlib.dir/src/Node.cpp.obj CMakeFiles/Searchlib.dir/src/Problem.cpp.obj CMakeFiles/Searchlib.dir/src/Search.cpp.obj CMakeFiles/Searchlib.dir/src/Heuristic.cpp.obj
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = CMakeFiles\Searchlib.dir
   POST_BUILD = cd .
@@ -207,7 +107,7 @@ build libSearchlib.a: CXX_STATIC_LIBRARY_LINKER__Searchlib_Debug CMakeFiles/Sear
 #############################################
 # Order-only phony target for main
 
-build cmake_object_order_depends_target_main: phony || cmake_object_order_depends_target_Actionlib cmake_object_order_depends_target_Heuristiclib cmake_object_order_depends_target_Nodelib cmake_object_order_depends_target_Problemlib cmake_object_order_depends_target_Searchlib
+build cmake_object_order_depends_target_main: phony || cmake_object_order_depends_target_Searchlib
 
 build CMakeFiles/main.dir/main.cpp.obj: CXX_COMPILER__main_Debug D$:/xrCLang/Self-Study-For-Cpp/intro-to-ai/project1/main.cpp || cmake_object_order_depends_target_main
   DEP_FILE = CMakeFiles\main.dir\main.cpp.obj.d
@@ -224,9 +124,9 @@ build CMakeFiles/main.dir/main.cpp.obj: CXX_COMPILER__main_Debug D$:/xrCLang/Sel
 #############################################
 # Link the executable main.exe
 
-build main.exe: CXX_EXECUTABLE_LINKER__main_Debug CMakeFiles/main.dir/main.cpp.obj | libActionlib.a libHeuristiclib.a libNodelib.a libProblemlib.a libSearchlib.a || libActionlib.a libHeuristiclib.a libNodelib.a libProblemlib.a libSearchlib.a
+build main.exe: CXX_EXECUTABLE_LINKER__main_Debug CMakeFiles/main.dir/main.cpp.obj | libSearchlib.a || libSearchlib.a
   FLAGS = -g
-  LINK_LIBRARIES = libActionlib.a  libHeuristiclib.a  libNodelib.a  libProblemlib.a  libSearchlib.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  LINK_LIBRARIES = libSearchlib.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\main.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -260,14 +160,6 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 # Target aliases.
 
-build Actionlib: phony libActionlib.a
-
-build Heuristiclib: phony libHeuristiclib.a
-
-build Nodelib: phony libNodelib.a
-
-build Problemlib: phony libProblemlib.a
-
 build Searchlib: phony libSearchlib.a
 
 build main: phony main.exe
@@ -280,7 +172,7 @@ build main: phony main.exe
 #############################################
 # Folder: D:/xrCLang/Self-Study-For-Cpp/intro-to-ai/project1/cmake-build-debug
 
-build all: phony libActionlib.a libHeuristiclib.a libNodelib.a libProblemlib.a libSearchlib.a main.exe
+build all: phony libSearchlib.a main.exe
 
 # =============================================================================
 # Built-in targets
