@@ -1,0 +1,105 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.23"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "project1",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "Actionlib::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Actionlib-Debug-4df94ff3824fcb951b80.json",
+					"name" : "Actionlib",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Heuristiclib::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Heuristiclib-Debug-f8077f52913680755703.json",
+					"name" : "Heuristiclib",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Nodelib::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Nodelib-Debug-5d5496bb531d194d3eea.json",
+					"name" : "Nodelib",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Problemlib::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Problemlib-Debug-f3ad33c7ed0bc46aea65.json",
+					"name" : "Problemlib",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Searchlib::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Searchlib-Debug-e44bd8a1515b6fdb972d.json",
+					"name" : "Searchlib",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "main::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-main-Debug-56e8cffdfd684f9da3ec.json",
+					"name" : "main",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "D:/xrCLang/Self-Study-For-Cpp/intro-to-ai/project1/cmake-build-debug",
+		"source" : "D:/xrCLang/Self-Study-For-Cpp/intro-to-ai/project1"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 4
+	}
+}
