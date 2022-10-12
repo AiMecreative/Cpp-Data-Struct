@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakePresetLoader"><![CDATA[{
+  "useNewFormat": true
+}]]></component>
+  <component name="CMakeRunConfigurationManager">
+    <generated>
+      <config projectName="MatrixMultiply" targetName="main" />
+      <config projectName="MatrixMultiply" targetName="MatrixMultiplylib" />
+    </generated>
+  </component>
+  <component name="CMakeSettings" AUTO_RELOAD="true">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f2606d57-9158-4582-bd28-d004d25c22a2" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/header/MatrixMultiply.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/MatrixMultiply.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ExternalQuickSort/cmake-build-debug/.cmake/api/v1/reply/index-2022-10-09T15-01-11-0133.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ExternalQuickSort/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/../ExternalQuickSort/cmake-build-debug/.ninja_deps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ExternalQuickSort/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/../ExternalQuickSort/cmake-build-debug/.ninja_log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ExternalQuickSort/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/../ExternalQuickSort/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/.vs/CMake Overview" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/.vs/ProjectSettings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/.vs/QuickExternelSort/v16/.suo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/.vs/QuickExternelSort/v16/Browse.VC.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/.vs/QuickExternelSort/v16/ipch/AutoPCH/dc1f1a1ef467731a/TESTHEAP.ipch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/.vs/VSWorkspaceState.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/.vs/cmake.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/.vs/slnx.sqlite" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/.vscode/launch.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/.vscode/settings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/Main/CMakeLists.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/Main/main.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/Main/out/build/x64-Debug/.cmake/api/v1/query/client-MicrosoftVS/query.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/Main/out/build/x64-Debug/CMakeCache.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/Main/out/build/x64-Debug/CMakeFiles/3.20.21032501-MSVC_2/CMakeCCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/Main/out/build/x64-Debug/CMakeFiles/3.20.21032501-MSVC_2/CMakeCXXCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/Main/out/build/x64-Debug/CMakeFiles/3.20.21032501-MSVC_2/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/Main/out/build/x64-Debug/CMakeFiles/3.20.21032501-MSVC_2/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/Main/out/build/x64-Debug/CMakeFiles/3.20.21032501-MSVC_2/CMakeRCCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/Main/out/build/x64-Debug/CMakeFiles/3.20.21032501-MSVC_2/CMakeSystem.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/Main/out/build/x64-Debug/CMakeFiles/3.20.21032501-MSVC_2/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/Main/out/build/x64-Debug/CMakeFiles/3.20.21032501-MSVC_2/CompilerIdC/CMakeCCompilerId.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/Main/out/build/x64-Debug/CMakeFiles/3.20.21032501-MSVC_2/CompilerIdC/CMakeCCompilerId.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/Main/out/build/x64-Debug/CMakeFiles/3.20.21032501-MSVC_2/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/Main/out/build/x64-Debug/CMakeFiles/3.20.21032501-MSVC_2/CompilerIdCXX/CMakeCXXCompilerId.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/Main/out/build/x64-Debug/CMakeFiles/3.20.21032501-MSVC_2/CompilerIdCXX/CMakeCXXCompilerId.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/Main/out/build/x64-Debug/CMakeFiles/CMakeOutput.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/Main/out/build/x64-Debug/CMakeFiles/ShowIncludes/foo.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/Main/out/build/x64-Debug/CMakeFiles/ShowIncludes/main.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/Main/out/build/x64-Debug/CMakeFiles/ShowIncludes/main.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/Main/out/build/x64-Debug/CMakeFiles/cmake.check_cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/Main/out/build/x64-Debug/VSInheritEnvironments.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/.cmake/api/v1/query/client-vscode/query.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/.cmake/api/v1/reply/cache-v2-599f3b879867324c7188.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/.cmake/api/v1/reply/cmakeFiles-v1-67b1ddc17a8257887d49.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/.cmake/api/v1/reply/codemodel-v2-fddd4441be4b6a8b7b49.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/.cmake/api/v1/reply/index-2022-09-10T08-23-04-0668.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/.cmake/api/v1/reply/target-ALL_BUILD-Debug-929ccb12429202824be4.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/.cmake/api/v1/reply/target-ALL_BUILD-MinSizeRel-929ccb12429202824be4.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/.cmake/api/v1/reply/target-ALL_BUILD-RelWithDebInfo-929ccb12429202824be4.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/.cmake/api/v1/reply/target-ALL_BUILD-Release-929ccb12429202824be4.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/.cmake/api/v1/reply/target-Continuous-Debug-6daeb1ed6c7197bbf740.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/.cmake/api/v1/reply/target-Continuous-MinSizeRel-6daeb1ed6c7197bbf740.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/.cmake/api/v1/reply/target-Continuous-RelWithDebInfo-6daeb1ed6c7197bbf740.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/.cmake/api/v1/reply/target-Continuous-Release-6daeb1ed6c7197bbf740.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/.cmake/api/v1/reply/target-Experimental-Debug-f145f8aacc466aee3a0f.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/.cmake/api/v1/reply/target-Experimental-MinSizeRel-f145f8aacc466aee3a0f.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/.cmake/api/v1/reply/target-Experimental-RelWithDebInfo-f145f8aacc466aee3a0f.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/.cmake/api/v1/reply/target-Experimental-Release-f145f8aacc466aee3a0f.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/.cmake/api/v1/reply/target-Nightly-Debug-110939f4f523fb31ac34.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/.cmake/api/v1/reply/target-Nightly-MinSizeRel-110939f4f523fb31ac34.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/.cmake/api/v1/reply/target-Nightly-RelWithDebInfo-110939f4f523fb31ac34.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/.cmake/api/v1/reply/target-Nightly-Release-110939f4f523fb31ac34.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/.cmake/api/v1/reply/target-NightlyMemoryCheck-Debug-a5b3c6f74bbc43cb2250.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/.cmake/api/v1/reply/target-NightlyMemoryCheck-MinSizeRel-a5b3c6f74bbc43cb2250.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/.cmake/api/v1/reply/target-NightlyMemoryCheck-RelWithDebInfo-a5b3c6f74bbc43cb2250.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/.cmake/api/v1/reply/target-NightlyMemoryCheck-Release-a5b3c6f74bbc43cb2250.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/.cmake/api/v1/reply/target-QuickExternalSort-Debug-90487a7ea36eb6501cfb.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/.cmake/api/v1/reply/target-QuickExternalSort-MinSizeRel-6945f8d97b3bc493ddd7.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/.cmake/api/v1/reply/target-QuickExternalSort-RelWithDebInfo-215143663bbf7c74438d.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/.cmake/api/v1/reply/target-QuickExternalSort-Release-ec76295533666efd70e7.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/.cmake/api/v1/reply/target-ZERO_CHECK-Debug-0a15d5abb4b971eec675.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/.cmake/api/v1/reply/target-ZERO_CHECK-MinSizeRel-0a15d5abb4b971eec675.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/.cmake/api/v1/reply/target-ZERO_CHECK-RelWithDebInfo-0a15d5abb4b971eec675.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/.cmake/api/v1/reply/target-ZERO_CHECK-Release-0a15d5abb4b971eec675.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/.cmake/api/v1/reply/toolchains-v1-0f3b0d96a06f0feaf580.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/ALL_BUILD.vcxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/ALL_BUILD.vcxproj.filters" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeCache.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/3.20.21032501-MSVC_2/CMakeCCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/3.20.21032501-MSVC_2/CMakeCXXCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/3.20.21032501-MSVC_2/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/3.20.21032501-MSVC_2/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/3.20.21032501-MSVC_2/CMakeRCCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/3.20.21032501-MSVC_2/CMakeSystem.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/3.20.21032501-MSVC_2/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/3.20.21032501-MSVC_2/CompilerIdC/CompilerIdC.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/3.20.21032501-MSVC_2/CompilerIdC/CompilerIdC.vcxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/3.20.21032501-MSVC_2/CompilerIdC/Debug/CMakeCCompilerId.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/3.20.21032501-MSVC_2/CompilerIdC/Debug/CompilerIdC.exe.recipe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/3.20.21032501-MSVC_2/CompilerIdC/Debug/CompilerIdC.tlog/CL.command.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/3.20.21032501-MSVC_2/CompilerIdC/Debug/CompilerIdC.tlog/CL.read.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/3.20.21032501-MSVC_2/CompilerIdC/Debug/CompilerIdC.tlog/CL.write.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/3.20.21032501-MSVC_2/CompilerIdC/Debug/CompilerIdC.tlog/CompilerIdC.lastbuildstate" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/3.20.21032501-MSVC_2/CompilerIdC/Debug/CompilerIdC.tlog/link.command.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/3.20.21032501-MSVC_2/CompilerIdC/Debug/CompilerIdC.tlog/link.read.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/3.20.21032501-MSVC_2/CompilerIdC/Debug/CompilerIdC.tlog/link.write.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/3.20.21032501-MSVC_2/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/3.20.21032501-MSVC_2/CompilerIdCXX/CompilerIdCXX.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/3.20.21032501-MSVC_2/CompilerIdCXX/CompilerIdCXX.vcxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/3.20.21032501-MSVC_2/CompilerIdCXX/Debug/CMakeCXXCompilerId.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/3.20.21032501-MSVC_2/CompilerIdCXX/Debug/CompilerIdCXX.exe.recipe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/3.20.21032501-MSVC_2/CompilerIdCXX/Debug/CompilerIdCXX.tlog/CL.command.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/3.20.21032501-MSVC_2/CompilerIdCXX/Debug/CompilerIdCXX.tlog/CL.read.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/3.20.21032501-MSVC_2/CompilerIdCXX/Debug/CompilerIdCXX.tlog/CL.write.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/3.20.21032501-MSVC_2/CompilerIdCXX/Debug/CompilerIdCXX.tlog/CompilerIdCXX.lastbuildstate" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/3.20.21032501-MSVC_2/CompilerIdCXX/Debug/CompilerIdCXX.tlog/link.command.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/3.20.21032501-MSVC_2/CompilerIdCXX/Debug/CompilerIdCXX.tlog/link.read.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/3.20.21032501-MSVC_2/CompilerIdCXX/Debug/CompilerIdCXX.tlog/link.write.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/3.20.21032501-MSVC_2/Debug/VCTargetsPath.recipe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/3.20.21032501-MSVC_2/Debug/VCTargetsPath.tlog/VCTargetsPath.lastbuildstate" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/3.20.21032501-MSVC_2/VCTargetsPath.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/3.20.21032501-MSVC_2/VCTargetsPath.vcxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/7fe191f943666ad575299f42e018c6c9/Continuous.rule" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/7fe191f943666ad575299f42e018c6c9/Experimental.rule" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/7fe191f943666ad575299f42e018c6c9/Nightly.rule" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/7fe191f943666ad575299f42e018c6c9/NightlyMemoryCheck.rule" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/7fe191f943666ad575299f42e018c6c9/PACKAGE_force.rule" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/7fe191f943666ad575299f42e018c6c9/RUN_TESTS_force.rule" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/7fe191f943666ad575299f42e018c6c9/generate.stamp.rule" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/CMakeOutput.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/TargetDirectories.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/cmake.check_cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/generate.stamp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/generate.stamp.depend" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CMakeFiles/generate.stamp.list" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CPackConfig.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CPackSourceConfig.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/CTestTestfile.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/Continuous.vcxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/Continuous.vcxproj.filters" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/DartConfiguration.tcl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/Experimental.vcxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/Experimental.vcxproj.filters" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/Nightly.vcxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/Nightly.vcxproj.filters" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/NightlyMemoryCheck.vcxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/NightlyMemoryCheck.vcxproj.filters" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/PACKAGE.vcxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/PACKAGE.vcxproj.filters" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/QuickExternalSort.sln" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/QuickExternalSort.vcxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/QuickExternalSort.vcxproj.filters" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/RUN_TESTS.vcxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/RUN_TESTS.vcxproj.filters" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/Testing/Temporary/LastTest.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/ZERO_CHECK.vcxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/ZERO_CHECK.vcxproj.filters" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/build/cmake_install.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/src/.vs/ProjectSettings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/src/.vs/VSWorkspaceState.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/src/.vs/slnx.sqlite" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/src/.vs/src/v16/.suo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/src/.vs/src/v16/Browse.VC.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/src/.vs/src/v16/ipch/AutoPCH/568e6008b250f9b0/TESTHEAP.ipch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/src/.vs/src/v16/ipch/AutoPCH/cfa9fbd4a9efc246/TESTHEAP.ipch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/src/IntervalHeap/IntervalHeap.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/src/IntervalHeap/IntervalHeap.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/src/QuickSort/ExternalQuickSort.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/src/QuickSort/ExternalQuickSort.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/src/defs.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/src/out/build/x64-Debug/.cmake/api/v1/query/client-MicrosoftVS/query.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/src/out/build/x64-Debug/CMakeCache.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/src/out/build/x64-Debug/CMakeFiles/3.20.21032501-MSVC_2/CMakeCCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/src/out/build/x64-Debug/CMakeFiles/3.20.21032501-MSVC_2/CMakeCXXCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/src/out/build/x64-Debug/CMakeFiles/3.20.21032501-MSVC_2/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/src/out/build/x64-Debug/CMakeFiles/3.20.21032501-MSVC_2/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/src/out/build/x64-Debug/CMakeFiles/3.20.21032501-MSVC_2/CMakeRCCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/src/out/build/x64-Debug/CMakeFiles/3.20.21032501-MSVC_2/CMakeSystem.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/src/out/build/x64-Debug/CMakeFiles/3.20.21032501-MSVC_2/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/src/out/build/x64-Debug/CMakeFiles/3.20.21032501-MSVC_2/CompilerIdC/CMakeCCompilerId.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/src/out/build/x64-Debug/CMakeFiles/3.20.21032501-MSVC_2/CompilerIdC/CMakeCCompilerId.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/src/out/build/x64-Debug/CMakeFiles/3.20.21032501-MSVC_2/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/src/out/build/x64-Debug/CMakeFiles/3.20.21032501-MSVC_2/CompilerIdCXX/CMakeCXXCompilerId.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/src/out/build/x64-Debug/CMakeFiles/3.20.21032501-MSVC_2/CompilerIdCXX/CMakeCXXCompilerId.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/src/out/build/x64-Debug/CMakeFiles/CMakeOutput.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/src/out/build/x64-Debug/CMakeFiles/ShowIncludes/foo.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/src/out/build/x64-Debug/CMakeFiles/ShowIncludes/main.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/src/out/build/x64-Debug/CMakeFiles/ShowIncludes/main.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/src/out/build/x64-Debug/CMakeFiles/cmake.check_cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/src/out/build/x64-Debug/VSInheritEnvironments.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuickExternelSort/src/testHeap.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../intro-to-ai/project1/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/../../intro-to-ai/project1/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../intro-to-ai/project1/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../intro-to-ai/project1/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../intro-to-ai/project1/src/Search.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../intro-to-ai/project1/src/Search.cpp" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="RunManager" selected="CMake Application.MatrixMultiplylib">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MatrixMultiplylib" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="MatrixMultiply" TARGET_NAME="MatrixMultiplylib" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="main" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="MatrixMultiply" TARGET_NAME="main" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="MatrixMultiply" RUN_TARGET_NAME="main">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="CMake Application.main" />
+      <item itemvalue="CMake Application.MatrixMultiplylib" />
+    </list>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f2606d57-9158-4582-bd28-d004d25c22a2" name="Changes" comment="" />
+      <created>1665566324228</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1665566324228</updated>
+      <workItem from="1665566325981" duration="1363000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
