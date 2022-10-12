@@ -11,7 +11,8 @@
 	{
 		"commands" : 
 		[
-			"add_library"
+			"add_library",
+			"include_directories"
 		],
 		"files" : 
 		[
@@ -24,6 +25,12 @@
 			},
 			{
 				"command" : 0,
+				"file" : 0,
+				"line" : 8,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
 				"file" : 0,
 				"line" : 6,
 				"parent" : 0
@@ -39,6 +46,17 @@
 					"fragment" : "-g"
 				}
 			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 2,
+					"path" : "D:/xrCLang/Self-Study-For-Cpp/DataStructure/MatrixMultiply/header"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "D:/xrCLang/Self-Study-For-Cpp/DataStructure/MatrixMultiply/src"
+				}
+			],
 			"language" : "CXX",
 			"languageStandard" : 
 			{
@@ -50,7 +68,8 @@
 			},
 			"sourceIndexes" : 
 			[
-				1
+				2,
+				3
 			]
 		}
 	],
@@ -68,14 +87,16 @@
 			"name" : "Header Files",
 			"sourceIndexes" : 
 			[
-				0
+				0,
+				1
 			]
 		},
 		{
 			"name" : "Source Files",
 			"sourceIndexes" : 
 			[
-				1
+				2,
+				3
 			]
 		}
 	],
@@ -83,13 +104,24 @@
 	[
 		{
 			"backtrace" : 1,
-			"path" : "header/MatrixMultiply.h",
+			"path" : "header/Matrix.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "header/MatrixIO.h",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "src/MatrixMultiply.cpp",
+			"path" : "src/Matrix.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/MatrixIO.cpp",
 			"sourceGroupIndex" : 1
 		}
 	],

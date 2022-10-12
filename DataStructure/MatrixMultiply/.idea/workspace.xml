@@ -16,12 +16,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f2606d57-9158-4582-bd28-d004d25c22a2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/header/MatrixMultiply.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MatrixMultiply.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/header/Matrix.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/header/MatrixIO.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/MatrixIO.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ExternalQuickSort/cmake-build-debug/.cmake/api/v1/reply/index-2022-10-09T15-01-11-0133.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../ExternalQuickSort/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/../ExternalQuickSort/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ExternalQuickSort/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/../ExternalQuickSort/cmake-build-debug/.ninja_log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ExternalQuickSort/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/../ExternalQuickSort/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-6b4878d6bfef21be769c.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2022-10-12T10-00-32-0321.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-MatrixMultiplylib-Debug-3d525e1797075b8067c7.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-main-Debug-c4cbe226f3e4432f5759.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/header/MatrixMultiply.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MatrixMultiply.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Matrix.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../QuickExternelSort/.vs/CMake Overview" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../QuickExternelSort/.vs/ProjectSettings.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../QuickExternelSort/.vs/QuickExternelSort/v16/.suo" beforeDir="false" />
@@ -215,6 +226,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "full.screen.before.presentation.mode": "false"
+  }
+}]]></component>
   <component name="RunManager" selected="CMake Application.MatrixMultiplylib">
     <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
@@ -244,7 +266,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1665566324228</updated>
-      <workItem from="1665566325981" duration="1363000" />
+      <workItem from="1665566325981" duration="16984000" />
     </task>
     <servers />
   </component>

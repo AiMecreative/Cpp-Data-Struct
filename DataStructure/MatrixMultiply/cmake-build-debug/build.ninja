@@ -49,9 +49,17 @@ cmake_ninja_workdir = D$:/xrCLang/Self-Study-For-Cpp/DataStructure/MatrixMultipl
 
 build cmake_object_order_depends_target_MatrixMultiplylib: phony || CMakeFiles/MatrixMultiplylib.dir
 
-build CMakeFiles/MatrixMultiplylib.dir/src/MatrixMultiply.cpp.obj: CXX_COMPILER__MatrixMultiplylib_Debug D$:/xrCLang/Self-Study-For-Cpp/DataStructure/MatrixMultiply/src/MatrixMultiply.cpp || cmake_object_order_depends_target_MatrixMultiplylib
-  DEP_FILE = CMakeFiles\MatrixMultiplylib.dir\src\MatrixMultiply.cpp.obj.d
+build CMakeFiles/MatrixMultiplylib.dir/src/Matrix.cpp.obj: CXX_COMPILER__MatrixMultiplylib_Debug D$:/xrCLang/Self-Study-For-Cpp/DataStructure/MatrixMultiply/src/Matrix.cpp || cmake_object_order_depends_target_MatrixMultiplylib
+  DEP_FILE = CMakeFiles\MatrixMultiplylib.dir\src\Matrix.cpp.obj.d
   FLAGS = -g
+  INCLUDES = -ID:/xrCLang/Self-Study-For-Cpp/DataStructure/MatrixMultiply/header -ID:/xrCLang/Self-Study-For-Cpp/DataStructure/MatrixMultiply/src
+  OBJECT_DIR = CMakeFiles\MatrixMultiplylib.dir
+  OBJECT_FILE_DIR = CMakeFiles\MatrixMultiplylib.dir\src
+
+build CMakeFiles/MatrixMultiplylib.dir/src/MatrixIO.cpp.obj: CXX_COMPILER__MatrixMultiplylib_Debug D$:/xrCLang/Self-Study-For-Cpp/DataStructure/MatrixMultiply/src/MatrixIO.cpp || cmake_object_order_depends_target_MatrixMultiplylib
+  DEP_FILE = CMakeFiles\MatrixMultiplylib.dir\src\MatrixIO.cpp.obj.d
+  FLAGS = -g
+  INCLUDES = -ID:/xrCLang/Self-Study-For-Cpp/DataStructure/MatrixMultiply/header -ID:/xrCLang/Self-Study-For-Cpp/DataStructure/MatrixMultiply/src
   OBJECT_DIR = CMakeFiles\MatrixMultiplylib.dir
   OBJECT_FILE_DIR = CMakeFiles\MatrixMultiplylib.dir\src
 
@@ -63,7 +71,7 @@ build CMakeFiles/MatrixMultiplylib.dir/src/MatrixMultiply.cpp.obj: CXX_COMPILER_
 #############################################
 # Link the static library libMatrixMultiplylib.a
 
-build libMatrixMultiplylib.a: CXX_STATIC_LIBRARY_LINKER__MatrixMultiplylib_Debug CMakeFiles/MatrixMultiplylib.dir/src/MatrixMultiply.cpp.obj
+build libMatrixMultiplylib.a: CXX_STATIC_LIBRARY_LINKER__MatrixMultiplylib_Debug CMakeFiles/MatrixMultiplylib.dir/src/Matrix.cpp.obj CMakeFiles/MatrixMultiplylib.dir/src/MatrixIO.cpp.obj
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = CMakeFiles\MatrixMultiplylib.dir
   POST_BUILD = cd .
@@ -83,6 +91,7 @@ build cmake_object_order_depends_target_main: phony || cmake_object_order_depend
 build CMakeFiles/main.dir/main.cpp.obj: CXX_COMPILER__main_Debug D$:/xrCLang/Self-Study-For-Cpp/DataStructure/MatrixMultiply/main.cpp || cmake_object_order_depends_target_main
   DEP_FILE = CMakeFiles\main.dir\main.cpp.obj.d
   FLAGS = -g
+  INCLUDES = -ID:/xrCLang/Self-Study-For-Cpp/DataStructure/MatrixMultiply/header -ID:/xrCLang/Self-Study-For-Cpp/DataStructure/MatrixMultiply/src
   OBJECT_DIR = CMakeFiles\main.dir
   OBJECT_FILE_DIR = CMakeFiles\main.dir
 
