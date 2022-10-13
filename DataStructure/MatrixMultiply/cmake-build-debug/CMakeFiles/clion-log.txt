@@ -1,4 +1,4 @@
-"D:\xrCLang\CLion\CLion 2022.2.1\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=D:/xrCLang/CLion/CLion 2022.2.1/bin/ninja/win/ninja.exe" -G Ninja -S D:\xrCLang\Self-Study-For-Cpp\DataStructure\MatrixMultiply -B D:\xrCLang\Self-Study-For-Cpp\DataStructure\MatrixMultiply\cmake-build-debug
+"D:\xrCLang\CLion\CLion 2022.2.1\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" -S D:\xrCLang\Self-Study-For-Cpp\DataStructure\MatrixMultiply -B D:\xrCLang\Self-Study-For-Cpp\DataStructure\MatrixMultiply\cmake-build-debug
 -- Configuring done
 -- Generating done
 -- Build files have been written to: D:/xrCLang/Self-Study-For-Cpp/DataStructure/MatrixMultiply/cmake-build-debug

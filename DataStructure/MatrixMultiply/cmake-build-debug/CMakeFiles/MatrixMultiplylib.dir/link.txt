@@ -1,0 +1,2 @@
+"D:\xrCLang\CLion\CLion 2022.2.1\bin\mingw\bin\ar.exe" qc libMatrixMultiplylib.a CMakeFiles/MatrixMultiplylib.dir/src/Matrix.cpp.obj CMakeFiles/MatrixMultiplylib.dir/src/MatrixIO.cpp.obj CMakeFiles/MatrixMultiplylib.dir/src/MatrixMultiplier.cpp.obj
+"D:\xrCLang\CLion\CLion 2022.2.1\bin\mingw\bin\ranlib.exe" libMatrixMultiplylib.a

@@ -15,6 +15,7 @@
 		[
 			"add_executable",
 			"target_link_libraries",
+			"target_compile_definitions",
 			"include_directories",
 			"target_sources"
 		],
@@ -42,11 +43,17 @@
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 6,
+				"line" : 15,
 				"parent" : 0
 			},
 			{
 				"command" : 3,
+				"file" : 0,
+				"line" : 6,
+				"parent" : 0
+			},
+			{
+				"command" : 4,
 				"file" : 0,
 				"line" : 13,
 				"parent" : 0
@@ -62,14 +69,21 @@
 					"fragment" : "-g"
 				}
 			],
-			"includes" : 
+			"defines" : 
 			[
 				{
 					"backtrace" : 3,
+					"define" : "ASSET_DIR=\"D:/xrCLang/Self-Study-For-Cpp/DataStructure/MatrixMultiply/data\""
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 4,
 					"path" : "D:/xrCLang/Self-Study-For-Cpp/DataStructure/MatrixMultiply/header"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 4,
 					"path" : "D:/xrCLang/Self-Study-For-Cpp/DataStructure/MatrixMultiply/src"
 				}
 			],
@@ -84,7 +98,7 @@
 			},
 			"sourceIndexes" : 
 			[
-				0
+				1
 			]
 		}
 	],
@@ -130,20 +144,32 @@
 	"sourceGroups" : 
 	[
 		{
-			"name" : "Source Files",
+			"name" : "Header Files",
 			"sourceIndexes" : 
 			[
 				0
+			]
+		},
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				1
 			]
 		}
 	],
 	"sources" : 
 	[
 		{
-			"backtrace" : 4,
+			"backtrace" : 1,
+			"path" : "header/MatrixMultiplier.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
 			"compileGroupIndex" : 0,
 			"path" : "main.cpp",
-			"sourceGroupIndex" : 0
+			"sourceGroupIndex" : 1
 		}
 	],
 	"type" : "EXECUTABLE"

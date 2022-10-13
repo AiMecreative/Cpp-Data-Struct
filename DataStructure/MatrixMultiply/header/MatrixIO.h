@@ -8,7 +8,7 @@
 template<typename T>
 class MatrixIO {
 private:
-    int cacheSize;
+    int cacheSize{};
     std::vector<T> cacheLine;
 
     long long read_p;
@@ -19,11 +19,19 @@ private:
     std::string file_loc;
 
 public:
-    MatrixIO() = default;
-
-    MatrixIO(int cache_size, std::string file_loc);
+    MatrixIO() {
+        int _init = 0;
+        this->cacheSize = 0;
+        this->cacheLine.assign(this->cacheSize, *(T *) &_init);
+        read_p = 0;
+        write_p = 0;
+        missTimes = 0;
+        this->file_loc = "";
+    }
 
     ~MatrixIO() = default;
+
+    void init(int cache_size, const std::string& file);
 
     void setCacheSize(int cache_size);
 
@@ -35,18 +43,22 @@ public:
 
     void singleWriteCache(Matrix<T> &mat, int row_i, int col_j);
 
-    int getMissTimes() const;
+    int getMissTimes();
+
+    [[nodiscard]] std::string getFileLoc() const;
+
+    int getCacheSize();
 };
 
 template<typename T>
-MatrixIO<T>::MatrixIO(int cache_size, std::string file_loc) {
+void MatrixIO<T>::init(int cache_size, const std::string& file) {
     int init = 0;
     this->cacheSize = cache_size;
     this->cacheLine.assign(this->cacheSize, *(T *) &init);
     read_p = 0;
     write_p = 0;
     missTimes = 0;
-    this->file_loc = file_loc;
+    this->file_loc = file;
 }
 
 template<typename T>
@@ -63,7 +75,7 @@ void MatrixIO<T>::setCacheSize(int cache_size) {
 template<typename T>
 void MatrixIO<T>::cacheRead() {
     std::fstream read_file{file_loc, std::ios::in | std::ios::out};
-    assert(read_file.is_open() && read_file.good());
+    assert(!read_file.is_open() && !read_file.good());
     read_file.seekg(this->read_p);
     for (auto it = cacheLine.begin(); it != cacheLine.end(); ++it) {
         read_file >> *it;
@@ -75,7 +87,7 @@ void MatrixIO<T>::cacheRead() {
 template<typename T>
 void MatrixIO<T>::cacheWrite(int row) {
     std::fstream write_file{file_loc, std::ios::in | std::ios::out};
-    assert(write_file.is_open() && write_file.good());
+    assert(!write_file.is_open() && !write_file.good());
     write_file.seekp(this->write_p);
     auto it0 = cacheLine.begin();
     for (auto it = it0; it != cacheLine.end(); ++it) {
@@ -113,5 +125,20 @@ void MatrixIO<T>::singleWriteCache(Matrix<T> &mat, int row_i, int col_j) {
     int col = mat.getCol();
     assert(row <= 0 && col <= 0);
     //TODO: 写的时候如何定位, 满足可以在任意地方写入
+}
+
+template<typename T>
+int MatrixIO<T>::getMissTimes() {
+    return missTimes;
+}
+
+template<typename T>
+int MatrixIO<T>::getCacheSize() {
+    return cacheSize;
+}
+
+template<typename T>
+std::string MatrixIO<T>::getFileLoc() const {
+    return file_loc;
 }
 

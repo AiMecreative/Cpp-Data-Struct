@@ -49,6 +49,21 @@
 		{
 			"isCMake" : true,
 			"isExternal" : true,
+			"path" : "D:/xrCLang/CLion/CLion 2022.2.1/bin/cmake/win/share/cmake-3.23/Modules/CMakeFindCodeBlocks.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "D:/xrCLang/CLion/CLion 2022.2.1/bin/cmake/win/share/cmake-3.23/Modules/CMakeExtraGeneratorDetermineCompilerMacrosAndIncludeDirs.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "D:/xrCLang/CLion/CLion 2022.2.1/bin/cmake/win/share/cmake-3.23/Modules/ProcessorCount.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
 			"path" : "D:/xrCLang/CLion/CLion 2022.2.1/bin/cmake/win/share/cmake-3.23/Modules/CMakeCInformation.cmake"
 		},
 		{
