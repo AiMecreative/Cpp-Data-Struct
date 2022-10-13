@@ -58,18 +58,19 @@ void testSearchFunction(searchFunc searchFunc) {
 
 
 int main() {
-    std::srand((unsigned int) 100); // Generate a random seed
-//    std::srand((unsigned int) std::time(nullptr)); // Generate a random seed
+//    std::srand((unsigned int) 100); // Generate a random seed
+    std::srand((unsigned int) std::time(nullptr)); // Generate a random seed
 
-    doExperiment(50, 3, 10, (searchFunc) search::bfs);
-//    doExperiment(50, 3, 10, (searchFunc) search::aStarManhattan);
-//    doExperiment(50, 3, 10, (searchFunc) search::aStarMisplace);
+//    doExperiment(50, 3, 10, (searchFunc) search::bfs);
 //    doExperiment(50, 3, 10, (searchFunc) search::dlsWrapper);
+    doExperiment(50, 3, 10, (searchFunc) search::aStarMisplace);
+//    doExperiment(50, 3, 10, (searchFunc) search::aStarManhattan);
+
 
     // 以下函数用于测试搜索函数结果的正确性
-     testSearchFunction((searchFunc)search::bfs);
+//     testSearchFunction((searchFunc)search::bfs);
 //     testSearchFunction((searchFunc)search::dlsWrapper);
-//    testSearchFunction((searchFunc) search::aStarMisplace);
+    testSearchFunction((searchFunc) search::aStarMisplace);
 //     testSearchFunction((searchFunc)search::aStarManhattan);
     return 0;
 }

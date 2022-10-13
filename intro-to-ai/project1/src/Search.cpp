@@ -118,7 +118,6 @@ namespace search {
                 return {Action::FAILURE};
             }
         }
-        return {};
     }
 
     std::vector<Action> dls(Problem &problem, int limit) {
@@ -188,13 +187,21 @@ namespace search {
             for (Action action: problem.getValidActions(current->state)) {
                 Node *child = new Node(childNode(problem, *current, action, 1));
                 problem.nodePtrs.insert(child);
-                child->cost += heuristicFunc(child->state, problem.goalState);
+
+                Node *temp_recurse = child->parent;
+                int cost = 0;
+                while (temp_recurse != nullptr) {
+                    int cost_c = heuristicFunc(child->state, current->state);
+                    cost += cost_c;
+                    temp_recurse = temp_recurse->parent;
+                }
+                child->cost = cost + heuristicFunc(child->state, problem.goalState);
+
                 if (!inSet(explored, child->state) && !inMap(stateNodePtrMap, child->state)) {
                     frontier.push(child);
                     stateNodePtrMap.insert(std::pair<std::vector<int>, Node *>(child->state, child));
-                } else if (inMap(stateNodePtrMap, child->state) && child->cost > frontier.top()->cost) {
-                    updateNode(frontier, frontier.top(), child);
                     if (problem.isGoal(child->state)) return getSolution(*child);
+                    frontier.push(child);
                 }
             }
         }

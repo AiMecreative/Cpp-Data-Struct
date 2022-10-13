@@ -44,7 +44,7 @@ int heuristic::misplace(std::vector<int> &state, std::vector<int> &goalState) {
     for (auto it0 = state.begin(), it1 = goalState.begin();
          it0 != state.end() && it1 != goalState.end();
          ++it0, ++it1) {
-        if (it0 != it1) ++h1;
+        if (*it0 != *it1 && *it0 != 0) ++h1;
     }
 
     return h1;
@@ -73,12 +73,12 @@ int heuristic::manhattan(std::vector<int> &state, std::vector<int> &goalState) {
     */
     // TODO
     int h2 = 0;
-    Position position0, position1;
-    for (auto it0 = state.begin(); it0 != state.end(); ++it0) {
-        position0 = getPosition(9, *it0);
-        for (auto it1 = goalState.begin(); it1 != goalState.end(); ++it1) {
+    Position position0{}, position1{};
+    for (int & it0 : state) {
+        position0 = getPosition(9, it0);
+        for (int & it1 : goalState) {
             if (it0 == it1) {
-                position1 = getPosition(9, *it1);
+                position1 = getPosition(9, it1);
                 h2 += abs(position0.row - position1.row) + abs(position0.col - position1.col);
                 break;
             }

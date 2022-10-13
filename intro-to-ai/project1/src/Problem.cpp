@@ -84,7 +84,7 @@ bool Problem::isValidAction(std::vector<int> &state, Action action) {
 }
 
 bool Problem::isSolution(std::vector<Action> &solution, std::vector<int> initSta) {
-    std::vector<int> state = std::move(initSta);
+    std::vector<int> state = initSta;
     for (Action action: solution) {
         state = result(state, action);
     }
