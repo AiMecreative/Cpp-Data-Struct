@@ -182,4 +182,5 @@ CMakeFiles/MatrixMultiplylib.dir/src/MatrixMultiplier.cpp.obj: \
  D:/xrCLang/CLion/CLion\ 2022.2.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/pstl/glue_numeric_defs.h \
  D:/xrCLang/CLion/CLion\ 2022.2.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/pstl/execution_defs.h \
  D:/xrCLang/CLion/CLion\ 2022.2.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/iostream \
- D:/xrCLang/Self-Study-For-Cpp/DataStructure/MatrixMultiply/header/MatrixIO.h
+ D:/xrCLang/Self-Study-For-Cpp/DataStructure/MatrixMultiply/header/MatrixIO.h \
+ D:/xrCLang/Self-Study-For-Cpp/DataStructure/MatrixMultiply/header/Order.h

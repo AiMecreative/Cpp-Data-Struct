@@ -2,12 +2,7 @@
 
 #include "Matrix.h"
 #include "MatrixIO.h"
-
-namespace Order {
-    enum struct Sequence {
-        I, J, K
-    };
-}
+#include "Order.h"
 
 template<typename T>
 class MatrixMultiplier : public MatrixIO<T> {
@@ -27,6 +22,8 @@ public:
              const std::string &file_A,
              const std::string &file_B,
              const std::string &file_C);
+
+    void printInfo();
 };
 
 template<typename T>
@@ -91,4 +88,15 @@ MatrixMultiplier<T>::multiply(MatrixMultiplier<T> &mat_b,
     if (!mat_c.emptyCache()) {
         mat_c.cacheWrite(file_C);
     }
+}
+
+template<typename T>
+void MatrixMultiplier<T>::printInfo() {
+    std::cout << "matrix row " << this->getRow() << " | col " << this->getCol() << std::endl;
+    std::cout << "cacheSize " << this->getCacheSize() << std::endl;
+    std::cout << "missTimes: readMissTimes "
+              << this->getMissTimes().first
+              << "| writeMissTimes "
+              << this->getMissTimes().second
+              << std::endl;
 }

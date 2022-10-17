@@ -1,9 +1,0 @@
-D:/xrCLang/DataStructure/QuickExternelSort/build/CMakeFiles/NightlyMemoryCheck.dir
-D:/xrCLang/DataStructure/QuickExternelSort/build/CMakeFiles/Experimental.dir
-D:/xrCLang/DataStructure/QuickExternelSort/build/CMakeFiles/Continuous.dir
-D:/xrCLang/DataStructure/QuickExternelSort/build/CMakeFiles/Nightly.dir
-D:/xrCLang/DataStructure/QuickExternelSort/build/CMakeFiles/PACKAGE.dir
-D:/xrCLang/DataStructure/QuickExternelSort/build/CMakeFiles/QuickExternalSort.dir
-D:/xrCLang/DataStructure/QuickExternelSort/build/CMakeFiles/RUN_TESTS.dir
-D:/xrCLang/DataStructure/QuickExternelSort/build/CMakeFiles/ALL_BUILD.dir
-D:/xrCLang/DataStructure/QuickExternelSort/build/CMakeFiles/ZERO_CHECK.dir

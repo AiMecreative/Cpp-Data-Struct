@@ -14,9 +14,6 @@ private:
     std::vector<long long> read_p;
     std::vector<long long> write_p;
 
-    int readNum;
-    int writtenNum;
-
     int readBlockNum;  // the record of the number of blocks have been read this turn
     int writeBlockNum; //
 
@@ -34,8 +31,6 @@ public:
         writeBlockNum = 0;
         read_p.push_back(std::ifstream::beg);
         write_p.push_back(std::ifstream::beg);
-        readNum = 0;
-        writtenNum = 0;
         readMissTimes = 0;
         writeMissTimes = 0;
     }
@@ -75,8 +70,6 @@ void MatrixIO<T>::init(int row, int col, int cache_size) {
     writeBlockNum = 0;
     read_p.push_back(std::ifstream::beg);
     write_p.push_back(std::ifstream::beg);
-    readNum = 0;
-    writtenNum = 0;
 }
 
 template<typename T>
@@ -89,8 +82,6 @@ void MatrixIO<T>::setCacheSize(int cache_size) {
     writeBlockNum = 0;
     read_p.push_back(std::ifstream::beg);
     write_p.push_back(std::ifstream::beg);
-    readNum = 0;
-    writtenNum = 0;
 }
 
 template<typename T>
@@ -104,7 +95,6 @@ void MatrixIO<T>::cacheRead(const std::string &file_loc) {
             read_file.seekg(read_p.front());
         }
     }
-    readNum += this->cacheSize;
     read_p.push_back(read_file.tellg());
     read_file.close();
 }
@@ -114,12 +104,9 @@ void MatrixIO<T>::cacheWrite(const std::string &file_loc) {
     std::fstream write_file{file_loc, std::ios::in | std::ios::out};
     assert(write_file.is_open());
     write_file.seekp(write_p.back());
-    for (auto it = cacheLine.begin(); it != cacheLine.end() &&
-                                      writtenNum < Matrix<T>::getRow() * Matrix<T>::getCol(); ++it) {
+    for (auto it = cacheLine.begin(); it != cacheLine.end(); ++it) {
         write_file << *it << "\t";
         *it = 0;
-        writtenNum += 1;
-        std::cout << this->writtenNum << "******" << std::endl;
     }
     write_p.push_back(write_file.tellg());
     write_file.close();
@@ -132,8 +119,7 @@ T MatrixIO<T>::singleReadCache(const std::string &file_loc, int row_i, int col_j
     int col = this->getCol();
     assert(row > 0 && col > 0);
     int cache_ind = row_i * col + col_j - this->readBlockNum * this->cacheSize;
-    if (0 <= cache_ind && cache_ind < this->cacheSize &&
-        readNum < this->getCol() * this->getRow()) {
+    if (0 <= cache_ind && cache_ind < this->cacheSize) {
         return this->cacheLine[cache_ind];
     } else if (cache_ind >= this->cacheSize) {
         // update the cacheLine value when cache_ind is greater than current cacheSize
@@ -167,7 +153,7 @@ void MatrixIO<T>::singleWriteCache(const std::string &file_loc, T value, int row
     int col = this->getCol();
     assert(row > 0 && col > 0);
     int cache_ind = row_i * col + col_j - this->writeBlockNum * this->cacheSize;
-    if (0 <= cache_ind && cache_ind < this->cacheSize && writtenNum < this->getCol() * this->getRow()) {
+    if (0 <= cache_ind && cache_ind < this->cacheSize) {
         this->cacheLine[cache_ind] += value;
     } else if (cache_ind >= this->cacheSize) {
         // update the cacheLine value when cache_ind >= cacheSize
@@ -204,9 +190,6 @@ void MatrixIO<T>::singleWriteCache(const std::string &file_loc, T value, int row
             read_file.seekg(temp_p, std::ios::beg);
             for (int i = 0; i < cacheSize; ++i) {
                 read_file >> cacheLine[i];
-                if (read_file.peek() == EOF) {
-                    read_file.seekg(std::ifstream::beg);
-                }
             }
             cache_ind += cacheSize;
         }

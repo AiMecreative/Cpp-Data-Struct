@@ -30,28 +30,6 @@
       <change beforePath="$PROJECT_DIR$/../ExternalQuickSort/data/target_file.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ExternalQuickSort/data/target_file.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ExternalQuickSort/data/temp_file.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ExternalQuickSort/data/temp_file.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ExternalQuickSort/header/defs.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ExternalQuickSort/header/defs.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-107660b8b9e969341d53.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2022-10-13T16-34-18-0653.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-main-Debug-16ebdab4d0b30ec10831.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MatrixMultiplylib.dir/src/Matrix.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MatrixMultiplylib.dir/src/Matrix.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MatrixMultiplylib.dir/src/MatrixIO.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MatrixMultiplylib.dir/src/MatrixIO.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MatrixMultiplylib.dir/src/MatrixMultiplier.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MatrixMultiplylib.dir/src/MatrixMultiplier.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/main.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/main.dir/flags.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/main.dir/main.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/main.dir/main.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/main.dir/objects.a" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/main.dir/objects.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/MatrixMultiply.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/MatrixMultiply.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/libMatrixMultiplylib.a" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/libMatrixMultiplylib.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/main.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/main.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/matrix_A.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/matrix_A.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/matrix_B.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/matrix_B.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/matrix_C.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/matrix_C.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/header/Matrix.h" beforeDir="false" afterPath="$PROJECT_DIR$/header/Matrix.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/header/MatrixIO.h" beforeDir="false" afterPath="$PROJECT_DIR$/header/MatrixIO.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/header/MatrixMultiplier.h" beforeDir="false" afterPath="$PROJECT_DIR$/header/MatrixMultiplier.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../QuickExternelSort/.vs/CMake Overview" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../QuickExternelSort/.vs/ProjectSettings.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../QuickExternelSort/.vs/QuickExternelSort/v16/.suo" beforeDir="false" />
@@ -258,6 +236,11 @@
   }
 }</component>
   <component name="RunManager" selected="CMake Application.main">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MatrixMultiplylib" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="MatrixMultiply" TARGET_NAME="MatrixMultiplylib" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -289,7 +272,7 @@
       <workItem from="1665744142369" duration="4526000" />
       <workItem from="1665884664702" duration="40153000" />
       <workItem from="1665977621404" duration="2368000" />
-      <workItem from="1665999709531" duration="2685000" />
+      <workItem from="1665999709531" duration="12779000" />
     </task>
     <servers />
   </component>
@@ -306,5 +289,14 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="CMakeRunConfiguration">
+        <watch expression="indices[0]" />
+        <watch expression="indices[1]" />
+        <watch expression="indices[2]" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
