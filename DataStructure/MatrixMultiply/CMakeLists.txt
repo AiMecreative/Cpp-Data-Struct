@@ -12,4 +12,4 @@ add_library(MatrixMultiplylib
 add_executable(main header/MatrixMultiplier.h)
 target_sources(main PUBLIC main.cpp)
 target_link_libraries(main PUBLIC MatrixMultiplylib)
-target_compile_definitions(main PUBLIC -DASSET_DIR="${CMAKE_CURRENT_SOURCE_DIR}/data")
+target_compile_definitions(main PUBLIC -DASSET_DIR="${CMAKE_CURRENT_SOURCE_DIR}/data/")

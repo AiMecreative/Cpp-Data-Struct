@@ -72,7 +72,7 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add option="-DASSET_DIR=&quot;D:/xrCLang/Self-Study-For-Cpp/DataStructure/MatrixMultiply/data&quot;"/>
+					<Add option="-DASSET_DIR=&quot;D:/xrCLang/Self-Study-For-Cpp/DataStructure/MatrixMultiply/data/&quot;"/>
 					<Add directory="D:/xrCLang/Self-Study-For-Cpp/DataStructure/MatrixMultiply/header"/>
 					<Add directory="D:/xrCLang/Self-Study-For-Cpp/DataStructure/MatrixMultiply/src"/>
 					<Add directory="D:/xrCLang/CLion/CLion 2022.2.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
@@ -97,7 +97,7 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add option="-DASSET_DIR=&quot;D:/xrCLang/Self-Study-For-Cpp/DataStructure/MatrixMultiply/data&quot;"/>
+					<Add option="-DASSET_DIR=&quot;D:/xrCLang/Self-Study-For-Cpp/DataStructure/MatrixMultiply/data/&quot;"/>
 					<Add directory="D:/xrCLang/Self-Study-For-Cpp/DataStructure/MatrixMultiply/header"/>
 					<Add directory="D:/xrCLang/Self-Study-For-Cpp/DataStructure/MatrixMultiply/src"/>
 					<Add directory="D:/xrCLang/CLion/CLion 2022.2.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>

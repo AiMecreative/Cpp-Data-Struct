@@ -19,37 +19,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f2606d57-9158-4582-bd28-d004d25c22a2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/data/matrix_A.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/matrix_B.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/matrix_C.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/header/MatrixMultiplier.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MatrixMultiplier.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ExternalQuickSort/cmake-build-debug/.cmake/api/v1/reply/index-2022-10-09T15-01-11-0133.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../ExternalQuickSort/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/../ExternalQuickSort/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ExternalQuickSort/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/../ExternalQuickSort/cmake-build-debug/.ninja_log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ExternalQuickSort/cmake-build-debug/CMakeFiles/ExternalQSlib.dir/src/ExternalQS.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/../ExternalQuickSort/cmake-build-debug/CMakeFiles/ExternalQSlib.dir/src/ExternalQS.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ExternalQuickSort/cmake-build-debug/CMakeFiles/test.dir/test.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/../ExternalQuickSort/cmake-build-debug/CMakeFiles/test.dir/test.cpp.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ExternalQuickSort/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/../ExternalQuickSort/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ExternalQuickSort/cmake-build-debug/libExternalQSlib.a" beforeDir="false" afterPath="$PROJECT_DIR$/../ExternalQuickSort/cmake-build-debug/libExternalQSlib.a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ExternalQuickSort/cmake-build-debug/test.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../ExternalQuickSort/cmake-build-debug/test.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ExternalQuickSort/data/target_file.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ExternalQuickSort/data/target_file.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ExternalQuickSort/data/temp_file.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ExternalQuickSort/data/temp_file.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ExternalQuickSort/header/defs.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ExternalQuickSort/header/defs.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cache-v2-8c25ff5b7d56b836f2c4.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-5221e049c06a2f2f24ac.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-edb27458189a102dc421.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2022-10-12T10-24-08-0333.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-MatrixMultiplylib-Debug-d83a5ee0c474a89a6f1a.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-main-Debug-93fef72bf175a06ab6a4.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.23.2/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.23.2/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.23.2/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.23.2/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.23.2/CompilerIdC/a.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.23.2/CompilerIdC/a.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.23.2/CompilerIdCXX/a.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.23.2/CompilerIdCXX/a.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rules.ninja" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-107660b8b9e969341d53.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2022-10-13T16-34-18-0653.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-main-Debug-16ebdab4d0b30ec10831.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MatrixMultiplylib.dir/src/Matrix.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MatrixMultiplylib.dir/src/Matrix.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MatrixMultiplylib.dir/src/MatrixIO.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MatrixMultiplylib.dir/src/MatrixIO.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MatrixMultiplylib.dir/src/MatrixMultiplier.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MatrixMultiplylib.dir/src/MatrixMultiplier.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/main.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/main.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/main.dir/main.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/main.dir/main.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/main.dir/objects.a" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/main.dir/objects.a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/MatrixMultiply.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/MatrixMultiply.cbp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/libMatrixMultiplylib.a" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/libMatrixMultiplylib.a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/main.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/main.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/matrix_A.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/matrix_A.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/matrix_B.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/matrix_B.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/matrix_C.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/matrix_C.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/header/Matrix.h" beforeDir="false" afterPath="$PROJECT_DIR$/header/Matrix.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/header/MatrixIO.h" beforeDir="false" afterPath="$PROJECT_DIR$/header/MatrixIO.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/header/MatrixMultiplier.h" beforeDir="false" afterPath="$PROJECT_DIR$/header/MatrixMultiplier.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Matrix.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Matrix.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../QuickExternelSort/.vs/CMake Overview" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../QuickExternelSort/.vs/ProjectSettings.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../QuickExternelSort/.vs/QuickExternelSort/v16/.suo" beforeDir="false" />
@@ -282,7 +284,12 @@
       <workItem from="1665566325981" duration="17046000" />
       <workItem from="1665646621261" duration="36000" />
       <workItem from="1665651790697" duration="20928000" />
-      <workItem from="1665681517273" duration="1000" />
+      <workItem from="1665681517273" duration="120000" />
+      <workItem from="1665718584847" duration="3163000" />
+      <workItem from="1665744142369" duration="4526000" />
+      <workItem from="1665884664702" duration="40153000" />
+      <workItem from="1665977621404" duration="2368000" />
+      <workItem from="1665999709531" duration="2685000" />
     </task>
     <servers />
   </component>

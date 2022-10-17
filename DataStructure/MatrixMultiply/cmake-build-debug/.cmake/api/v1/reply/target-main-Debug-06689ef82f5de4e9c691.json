@@ -73,7 +73,7 @@
 			[
 				{
 					"backtrace" : 3,
-					"define" : "ASSET_DIR=\"D:/xrCLang/Self-Study-For-Cpp/DataStructure/MatrixMultiply/data\""
+					"define" : "ASSET_DIR=\"D:/xrCLang/Self-Study-For-Cpp/DataStructure/MatrixMultiply/data/\""
 				}
 			],
 			"includes" : 
