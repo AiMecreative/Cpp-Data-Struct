@@ -1,10 +1,8 @@
-# 人工智能课程作业1 -- 搜索问题
-
-> 2022年9月29日
+# 搜索问题
 
 ## 简介
 
-本作业基于8-puzzle问题，目标是基于广度优先搜索（breadth first search）、深度有限搜索（depth limit search）、启发式搜索（A*）搜索该问题的解。该部分内容对应《Artificial Intelligence: A Modern Approach 3rd》中的第三章内容：Solving Problems by Searching。
+基于8-puzzle问题，目标是基于广度优先搜索（breadth first search）、深度有限搜索（depth limit search）、启发式搜索（A*）搜索该问题的解。该部分内容对应《Artificial Intelligence: A Modern Approach 3rd》中的第三章内容：Solving Problems by Searching。
 
 ##### 8-puzzle
 
@@ -28,10 +26,6 @@
 
 在本例子中，对应该初始状态，动作序列`[LEFT, LEFT]`可以将该状态恢复为目标状态，也就是把0和其左边的数码交换两次。
 
-
-
-## 作业目标
-
 完成Assignement1项目中的五个函数
 
 Search.cpp中
@@ -49,12 +43,6 @@ int misplace(std::vector<int>& state, std::vector<int>& goalState);
 int manhattan(std::vector<int>& state, std::vector<int>& goalState);
 ```
 
-##### 项目启动说明
-
-使用Visual Studio 2019打开Assignment1.sln。
-
-
-
 #### Tips
 
 1. `main.cpp`中的main函数为该项目的主入口。
@@ -65,28 +53,6 @@ int manhattan(std::vector<int>& state, std::vector<int>& goalState);
 
 ## 评估标准
 
-##### 代码部分（8分）
-
 1. 搜索算法的正确性：算法得出的结果可以通过testSearchFunction函数的验证。
 2. 搜索算法的搜索时间：每个搜索算法都可以在2分钟内跑出结果。
 3. 内存管理：算法的内存消耗需要符合该算法应有的空间复杂度。
-
-##### 文档部分（2分）
-
-1. 算法、实验结果分析：根据实验结果分析、对比三种搜索算法以及启发式搜索的启发函数，完成“人工智能-第一次课程作业报告”。
-
-
-
-## 作业提交
-
-##### 提交截止时间
-
-第七周周四上课之前
-
-##### 提交方式
-
-将以下三个文件打包为**.zip**文件，命名为**学号_ 姓名_Assignment1**，发送至邮箱**miaogao@seu.edu.cn**
-
-1. Search.cpp
-2. Heuristic.cpp
-3. 人工智能-第一次课程作业报告
