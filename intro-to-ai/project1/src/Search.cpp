@@ -188,10 +188,10 @@ namespace search {
                 Node *child = new Node(childNode(problem, *current, action, 1));
                 problem.nodePtrs.insert(child);
 
-                Node *temp_recurse = child->parent;
+                Node *temp_recurse = child;
                 int cost = 0;
-                while (temp_recurse != nullptr) {
-                    int cost_c = heuristicFunc(child->state, current->state);
+                while (temp_recurse->parent != nullptr) {
+                    int cost_c = heuristicFunc(temp_recurse->state, temp_recurse->parent->state);
                     cost += cost_c;
                     temp_recurse = temp_recurse->parent;
                 }

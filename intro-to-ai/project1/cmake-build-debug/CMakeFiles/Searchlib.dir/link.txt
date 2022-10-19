@@ -1,0 +1,2 @@
+"D:\xrCLang\CLion\CLion 2022.2.1\bin\mingw\bin\ar.exe" qc libSearchlib.a CMakeFiles/Searchlib.dir/src/Action.cpp.obj CMakeFiles/Searchlib.dir/src/Node.cpp.obj CMakeFiles/Searchlib.dir/src/Problem.cpp.obj CMakeFiles/Searchlib.dir/src/Search.cpp.obj CMakeFiles/Searchlib.dir/src/Heuristic.cpp.obj
+"D:\xrCLang\CLion\CLion 2022.2.1\bin\mingw\bin\ranlib.exe" libSearchlib.a

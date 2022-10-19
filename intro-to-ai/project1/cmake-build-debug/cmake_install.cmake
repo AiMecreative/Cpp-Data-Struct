@@ -1,4 +1,4 @@
-# Install script for directory: D:/xrCLang/Self-Study-For-Cpp/intro-to-ai/project1
+# Install script for directory: D:/xrCLang/Cpp-Data-Struct/intro-to-ai/project1
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "D:/xrCLang/Self-Study-For-Cpp/intro-to-ai/project1/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "D:/xrCLang/Cpp-Data-Struct/intro-to-ai/project1/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

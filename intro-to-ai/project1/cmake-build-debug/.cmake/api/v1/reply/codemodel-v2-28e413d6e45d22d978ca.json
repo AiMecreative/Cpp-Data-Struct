@@ -41,14 +41,14 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "Searchlib::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Searchlib-Debug-aab31a7d0f7f4b1ccfab.json",
+					"jsonFile" : "target-Searchlib-Debug-4d3918dcf8e5ac18fe86.json",
 					"name" : "Searchlib",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "main::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-main-Debug-b6ed38813b2763c89111.json",
+					"jsonFile" : "target-main-Debug-f547649ac72ae2345171.json",
 					"name" : "main",
 					"projectIndex" : 0
 				}
@@ -58,8 +58,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "D:/xrCLang/Self-Study-For-Cpp/intro-to-ai/project1/cmake-build-debug",
-		"source" : "D:/xrCLang/Self-Study-For-Cpp/intro-to-ai/project1"
+		"build" : "D:/xrCLang/Cpp-Data-Struct/intro-to-ai/project1/cmake-build-debug",
+		"source" : "D:/xrCLang/Cpp-Data-Struct/intro-to-ai/project1"
 	},
 	"version" : 
 	{

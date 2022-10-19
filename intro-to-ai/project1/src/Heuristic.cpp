@@ -1,5 +1,6 @@
 #include "Heuristic.h"
 #include <cmath>
+#include <iostream>
 
 /*
 	便于计算马哈顿距离，得到给定数码应在的位置。
@@ -71,13 +72,13 @@ int heuristic::manhattan(std::vector<int> &state, std::vector<int> &goalState) {
         Reference:
         3.6 HEURISTIC FUNCTIONS
     */
-    // TODO
+    //TODO:
     int h2 = 0;
     Position position0{}, position1{};
-    for (int & it0 : state) {
+    for (int it0 : state) {
         position0 = getPosition(9, it0);
-        for (int & it1 : goalState) {
-            if (it0 == it1) {
+        for (int &it1 : goalState) {
+            if (state[it0] == it1) {
                 position1 = getPosition(9, it1);
                 h2 += abs(position0.row - position1.row) + abs(position0.col - position1.col);
                 break;
