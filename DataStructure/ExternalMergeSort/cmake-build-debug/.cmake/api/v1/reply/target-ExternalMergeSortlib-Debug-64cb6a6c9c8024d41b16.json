@@ -68,11 +68,10 @@
 			},
 			"sourceIndexes" : 
 			[
+				4,
+				5,
 				6,
-				7,
-				8,
-				9,
-				10
+				7
 			]
 		}
 	],
@@ -93,20 +92,17 @@
 				0,
 				1,
 				2,
-				3,
-				4,
-				5
+				3
 			]
 		},
 		{
 			"name" : "Source Files",
 			"sourceIndexes" : 
 			[
+				4,
+				5,
 				6,
-				7,
-				8,
-				9,
-				10
+				7
 			]
 		}
 	],
@@ -119,22 +115,12 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "header/BufferIO.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
 			"path" : "header/MergeSort.h",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"path" : "header/SortFunc.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"path" : "header/LoserTree.h",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -152,12 +138,6 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "src/MergeSort.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "src/BufferIO.cpp",
 			"sourceGroupIndex" : 1
 		},
 		{

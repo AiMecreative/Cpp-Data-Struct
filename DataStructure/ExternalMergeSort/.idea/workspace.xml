@@ -19,18 +19,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98787e85-81b5-4982-b7ef-865a87b8f74c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/header/Buffer.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/header/BufferIO.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/header/Generator.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/header/LoserTree.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/header/MergeSort.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/header/SortFunc.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Buffer.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/BufferIO.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Generator.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MergeSort.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SortFunc.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-547527841e3721cfe2b9.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2022-10-20T13-02-54-0271.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-ExternalMergeSortlib-Debug-baac1390bc84669c2c44.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-main-Debug-0d181c16ae343e290d3d.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/main.dir/main.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/main.dir/main.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/main.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/header/Buffer.h" beforeDir="false" afterPath="$PROJECT_DIR$/header/Buffer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/header/Generator.h" beforeDir="false" afterPath="$PROJECT_DIR$/header/Generator.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/header/MergeSort.h" beforeDir="false" afterPath="$PROJECT_DIR$/header/MergeSort.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/header/SortFunc.h" beforeDir="false" afterPath="$PROJECT_DIR$/header/SortFunc.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SortFunc.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SortFunc.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../intro-to-ai/project1/cmake-build-debug/CMakeFiles/main.dir/main.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/../../intro-to-ai/project1/cmake-build-debug/CMakeFiles/main.dir/main.cpp.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../intro-to-ai/project1/cmake-build-debug/CMakeFiles/main.dir/objects.a" beforeDir="false" afterPath="$PROJECT_DIR$/../../intro-to-ai/project1/cmake-build-debug/CMakeFiles/main.dir/objects.a" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../intro-to-ai/project1/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/../../intro-to-ai/project1/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
@@ -71,16 +77,17 @@
     "cidr.known.project.marker": "true",
     "last_opened_file_path": "D:/xrCLang/Cpp-Data-Struct/DataStructure/ExternalQuickSort",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "file.status.colors"
+    "settings.editor.selected.configurable": "file.status.colors",
+    "structure.view.defaults.are.configured": "true"
   }
 }]]></component>
   <component name="RunManager" selected="CMake Application.main">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration name="ExternalMergeSortlib" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ExternalMergeSort" TARGET_NAME="ExternalMergeSortlib" CONFIG_NAME="Debug">
       <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ExternalMergeSortlib" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ExternalMergeSort" TARGET_NAME="ExternalMergeSortlib" CONFIG_NAME="Debug">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -108,7 +115,8 @@
       <updated>1666169344405</updated>
       <workItem from="1666169345784" duration="620000" />
       <workItem from="1666235736709" duration="917000" />
-      <workItem from="1666250536834" duration="19487000" />
+      <workItem from="1666250536834" duration="20445000" />
+      <workItem from="1666330621276" duration="22816000" />
     </task>
     <servers />
   </component>

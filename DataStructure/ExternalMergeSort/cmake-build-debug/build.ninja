@@ -63,13 +63,6 @@ build CMakeFiles/ExternalMergeSortlib.dir/src/MergeSort.cpp.obj: CXX_COMPILER__E
   OBJECT_DIR = CMakeFiles\ExternalMergeSortlib.dir
   OBJECT_FILE_DIR = CMakeFiles\ExternalMergeSortlib.dir\src
 
-build CMakeFiles/ExternalMergeSortlib.dir/src/BufferIO.cpp.obj: CXX_COMPILER__ExternalMergeSortlib_Debug D$:/xrCLang/Cpp-Data-Struct/DataStructure/ExternalMergeSort/src/BufferIO.cpp || cmake_object_order_depends_target_ExternalMergeSortlib
-  DEP_FILE = CMakeFiles\ExternalMergeSortlib.dir\src\BufferIO.cpp.obj.d
-  FLAGS = -g
-  INCLUDES = -ID:/xrCLang/Cpp-Data-Struct/DataStructure/ExternalMergeSort/header -ID:/xrCLang/Cpp-Data-Struct/DataStructure/ExternalMergeSort/src
-  OBJECT_DIR = CMakeFiles\ExternalMergeSortlib.dir
-  OBJECT_FILE_DIR = CMakeFiles\ExternalMergeSortlib.dir\src
-
 build CMakeFiles/ExternalMergeSortlib.dir/src/SortFunc.cpp.obj: CXX_COMPILER__ExternalMergeSortlib_Debug D$:/xrCLang/Cpp-Data-Struct/DataStructure/ExternalMergeSort/src/SortFunc.cpp || cmake_object_order_depends_target_ExternalMergeSortlib
   DEP_FILE = CMakeFiles\ExternalMergeSortlib.dir\src\SortFunc.cpp.obj.d
   FLAGS = -g
@@ -92,7 +85,7 @@ build CMakeFiles/ExternalMergeSortlib.dir/src/Generator.cpp.obj: CXX_COMPILER__E
 #############################################
 # Link the static library libExternalMergeSortlib.a
 
-build libExternalMergeSortlib.a: CXX_STATIC_LIBRARY_LINKER__ExternalMergeSortlib_Debug CMakeFiles/ExternalMergeSortlib.dir/src/Buffer.cpp.obj CMakeFiles/ExternalMergeSortlib.dir/src/MergeSort.cpp.obj CMakeFiles/ExternalMergeSortlib.dir/src/BufferIO.cpp.obj CMakeFiles/ExternalMergeSortlib.dir/src/SortFunc.cpp.obj CMakeFiles/ExternalMergeSortlib.dir/src/Generator.cpp.obj
+build libExternalMergeSortlib.a: CXX_STATIC_LIBRARY_LINKER__ExternalMergeSortlib_Debug CMakeFiles/ExternalMergeSortlib.dir/src/Buffer.cpp.obj CMakeFiles/ExternalMergeSortlib.dir/src/MergeSort.cpp.obj CMakeFiles/ExternalMergeSortlib.dir/src/SortFunc.cpp.obj CMakeFiles/ExternalMergeSortlib.dir/src/Generator.cpp.obj
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = CMakeFiles\ExternalMergeSortlib.dir
   POST_BUILD = cd .

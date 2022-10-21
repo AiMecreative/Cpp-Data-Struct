@@ -8,15 +8,12 @@ include_directories(header src)
 add_library(ExternalMergeSortlib
 
         ${PROJECT_SOURCE_DIR}/header/Buffer.h
-        header/BufferIO.h
         header/MergeSort.h
         header/SortFunc.h
-        header/LoserTree.h
         header/Generator.h
 
         ${PROJECT_SOURCE_DIR}/src/Buffer.cpp
         src/MergeSort.cpp
-        src/BufferIO.cpp
         src/SortFunc.cpp
         src/Generator.cpp)
 
