@@ -20,6 +20,8 @@ private:
     int sequence_num_;
     std::vector<long long> seq_p_;
 
+    long long file_size;
+
 public:
     MergeSort() {
         main_memo_size_ = 0;
@@ -28,6 +30,7 @@ public:
         output_buf_size_ = 0;
         sequence_num_ = 0;
         data_size_ = 0;
+        file_size = 0;
     }
 
     MergeSort(int main_memo_size, int sequence_num, int data_size, const std::string &mode) {
@@ -46,6 +49,7 @@ public:
         }
 
         main_memo_.init(main_memo_size_);
+        file_size = 0;
     }
 
     ~MergeSort() = default;
@@ -53,22 +57,20 @@ public:
     // generate merge sequences
     void genSequences(const std::string &in_file, const std::string &out_file) {
         Generator<T> generator;
-        generator.defaultGenSeq(in_file, out_file, main_memo_, sequence_num_, seq_p_);
+        generator.defaultGenSeq(in_file, out_file, main_memo_,
+                                sequence_num_, seq_p_, file_size);
     }
 
     // generate random values
     void genRandomValue(const std::string &out_file, int bottom, int top) {
         Generator<T> generator;
-        generator.genRandomValue(out_file, data_size_, bottom, top);
+        file_size = generator.genRandomValue(out_file, data_size_, bottom, top);
     }
 
     typedef int(*sortFunc)(Buffer<T> &cmp_buf, std::vector<Buffer<T> > &input_buf);
 
     // merge sequences from target file
     void merge(const std::string &in_file, const std::string &out_file, sortFunc sort_func) {
-        std::fstream read_file{in_file, std::ios::in | std::ios::binary};
-        std::fstream write_file{out_file, std::ios::out | std::ios::binary};
-
         // generate buffer vector
         std::vector<Buffer<T> > buf_vec;
         for (int i = 0; i < sequence_num_; ++i) { buf_vec.push_back(Buffer<T>(input_buf_size_)); }
@@ -76,22 +78,41 @@ public:
 
         std::vector<long long> read_pointers = seq_p_;
         read_pointers.pop_back();
+        std::vector<long long> next_read_p;
+        next_read_p.push_back(std::ios::beg);
         long long write_p = 0;
 
-        while (read_pointers.back() != seq_p_.back()) {
+        while (read_pointers.size() > 1) {
             int seq_ind = 0;
             for (auto &buf: buf_vec) {
+
                 // the size of every sequence is equal to the MainMemo size
                 // MainMemoSize is k times of input buffer
-                buf.readFill(in_file, read_pointers.at(seq_ind));
+                buf.readFill(in_file, read_pointers.at(seq_ind), file_size);
 
                 seq_ind += 1;
             }
 
+            // update when finished the one run
+            if (read_pointers.back() == file_size) {
+                std::swap(read_pointers, next_read_p);
+                next_read_p.clear();
+                next_read_p.push_back(std::ios::beg);
+            }
+
+            // finish one k-merge sort
             sort_func(cmp_buf, buf_vec);
 
+            std::cout << "sorted:" << std::endl;
+            for (int ind = 0; ind < cmp_buf.size(); ++ind) {
+                std::cout << cmp_buf[ind] << " ";
+            }
+            std::cout << std::endl;
+
             // write the cmp_buf
-            cmp_buf.writeAll(out_file, write_p);
+            cmp_buf.writeAll(out_file, write_p, file_size);
+            next_read_p.push_back(write_p);
+
         }
     }
 

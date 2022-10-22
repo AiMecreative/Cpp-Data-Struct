@@ -24,12 +24,22 @@ int main() {
     const std::string source_file = cur_path + R"(\data\source_data.txt)";
     const std::string result_file = cur_path + R"(\data\sorted_data.txt)";
 
-    int data_size = 110;
+    // clear file content
+    std::ifstream source_demo{source_file};
+    std::ifstream result_demo{result_file};
+    assert(source_demo.is_open() && result_demo.is_open());
+    source_demo.close();
+    result_demo.close();
 
-    MergeSort<int> sort_op(50, 2, data_size, "default");
+    int data_size = 20;
+
+    // 8, 4, 2, 2
+    MergeSort<int> sort_op(8, 2, data_size, "default");
 
     sort_op.genRandomValue(source_file, 0, 20);
+
     sort_op.genSequences(source_file, source_file);
+
     sort_op.defaultMerge(source_file, result_file);
 
     return 0;
