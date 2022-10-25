@@ -70,7 +70,7 @@ public:
                                             (unsigned long long) file_size - read_p);
             mainMem.read_n(fin, read_p, read_bytes);
             mainMem.ascendSort();
-            for (int i = 0; i < mainMem.size() - mainMem.getInvalidNum(); ++i) { std::cout << mainMem[i] << " "; }
+            for (int i = 0; i < read_bytes / sizeof(T); ++i) { std::cout << mainMem[i] << " "; }
             mainMem.write_n(fout, write_p, read_bytes);
             seq_p.push_back(write_p);
         }

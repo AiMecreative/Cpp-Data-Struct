@@ -31,6 +31,8 @@ private:
 
     std::string sort_mode_{};
 
+    std::string result_loc_{};
+
 public:
     MergeSort() {
         main_memo_size_ = 0;
@@ -79,18 +81,31 @@ public:
         }
     }
 
-    void generateTestValues(const std::string& in_file, int bottom, int top) {
+    void printSortedValues() {
+        std::fstream result_file{result_loc_, std::ios::out | std::ios::in | std::ios::binary};
+        assert(result_file.is_open() && result_file.good());
+        std::vector<T> temp(data_size_, 0);
+        result_file.seekp(0, std::ios::beg);
+        result_file.read(reinterpret_cast<char*>(temp.data()), file_size_);
+        std::cout << "sorted result: " << std::endl;
+        for (auto &value: temp) {
+            std::cout << value << " ";
+        }
+        std::cout << std::endl;
+        result_file.close();
+    }
+
+    void generateTestValues(const std::string &in_file, int bottom, int top) {
         Generator<T> gen;
         file_size_ = gen.genRandomValue(in_file, data_size_, bottom, top);
     }
 
-    void generateMergeSeq(const std::string&in_file, const std::string& out_file) {
+    void generateMergeSeq(const std::string &in_file, const std::string &out_file) {
         Generator<T> gen;
         seq_end_p_ = gen.defaultGenSeq(in_file, out_file, main_memo_size_, file_size_);
         seq_start_p_ = seq_end_p_;
         seq_start_p_.pop_back();
     }
-
 
 
     typedef void(*sortFunc)(std::string &file_A, std::string &file_B,
@@ -122,6 +137,7 @@ public:
                       sequence_num_,
                       merge_num_);
 
+
             std::string temp = file1;
             file1 = file2;
             file2 = temp;
@@ -131,8 +147,10 @@ public:
 
         if (swap_num % 2 == 0) {
             std::cout << "result in file " << file_A << std::endl;
+            result_loc_ = file_A;
         } else {
             std::cout << "result in file " << file_B << std::endl;
+            result_loc_ = file_B;
         }
     }
 
