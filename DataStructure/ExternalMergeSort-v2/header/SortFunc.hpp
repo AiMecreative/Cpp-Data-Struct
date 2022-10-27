@@ -4,6 +4,7 @@
 
 namespace sortFunction {
 
+
     template<typename T>
     void restWrite_n(std::string &out_file_loc, std::string &in_file_loc,
                      long long &start_bytes, long long &write_bytes) {
@@ -21,6 +22,7 @@ namespace sortFunction {
     }
 
 
+    // 2-way merge
     template<typename T>
     int defaultCompare(int buf_loc, Buffer<T> &cmp_buf, std::vector<T> values) {
         assert(!cmp_buf.empty() && !values.empty());

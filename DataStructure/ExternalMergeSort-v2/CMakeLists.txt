@@ -9,7 +9,15 @@ add_library(ExternalMergeSortlib
         ${PROJECT_SOURCE_DIR}/header/Buffer.hpp
         header/MergeSort.hpp
         header/SortFunc.hpp
-        header/Generator.hpp src/Buffer.cpp src/SortFunc.cpp src/Generator.cpp src/MergeFunc.cpp)
+        header/Generator.hpp
+        header/LoserTree.hpp
+        header/ThreadPool.hpp
+        src/Buffer.cpp
+        src/SortFunc.cpp
+        src/Generator.cpp
+        src/MergeFunc.cpp
+        src/LoserTree.cpp
+        src/ThreadPool.cpp)
 
 add_executable(main)
 target_sources(main PUBLIC main.cpp)

@@ -61,7 +61,7 @@ public:
             compare_buf_size_ = main_memo_size_ / 2;
             input_buf_size_ = compare_buf_size_ / merge_num_;
         } else if (mode == "loser tree") {
-            output_buf_size_ = 0;
+
         } else {
             throw std::runtime_error("error in MergeSort(), give `mode`: default | loser tree");
         }
@@ -154,8 +154,11 @@ public:
         }
     }
 
+    // 2-way merge
     void defaultMerge(const std::string &file_A, const std::string &file_B) {
         merge(file_A, file_B, (sortFunc) sortFunction::defaultCompareWrapper);
     }
 
+
+    //
 };

@@ -77,6 +77,20 @@ build CMakeFiles/ExternalMergeSortlib.dir/src/MergeFunc.cpp.obj: CXX_COMPILER__E
   OBJECT_DIR = CMakeFiles\ExternalMergeSortlib.dir
   OBJECT_FILE_DIR = CMakeFiles\ExternalMergeSortlib.dir\src
 
+build CMakeFiles/ExternalMergeSortlib.dir/src/LoserTree.cpp.obj: CXX_COMPILER__ExternalMergeSortlib_Debug D$:/xrCLang/Cpp-Data-Struct/DataStructure/ExternalMergeSort-v2/src/LoserTree.cpp || cmake_object_order_depends_target_ExternalMergeSortlib
+  DEP_FILE = CMakeFiles\ExternalMergeSortlib.dir\src\LoserTree.cpp.obj.d
+  FLAGS = -g
+  INCLUDES = -ID:/xrCLang/Cpp-Data-Struct/DataStructure/ExternalMergeSort-v2/header -ID:/xrCLang/Cpp-Data-Struct/DataStructure/ExternalMergeSort-v2/src
+  OBJECT_DIR = CMakeFiles\ExternalMergeSortlib.dir
+  OBJECT_FILE_DIR = CMakeFiles\ExternalMergeSortlib.dir\src
+
+build CMakeFiles/ExternalMergeSortlib.dir/src/ThreadPool.cpp.obj: CXX_COMPILER__ExternalMergeSortlib_Debug D$:/xrCLang/Cpp-Data-Struct/DataStructure/ExternalMergeSort-v2/src/ThreadPool.cpp || cmake_object_order_depends_target_ExternalMergeSortlib
+  DEP_FILE = CMakeFiles\ExternalMergeSortlib.dir\src\ThreadPool.cpp.obj.d
+  FLAGS = -g
+  INCLUDES = -ID:/xrCLang/Cpp-Data-Struct/DataStructure/ExternalMergeSort-v2/header -ID:/xrCLang/Cpp-Data-Struct/DataStructure/ExternalMergeSort-v2/src
+  OBJECT_DIR = CMakeFiles\ExternalMergeSortlib.dir
+  OBJECT_FILE_DIR = CMakeFiles\ExternalMergeSortlib.dir\src
+
 
 # =============================================================================
 # Link build statements for STATIC_LIBRARY target ExternalMergeSortlib
@@ -85,7 +99,7 @@ build CMakeFiles/ExternalMergeSortlib.dir/src/MergeFunc.cpp.obj: CXX_COMPILER__E
 #############################################
 # Link the static library libExternalMergeSortlib.a
 
-build libExternalMergeSortlib.a: CXX_STATIC_LIBRARY_LINKER__ExternalMergeSortlib_Debug CMakeFiles/ExternalMergeSortlib.dir/src/Buffer.cpp.obj CMakeFiles/ExternalMergeSortlib.dir/src/SortFunc.cpp.obj CMakeFiles/ExternalMergeSortlib.dir/src/Generator.cpp.obj CMakeFiles/ExternalMergeSortlib.dir/src/MergeFunc.cpp.obj
+build libExternalMergeSortlib.a: CXX_STATIC_LIBRARY_LINKER__ExternalMergeSortlib_Debug CMakeFiles/ExternalMergeSortlib.dir/src/Buffer.cpp.obj CMakeFiles/ExternalMergeSortlib.dir/src/SortFunc.cpp.obj CMakeFiles/ExternalMergeSortlib.dir/src/Generator.cpp.obj CMakeFiles/ExternalMergeSortlib.dir/src/MergeFunc.cpp.obj CMakeFiles/ExternalMergeSortlib.dir/src/LoserTree.cpp.obj CMakeFiles/ExternalMergeSortlib.dir/src/ThreadPool.cpp.obj
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = CMakeFiles\ExternalMergeSortlib.dir
   POST_BUILD = cd .

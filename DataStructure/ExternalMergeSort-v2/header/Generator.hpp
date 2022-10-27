@@ -54,7 +54,8 @@ public:
         return file_size;
     }
 
-    std::vector<long long> defaultGenSeq(const std::string &in_file_loc, const std::string &out_file_loc,
+    std::vector<long long> defaultGenSeq(const std::string &in_file_loc,
+                                         const std::string &out_file_loc,
                                          int main_memo_size,
                                          long long &file_size) {
         std::vector<long long> seq_p;

@@ -1,4 +1,5 @@
 #include "MergeSort.hpp"
+#include "LoserTree.hpp"
 #include <filesystem>
 
 namespace fs = std::filesystem;
@@ -20,21 +21,30 @@ int main() {
     /*
      * Attention:
      *
-     * In "default" mode:
+     * In "default" mode, ONLY 2-way merge is provided:
      * Main memory size should the times of (2 * merge_num) if using "default" mode
      * - compare buffer size = main memory size / 2
      * - input buffer size = compare buffer size / merge_num
      */
 
-    int main_size = 4;
-    int data_size = 35;
-    int merge_num = 2;
-    const std::string mode = "default";
-    MergeSort<int> sorter(main_size, data_size, merge_num, mode);
-    sorter.bufferInitial();
-    sorter.generateTestValues(file_A, 1, 10);
-    sorter.generateMergeSeq(file_A, file_A);
-    sorter.defaultMerge(file_A, file_B);
-    sorter.printSortedValues();
+    // 6, 35, 3
+    // merge_num < sequences_num: endless loop
+//    int main_size = 256;
+//    int data_size = 12441;
+//    int merge_num = 2;
+//    const std::string mode = "default";
+//    MergeSort<int> sorter(main_size, data_size, merge_num, mode);
+//    sorter.bufferInitial();
+//    sorter.generateTestValues(file_A, 1, 10);
+//    sorter.generateMergeSeq(file_A, file_A);
+//    sorter.defaultMerge(file_A, file_B);
+//    sorter.printSortedValues();
+
+    std::vector<int> values{4, 3, 6, 8, 1, 5, 7, 3, 2, 6, 9, 4, 5, 2, 5, 8};
+    LoserTree<int> l_tree(values);
+    l_tree.construct();
+    l_tree.printTree();
+
+
     return 0;
 }
