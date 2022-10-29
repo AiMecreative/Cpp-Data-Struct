@@ -12,6 +12,7 @@
 
 #include <thread>
 #include <mutex>
+#include <atomic>
 #include <condition_variable>
 
 
@@ -25,8 +26,9 @@ constexpr bool is_int<int>() {
     return true;
 }
 
-int NEXT_INPUT_BUF = 0;
-int NEXT_OUTPUT_BUF = 0;
+std::atomic<int> NEXT_INPUT_BUF = 0;
+std::atomic<int> NEXT_OUTPUT_BUF = 0;
+static int BUF_COUNT = 2;
 
 template<typename T>
 class Generator {
@@ -37,6 +39,12 @@ public:
 
     ~Generator() = default;
 
+    /*
+     * out_file_loc: output file
+     * data_size:
+     * bottom, top: generate data from bottom to top randomly
+     * return: file size
+     */
     long long genRandomValue(const std::string &out_file_loc, int data_size,
                              int bottom, int top) {
         std::fstream out_file{out_file_loc, std::ios::binary | std::ios::in | std::ios::out};
@@ -64,6 +72,14 @@ public:
         return file_size;
     }
 
+
+    /*
+     * in_file_loc: from this file
+     * out_file_loc: generate merge sequences to write to this file
+     * main_memo_size: is equal to the sequences' length
+     * file_size: the limit of file size
+     * return: sequences' pointer in file
+     */
     std::vector<long long> defaultGenSeq(const std::string &in_file_loc,
                                          const std::string &out_file_loc,
                                          int main_memo_size,
@@ -89,6 +105,17 @@ public:
         return seq_p;
     }
 
+
+    std::vector<T> genLeaves(const std::string &in_file_loc, long long &read_p, int leaf_size) {
+        std::fstream read_file{in_file_loc, std::ios::in | std::ios::out | std::ios::binary};
+        std::vector<T> leaves(leaf_size, 0);
+        long long read_bytes = leaf_size * sizeof(T);
+        read_file.seekg(read_p, std::ios::beg);
+        read_file.read(reinterpret_cast<char *>(leaves.data()), read_bytes);
+        read_p = read_file.tellg();
+        return leaves;
+    }
+
     /*
      * the length of merge sequence is equal to the size of output_buf
      * the length of loser tree **leaves** is equal to leaf_size
@@ -99,98 +126,79 @@ public:
                                            int input_size,
                                            int output_size,
                                            long long &file_size) {
-        long long read_p = std::ios::beg;   // shared variable, reading pointer
-        long long write_p = std::ios::beg;
-        long long read_bytes = 0;
-        long long write_bytes = 0;
-        std::string in_loc = in_file_loc;
-        std::string out_loc = out_file_loc;
+        // recording the read/write location
+        long long read_p = 0;
+        long long write_p = 0;
+        // the return vector
         std::vector<long long> seq_p;
-        std::vector<T> leaf_vec(leaf_size);
-        std::vector<Buffer<T> > input_buf;  // 2 input buf
-        std::vector<Buffer<T> > output_buf; // 2 output buf
-        for (auto _ = 0; _ < 2; ++_) {
+        // input/output buffers and initial
+        std::vector<Buffer<T> > input_buf;
+        std::vector<Buffer<T> > output_buf;
+        for (int _ = 0; _ < BUF_COUNT; ++_) {
             input_buf.push_back(Buffer<T>(input_size));
             output_buf.push_back(Buffer<T>(output_size));
         }
+        // file location
+        std::string file_in = in_file_loc;
+        std::string file_out = out_file_loc;
+        // initialize loser tree
+        LoserTree<T> loserTree(genLeaves(file_in, read_p, leaf_size));
 
+        // mutex and condition variables
         std::mutex read_mutex;
         std::mutex write_mutex;
         std::condition_variable read_cv;
         std::condition_variable write_cv;
 
-        // read in to fill the loser tree
-        read_bytes = leaf_size * sizeof(T);
-        std::fstream read_file{in_file_loc, std::ios::in | std::ios::out | std::ios::binary};
-        assert(read_file.is_open() && read_file.good());
-        read_file.seekg(read_p, std::ios::beg);
-        read_file.read(reinterpret_cast<char *>(leaf_vec.data()), read_bytes);
-        read_p = read_file.tellg();
-        read_file.close();
-        // initialize loser tree
-        // guarantee leaf_vec is full
-        LoserTree<T> loserTree(leaf_vec);
-        loserTree.construct();
-
-        // read in values with multi-thread
-
-
-        auto read_func = [&](int buf_idx, long long read_bytes) {
-            std::unique_lock read_lock(read_mutex);
-            read_cv.wait(read_lock);
-            input_buf[buf_idx].read_n(in_loc, read_p, read_bytes);
-        };
-
-        auto write_func = [&](int buf_idx, long long write_bytes) {
-            std::unique_lock write_lock(write_mutex);
-            write_cv.wait(write_lock);
-            output_buf[buf_idx].write_n(out_loc, write_p, write_bytes);
-            seq_p.push_back(write_p);
-        };
-
-        int findOutBuf = [&](std::vector<Buffer<T> > vec_buf) {
-            int result = -1;
-            for (int buf = 0; buf < vec_buf.size(); ++buf) {
-                result = buf;
-                for (int loc = 0; loc < vec_buf[buf].size(); ++buf) {
-                    if (!vec_buf[buf].isFree(loc)) {
-                        result = -1;
-                        break;
-                    }
-                }
+        // thread functions define
+        auto read_func = [&](long long start_p, long long read_bytes) {
+            while (read_p < file_size) {
+                std::cout << "this input buf: " << NEXT_INPUT_BUF << std::endl;
+                std::unique_lock read_lock(read_mutex);
+                read_cv.wait(read_lock);
+                input_buf[NEXT_INPUT_BUF].read_n(file_in, start_p, read_bytes);
+                NEXT_INPUT_BUF += 1;
+                NEXT_INPUT_BUF = NEXT_INPUT_BUF % 2;
             }
-            return result;
+            return true;
         };
 
-        int read_idx = 0, write_idx = 0;
-        read_bytes = std::min((file_size - read_p), (long long) (input_size * sizeof(T)));
-        write_bytes = read_bytes;
-        std::thread read_thread(read_func, read_idx, read_bytes);
-        std::thread write_thread(write_func, write_idx, write_bytes);
-
-        // 0. fill input 0
-        read_bytes = input_size * sizeof(T);
-        input_buf[0].read_n(in_loc, read_p, read_bytes);
-
-        while (read_p != file_size) {
-            // read data to input_buffer
-            read_cv.notify_one();
-            // which output buffer is free
-            write_idx = findOutBuf(output_buf);
-            assert(write_idx != -1);
-            // sort to generate merge sequences
-            for (int i = 0; i < output_buf[write_idx].size(); ++i) {
-                int min_idx = loserTree.getMin();
-                T min_value = loserTree[min_idx];
-                output_buf[write_idx][i] = min_value;
-                if ()
+        auto write_func = [&](long long start_p, long long write_bytes) {
+            while (write_p < file_size) {
+                std::cout << "this output buf: " << NEXT_OUTPUT_BUF << std::endl;
+                std::unique_lock write_lock(write_mutex);
+                write_cv.wait(write_lock);
+                output_buf[NEXT_OUTPUT_BUF].write_n(file_out, start_p, write_bytes);
+                NEXT_OUTPUT_BUF += 1;
+                NEXT_OUTPUT_BUF = NEXT_OUTPUT_BUF % 2;
             }
-            write_cv.notify_one();
+            return true;
+        };
+
+        // create two threads
+        int which_read = 0;
+        int which_write = 0;
+        long long read_bytes = 0;
+        long long write_bytes = 0;
+        std::thread read_thread(read_func, read_p, read_bytes);
+        std::thread write_thread(write_func, write_p, write_bytes);
+
+        while (write_p < file_size) {
+            // write output buf when full
+            if (output_buf[NEXT_OUTPUT_BUF].isFull()) {
+                write_cv.notify_one();
+            }
+            // read input buf when free
+            if (input_buf[NEXT_INPUT_BUF].isFree()) {
+                read_cv.notify_one();
+            }
+            // sort for sequences
+            //TODO: 排序时应该等待input buffer结束?
+            for ()
 
         }
 
-        read_thread.join();
-        write_thread.join();
-        // join
+        // write if there is still values in output buffers
+
     }
 };

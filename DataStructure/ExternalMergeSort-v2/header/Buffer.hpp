@@ -90,12 +90,22 @@ public:
         }
     }
 
-    bool isFree(int loc) {
-        if (buf_[loc] == empty_flag_) {
-            return true;
-        } else {
-            return false;
+    bool isFree() {
+        for (T &value: buf_) {
+            if (value != empty_flag_) {
+                return false;
+            }
         }
+        return true;
+    }
+
+    bool isFull() {
+        for (T &value: buf_) {
+            if (value == empty_flag_) {
+                return false;
+            }
+        }
+        return true;
     }
 
 
