@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Buffer.hpp"
+#include "LoserTree.hpp"
 
 namespace sortFunction {
 
@@ -37,6 +38,7 @@ namespace sortFunction {
     }
 
 
+    // 2-way merge
     template<typename T>
     void defaultCompareWrapper(std::string &file_A, std::string &file_B,
                                std::vector<Buffer<T> > &input_buf_,
@@ -150,5 +152,21 @@ namespace sortFunction {
         seq_end_p_ = next_end_p;
 
     }
+
+
+    /*
+     * typedef void(*sortFunc)(std::string &file_A, std::string &file_B,
+                            std::vector<Buffer<T> > &input_buf_,
+                            int input_buf_size_,
+                            Buffer<T> &compare_buf_,
+                            int compare_buf_size_,
+                            std::vector<long long> &seq_start_p_,
+                            std::vector<long long> &seq_end_p_,
+                            int &sequence_num_,
+                            int merge_num_);
+     */
+
+    // loser tree k-way merge
+    void loserTreeCompare();
 
 }

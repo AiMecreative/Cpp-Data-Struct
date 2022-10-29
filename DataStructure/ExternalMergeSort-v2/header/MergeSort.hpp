@@ -5,24 +5,39 @@
 #include "SortFunc.hpp"
 #include <cmath>
 #include <iostream>
+#include <limits>
 
 template<typename T>
 class MergeSort {
 private:
+    /*
+     * the parameters used in generating values or sequences is defined as local variables in relevant functions
+     * such as: main_memo_size, gen_leaf_size. gen_input_size, gen_output_size
+     *
+     * there are only parameters that used in sorting
+     */
 
-    int main_memo_size_;
+    static constexpr T empty_flag_ = std::numeric_limits<T>::max();
+
+    // 2-way default merge required:
     int input_buf_size_;
-    int output_buf_size_;
     int compare_buf_size_;
-
-    std::vector<Buffer<T> > input_buf_;
     Buffer<T> compare_buf_;
+    std::vector<Buffer<T> > input_buf_;
 
-    int merge_num_;
+    // 2-way loser tree merge required:
+    int leaf_size_;
+    int output_buf_size_;
+    std::vector<T> leaf_;
+    std::vector<Buffer<T> > output_buf_;
 
+    // loser tree k-way merge sort required:
+    //TODO: ep5 k-way merge
+
+    // total data information
     int data_size_;
+    int merge_num_;
     long long file_size_;
-
     int sequence_num_;
 
     // initialize when generate merge sequences the 1st time
@@ -30,15 +45,16 @@ private:
     std::vector<long long> seq_end_p_;
 
     std::string sort_mode_{};
-
     std::string result_loc_{};
 
 public:
     MergeSort() {
-        main_memo_size_ = 0;
         input_buf_size_ = 0;
-        output_buf_size_ = 0;
         compare_buf_size_ = 0;
+
+        leaf_size_ = 0;
+        output_buf_size_ = 0;
+
         data_size_ = 0;
         file_size_ = 0;
         merge_num_ = 0;
@@ -48,39 +64,63 @@ public:
     ~MergeSort() = default;
 
 
-    MergeSort(int main_size, int data_size, int merge_num, const std::string &mode) {
-        main_memo_size_ = main_size;
+    MergeSort(int data_size, const std::string &mode,
+              int input_buf_size = 8, int compare_buf_size = 16,
+              int output_buf_size = 16, int leaf_size = 16, int merge_num = 2) {
+
         data_size_ = data_size;
-        merge_num_ = merge_num;
         sort_mode_ = mode;
         file_size_ = data_size_ * sizeof(T);
 
-        sequence_num_ = std::ceil(data_size_ / (float) main_memo_size_);
+        sequence_num_ = seq_start_p_.size();
 
         if (mode == "default") {
-            compare_buf_size_ = main_memo_size_ / 2;
-            input_buf_size_ = compare_buf_size_ / merge_num_;
-        } else if (mode == "loser tree") {
-
+            // input_buf_size, compare_buf_size required
+            merge_num_ = 2;
+            input_buf_size_ = input_buf_size;
+            compare_buf_size_ = compare_buf_size;
+        } else if (mode == "loser tree 2-way") {
+            // input_buf_size, output_buf_size, leaf_size required
+            merge_num_ = 2;
+            input_buf_size_ = input_buf_size;
+            output_buf_size_ = output_buf_size;
+            leaf_size_ = leaf_size;
+        } else if (mode == "loser tree k-way") {
+            // input_buf_size, output_buf_size, leaf_size, merge_num required
+            merge_num_ = merge_num;
+            input_buf_size_ = input_buf_size;
+            output_buf_size_ = output_buf_size;
+            leaf_size_ = leaf_size;
         } else {
-            throw std::runtime_error("error in MergeSort(), give `mode`: default | loser tree");
+            throw std::runtime_error(
+                    "error in MergeSort(), give `mode`: default | loser tree 2-way | loser tree k-way");
         }
     }
 
 
-    void bufferInitial() {
+    // before sorting
+    void initialize() {
         if (sort_mode_ == "default") {
             for (int i = 0; i < merge_num_; ++i) {
                 input_buf_.push_back(Buffer<T>(input_buf_size_));
             }
             compare_buf_.init(compare_buf_size_);
-        } else if (sort_mode_ == "loser tree") {
-
+        } else if (sort_mode_ == "loser tree 2-way") {
+            for (int i = 0; i < merge_num_; ++i) {
+                input_buf_.push_back(Buffer<T>(input_buf_size_));
+                output_buf_.push_back(Buffer<T>(output_buf_size_));
+            }
+            leaf_.assign(leaf_size_, empty_flag_);
+        } else if (sort_mode_ == "loser tree k-way") {
+            for (int i = 0; i < merge_num_; ++i) {
+                //TODO:
+            }
         } else {
             throw std::runtime_error("error in bufferInitial(), give `mode`: default | loser tree");
         }
     }
 
+    // after sorting
     void printSortedValues() {
         std::fstream result_file{result_loc_, std::ios::out | std::ios::in | std::ios::binary};
         assert(result_file.is_open() && result_file.good());
@@ -95,14 +135,31 @@ public:
         result_file.close();
     }
 
-    void generateTestValues(const std::string &in_file, int bottom, int top) {
+    // before sorting, generate test values from bottom to top
+    void genTestValues(const std::string &in_file, int bottom, int top) {
         Generator<T> gen;
-        file_size_ = gen.genRandomValue(in_file, data_size_, bottom, top);
+        long long file_size;
+        file_size = gen.genRandomValue(in_file, data_size_, bottom, top);
+        if (file_size != file_size_) {
+            throw std::runtime_error("different file_size in genTestValues()");
+        }
     }
 
-    void generateMergeSeq(const std::string &in_file, const std::string &out_file) {
+    // use main memory size to divide file into sequences
+    void defaultGenMergeSeq(const std::string &in_file_loc, const std::string &out_file_loc, int main_memo_size) {
         Generator<T> gen;
-        seq_end_p_ = gen.defaultGenSeq(in_file, out_file, main_memo_size_, file_size_);
+        seq_end_p_ = gen.defaultGenSeq(in_file_loc, out_file_loc, main_memo_size, file_size_);
+        seq_start_p_ = seq_end_p_;
+        seq_start_p_.pop_back();
+        sequence_num_ = seq_start_p_.size();
+    }
+
+    // use loser tree to divide sequences, length = gen_out_size_
+    void loserTreeGenMergeSeq(const std::string &in_file_loc, const std::string &out_file_loc,
+                              int gen_leaf_size, int gen_in_size, int gen_out_size) {
+        Generator<T> gen;
+        seq_end_p_ = gen.loserTreeGenSeq(in_file_loc, out_file_loc, gen_leaf_size,
+                                         gen_in_size, gen_out_size, file_size_);
         seq_start_p_ = seq_end_p_;
         seq_start_p_.pop_back();
     }
@@ -155,7 +212,7 @@ public:
     }
 
     // 2-way merge
-    void defaultMerge(const std::string &file_A, const std::string &file_B) {
+    void defaultTwoWayMerge(const std::string &file_A, const std::string &file_B) {
         merge(file_A, file_B, (sortFunc) sortFunction::defaultCompareWrapper);
     }
 

@@ -27,8 +27,8 @@ public:
     }
 
     explicit Buffer(int size) {
-        buf_.assign(size, empty_flag_);
         empty_flag_ = std::numeric_limits<T>::max();
+        buf_.assign(size, empty_flag_);
     }
 
     ~Buffer() = default;
@@ -88,6 +88,10 @@ public:
         for (int i = loc; i < buf_.size(); ++i) {
             buf_[i] = empty_flag_;
         }
+    }
+
+    void makeEmpty() {
+        buf_.assign(buf_.size(), empty_flag_);
     }
 
     bool isFree() {

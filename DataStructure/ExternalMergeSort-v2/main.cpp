@@ -5,6 +5,9 @@
 namespace fs = std::filesystem;
 
 int main() {
+    /*
+     * file define and clear
+     */
     fs::path path = fs::current_path().parent_path();
     const std::string cur_path = path.u8string();
 
@@ -27,8 +30,10 @@ int main() {
      * - input buffer size = compare buffer size / merge_num
      */
 
-    // 6, 35, 3
-    // merge_num < sequences_num: endless loop
+    /*
+     * 2-way default merge sort test
+     */
+
 //    int main_size = 256;
 //    int data_size = 12441;
 //    int merge_num = 2;
@@ -39,10 +44,15 @@ int main() {
 //    sorter.generateMergeSeq(file_A, file_A);
 //    sorter.defaultMerge(file_A, file_B);
 //    sorter.printSortedValues();
-    long long file_size = 20;
+
+    /*
+     * generator.loserTreeGenSeq(...) test
+     */
+
+    long long file_size = 80;
     Generator<int> generator;
     generator.genRandomValue(file_A, 8, 1, 10);
-    generator.loserTreeGenSeq(file_A, file_B, 8, 8, 8, file_size);
+    generator.loserTreeGenSeq(file_A, file_B, 8, 5, 5, file_size);
 
 
     return 0;

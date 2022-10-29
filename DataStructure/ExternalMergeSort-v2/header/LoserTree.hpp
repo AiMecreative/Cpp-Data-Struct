@@ -44,8 +44,8 @@ private:
             }
         }
         // parent == 0
-        if (used(parent) && leaf_[tree_[parent]] > leaf_[tree_[undef_index]]) {
-            parent = -1;
+        if (used(parent) && leaf_[tree_[parent]] >= leaf_[undef_index]) {
+            parent = empty_index_;
         }
         return parent;
     }
@@ -62,6 +62,9 @@ public:
         if (values.empty()) {
             throw std::runtime_error("empty values in LoserTree constructor!");
         } else {
+            if (values.size() < leaf_size_) {
+                values.resize(leaf_size_, empty_flag_);
+            }
             leaf_size_ = values.size();
             int k = 1;
             int tree_size = 1;
@@ -95,10 +98,10 @@ public:
         for (int leaf_index = leaf_start_; leaf_index < tree_.size(); ++leaf_index) {
             int undef_index = leaf_index - leaf_start_;
             int target = findTargetNode(leaf_index, undef_index);
-            if (target != -1) {
+            if (target != empty_index_) {
                 tree_[target] = undef_index;
             } else {
-                top_value_ = leaf_index;
+                top_value_ = undef_index;
             }
         }
     }
@@ -107,7 +110,7 @@ public:
     void adjust(int index, int value) {
         assert(index >= 0 && index < tree_.size());
         int target = findTargetNode(index + leaf_start_, index);
-        if (target != -1) {
+        if (target != empty_index_) {
             tree_[target] = index;
         } else {
             top_value_ = index;
