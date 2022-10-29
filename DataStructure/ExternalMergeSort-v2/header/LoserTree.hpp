@@ -1,7 +1,11 @@
 #pragma once
 
 #include "Buffer.hpp"
-
+#include <limits>
+#include <vector>
+#include <exception>
+#include <cassert>
+#include <iostream>
 
 template<typename T>
 class LoserTree {
@@ -25,6 +29,27 @@ private:
         if (tree_[index] != empty_index_) return true;
         else return false;
     }
+
+
+    int findTargetNode(int tree_index, int &undef_index) {
+        int parent = (tree_index - 1) / 2;
+        while (parent != 0) {
+            if (!used(parent)) {
+                return parent;
+            } else if (leaf_[tree_[parent]] > leaf_[undef_index]) {
+                parent = (parent - 1) / 2;
+            } else {
+                std::swap(undef_index, tree_[parent]);
+                parent = (parent - 1) / 2;
+            }
+        }
+        // parent == 0
+        if (used(parent) && leaf_[tree_[parent]] > leaf_[tree_[undef_index]]) {
+            parent = -1;
+        }
+        return parent;
+    }
+
 
 public:
     LoserTree() {
@@ -57,6 +82,14 @@ public:
 
     ~LoserTree() = default;
 
+    T &operator[](int ind) {
+        return leaf_[ind];
+    }
+
+    const T &operator[](int ind) const {
+        return leaf_[ind];
+    }
+
     // construct a loser tree based on initialized tree leaf
     void construct() {
         for (int leaf_index = leaf_start_; leaf_index < tree_.size(); ++leaf_index) {
@@ -70,23 +103,15 @@ public:
         }
     }
 
-    int findTargetNode(int tree_index, int &undef_index) {
-        int parent = (tree_index - 1) / 2;
-        while (parent != 0) {
-            if (!used(parent)) {
-                return parent;
-            } else if (leaf_[tree_[parent]] > leaf_[undef_index]) {
-                parent = (parent - 1) / 2;
-            } else {
-                std::swap(undef_index, tree_[parent]);
-                parent = (parent - 1) / 2;
-            }
+    // replace the old_value in vector[index] with value
+    void adjust(int index, int value) {
+        assert(index >= 0 && index < tree_.size());
+        int target = findTargetNode(index + leaf_start_, index);
+        if (target != -1) {
+            tree_[target] = index;
+        } else {
+            top_value_ = index;
         }
-        // parent == 0
-        if (used(parent) && leaf_[tree_[parent]] > leaf_[tree_[undef_index]]) {
-            parent = -1;
-        }
-        return parent;
     }
 
 
@@ -94,15 +119,9 @@ public:
         return top_value_;
     }
 
-    // replace the old_value in vector[index] with value
-    void adjust(int index, int value) {
-        assert(index>=0 && index < tree_.size());
-        int target = findTargetNode(index + leaf_start_, index);
-        if (target != -1) {
-            tree_[target] = index;
-        } else {
-            top_value_ = index;
-        }
+
+    bool empty() {
+        return tree_.empty();
     }
 
 

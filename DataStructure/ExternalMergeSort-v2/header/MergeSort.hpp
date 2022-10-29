@@ -86,7 +86,7 @@ public:
         assert(result_file.is_open() && result_file.good());
         std::vector<T> temp(data_size_, 0);
         result_file.seekp(0, std::ios::beg);
-        result_file.read(reinterpret_cast<char*>(temp.data()), file_size_);
+        result_file.read(reinterpret_cast<char *>(temp.data()), file_size_);
         std::cout << "sorted result: " << std::endl;
         for (auto &value: temp) {
             std::cout << value << " ";

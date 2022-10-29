@@ -39,11 +39,10 @@ int main() {
 //    sorter.generateMergeSeq(file_A, file_A);
 //    sorter.defaultMerge(file_A, file_B);
 //    sorter.printSortedValues();
-
-    std::vector<int> values{4, 3, 6, 8, 1, 5, 7, 3, 2, 6, 9, 4, 5, 2, 5, 8};
-    LoserTree<int> l_tree(values);
-    l_tree.construct();
-    l_tree.printTree();
+    long long file_size = 20;
+    Generator<int> generator;
+    generator.genRandomValue(file_A, 8, 1, 10);
+    generator.loserTreeGenSeq(file_A, file_B, 8, 8, 8, file_size);
 
 
     return 0;

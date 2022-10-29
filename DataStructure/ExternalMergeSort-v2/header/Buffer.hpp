@@ -5,6 +5,7 @@
  * add IO operation based on STL vector
  * includes Input buffer, Loser Tree buffer, Output buffer
  */
+#include "LoserTree.hpp"
 
 #include <vector>
 #include <string>
@@ -18,25 +19,22 @@ template<typename T>
 class Buffer {
 private:
     T empty_flag_;
-    int invalid_num_;
     std::vector<T> buf_;
 
 public:
     Buffer() {
-        invalid_num_ = 0;
         empty_flag_ = std::numeric_limits<T>::max();
     }
 
     explicit Buffer(int size) {
-        invalid_num_ = 0;
-        buf_.assign(size, 0);
+        buf_.assign(size, empty_flag_);
         empty_flag_ = std::numeric_limits<T>::max();
     }
 
     ~Buffer() = default;
 
     void init(int size) {
-        buf_.assign(size, 0);
+        buf_.assign(size, empty_flag_);
     }
 
     T &operator[](int ind) {
@@ -55,21 +53,8 @@ public:
         return buf_.empty();
     }
 
-    void push_back(T value) {
-        buf_.push_back(value);
-    }
-
-    // use back
     T back() const {
         return buf_.back();
-    }
-
-    void pop_back() {
-        buf_.pop_back();
-    }
-
-    int getInvalidNum() {
-        return invalid_num_;
     }
 
     void read_n(std::string &in_file, long long &start_p, long long &read_bytes) {
@@ -95,7 +80,7 @@ public:
 
     // use back, the back is the first value
     void ascendSort() {
-        std::sort(buf_.begin(), buf_.end() - invalid_num_, greaterThan);
+        std::sort(buf_.begin(), buf_.end(), greaterThan);
     }
 
     // tag from loc to tail is illegal area
@@ -105,8 +90,17 @@ public:
         }
     }
 
+    bool isFree(int loc) {
+        if (buf_[loc] == empty_flag_) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
     friend
-    std::ostream &operator<<(std::ostream &stream, const Buffer<T> &buf){
+    std::ostream &operator<<(std::ostream &stream, const Buffer<T> &buf) {
         for (int i = 0; i < buf.buf_.size(); ++i) {
             stream << buf.buf_[i] << " ";
         }

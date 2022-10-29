@@ -1,14 +1,5 @@
-//
-// Created by XUxiansen on 2022/10/26.
-//
+#pragma once
 
-#ifndef EXTERNALMERGESORT_V2_THREADPOOL_HPP
-#define EXTERNALMERGESORT_V2_THREADPOOL_HPP
+#include <thread>
 
-
-class ThreadPool {
-
-};
-
-
-#endif //EXTERNALMERGESORT_V2_THREADPOOL_HPP
+class ThreadPool {};
