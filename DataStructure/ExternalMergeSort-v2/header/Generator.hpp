@@ -13,8 +13,7 @@
 #include <thread>
 #include <mutex>
 #include <atomic>
-#include <condition_variable>
-
+#include <future>
 
 template<typename T>
 constexpr bool is_int() {
@@ -132,8 +131,10 @@ public:
         // recording the read/write location
         long long read_p = 0;
         long long write_p = 0;
+
         // the return vector
         std::vector<long long> seq_p;
+
         // input/output buffers and initial
         std::vector<Buffer<T> > input_buf;
         std::vector<Buffer<T> > output_buf;
@@ -141,9 +142,11 @@ public:
             input_buf.push_back(Buffer<T>(input_size));
             output_buf.push_back(Buffer<T>(output_size));
         }
+
         // file location
         std::string file_in = in_file_loc;
         std::string file_out = out_file_loc;
+
         // initialize loser tree
         LoserTree<T> loserTree(genLeaves(file_in, read_p, leaf_size));
         loserTree.construct();
@@ -151,66 +154,77 @@ public:
         // mutex and condition variables
         std::mutex read_mutex;
         std::mutex write_mutex;
-        std::condition_variable read_cv;
-        std::condition_variable write_cv;
 
         // thread functions define
-        auto read_func = [&](long long start_p, long long read_bytes) {
+        auto read_func = [&](long long start_p, long long read_bytes,
+                             std::promise<bool> &state, std::promise<int> &ready_buf) {
             std::cout << "read_thread test" << std::endl;
-            while (read_p < file_size) {
-                std::cout << "read_loop test" << std::endl;
-                std::unique_lock read_lock(read_mutex);
-                std::cout << "read_lock test" << std::endl;
-                read_cv.wait(read_lock);
-                std::cout << "this input buf: " << NEXT_INPUT_BUF << std::endl;
-                input_buf[NEXT_INPUT_BUF].read_n(file_in, start_p, read_bytes);
-                NEXT_INPUT_BUF += 1;
-                NEXT_INPUT_BUF = NEXT_INPUT_BUF % 2;
-                read_bytes = 0;
-            }
+            std::unique_lock read_lock(read_mutex);
+            std::cout << "read_lock test" << std::endl;
+            std::cout << "this input buf: " << NEXT_INPUT_BUF << std::endl;
+            input_buf[NEXT_INPUT_BUF].read_n(file_in, start_p, read_bytes);
+            ready_buf.set_value(NEXT_INPUT_BUF);
+            NEXT_INPUT_BUF += 1;
+            NEXT_INPUT_BUF = NEXT_INPUT_BUF % 2;
+            read_bytes = 0;
             std::cout << "read thread exit!" << std::endl;
+            state.set_value(true);
         };
 
-        auto write_func = [&](long long start_p, long long write_bytes) {
+        auto write_func = [&](long long start_p, long long write_bytes,
+                              std::promise<bool> &state, std::promise<int> &ready_buf) {
             std::cout << "write_thread test" << std::endl;
-            while (write_p < file_size) {
-                std::cout << "write_loop test" << std::endl;
-                std::unique_lock write_lock(write_mutex);
-                std::cout << "write_lock test" << std::endl;
-                write_cv.wait(write_lock);
-                std::cout << "this output buf: " << NEXT_OUTPUT_BUF << std::endl;
-                output_buf[NEXT_OUTPUT_BUF].write_n(file_out, start_p, write_bytes);
-                seq_p.push_back(start_p);
-                NEXT_OUTPUT_BUF += 1;
-                NEXT_OUTPUT_BUF = NEXT_OUTPUT_BUF % 2;
-                write_bytes = 0;
-            }
+            std::unique_lock write_lock(write_mutex);
+            std::cout << "write_lock test" << std::endl;
+            std::cout << "this output buf: " << NEXT_OUTPUT_BUF << std::endl;
+            output_buf[NEXT_OUTPUT_BUF].write_n(file_out, start_p, write_bytes);
+            seq_p.push_back(start_p);
+            ready_buf.set_value(NEXT_OUTPUT_BUF);
+            NEXT_OUTPUT_BUF += 1;
+            NEXT_OUTPUT_BUF = NEXT_OUTPUT_BUF % 2;
+            write_bytes = 0;
             std::cout << "write thread exit!" << std::endl;
-            return true;
+            state.set_value(true);
         };
 
         // create two threads
         long long read_bytes = 0;
         long long write_bytes = 0;
-        std::thread read_thread(read_func, read_p, read_bytes);
-        std::thread write_thread(write_func, write_p, write_bytes);
+
+        std::promise<int> ready_read_pro;
+        std::future<int> ready_read_fut;
+        std::promise<int> ready_write_pro;
+        std::future<int> read_write_fut;
+        std::promise<bool> read_state_pro;
+        std::future<bool> read_state_fut;
+        std::promise<bool> write_state_pro;
+        std::future<bool> write_state_fut;
 
         int in_buf_idx = 0;
         int out_buf_idx = 0;
+
         while (write_p < file_size) {
+
+            std::thread read_thread(read_func, read_p, read_bytes, ready_read_pro, read_state_pro);
+            std::thread write_thread(write_func, write_p, write_bytes, ready_write_pro, write_state_pro);
+
             // write output buf when full
             std::cout << "in main thread: next_output_buf " << NEXT_OUTPUT_BUF
                       << " next_input_buf " << NEXT_INPUT_BUF << std::endl;
             if (output_buf[NEXT_OUTPUT_BUF].isFull()) {
-                write_cv.notify_one();
+                write_mutex.unlock();
             }
+
             // read input buf when free
             if (input_buf[NEXT_INPUT_BUF].isFree()) {
-                read_cv.notify_one();
+                read_mutex.unlock();
             }
+
             // sort for sequences
             int min_idx = loserTree.getMin();
             T min_value = loserTree[min_idx];
+
+            // get new value when input buffer is ready
             T new_value = input_buf[NEXT_INPUT_BUF][in_buf_idx];
             in_buf_idx += 1;
             output_buf[NEXT_OUTPUT_BUF][out_buf_idx] = min_value;
@@ -219,12 +233,12 @@ public:
             read_bytes += sizeof(T);
             write_bytes += sizeof(T);
         }
-        if (read_thread.joinable()) {
-            read_thread.join();
-        }
-        if (write_thread.joinable()) {
-            write_thread.join();
-        }
+//        if (read_thread.joinable()) {
+//            read_thread.join();
+//        }
+//        if (write_thread.joinable()) {
+//            write_thread.join();
+//        }
         std::cout << "seq_p " << std::endl;
         for (auto &v: seq_p) {
             std::cout << v << " ";
