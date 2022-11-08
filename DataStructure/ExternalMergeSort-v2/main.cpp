@@ -46,19 +46,13 @@ int main() {
 //    sorter.defaultMerge(file_A, file_B);
 //    sorter.printSortedValues();
 
-    /*
-     * generator.loserTreeGenSeq(...) test
-     */
-
-    MergeSort<int> sorter(512,
-                          "loser tree 2-way",
-                          8,
-                          16,
-                          8,
-                          8,
-                          2);
-    sorter.genTestValues(file_A, 0, 10);
-    sorter.loserTreeGenMergeSeq(file_A, file_B, 8, 8, 8);
-
+    // input buffer size = 16
+    MergeSort<int> sorter(512, "loser tree k-way", 16);
+    sorter.genTestValues(file_A, 1, 10);
+    // generate sequences with 32 length, 16 in total.
+    // so the output buffer size is 16, leaf size is 16
+    sorter.loserTreeGenMergeSeq(file_A, file_B, 32,  32, 32);
+    sorter.loserTreeMerge(file_A, file_B);
+    sorter.printSortedValues();
     return 0;
 }

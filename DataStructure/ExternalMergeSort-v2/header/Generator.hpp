@@ -156,7 +156,7 @@ public:
         long long write_p = std::ios::beg;
         long long read_bytes = input_size * sizeof(T);
         long long write_bytes = output_size * sizeof(T);
-        std::vector<long long> seq_p;
+        std::vector<long long> seq_p{write_p};
 
         // initialize loser tree
         LoserTree<T> lt(leaf_size);
@@ -167,6 +167,7 @@ public:
             input_pipe.push_back(Buffer<T>(input_size));
             output_pipe.push_back(Buffer<T>(output_size));
         }
+
 
         // start the multi-thread
         std::mutex in_mutex;
@@ -213,6 +214,11 @@ public:
             io11.join();
         }
 
+        std::cout << "seq_p in loser tree generate sequences:" << std::endl;
+        for (auto &value: seq_p) {
+            std::cout << value << " ";
+        }
+        std::cout << seq_p.size() << std::endl;
         return seq_p;
     }
 };
