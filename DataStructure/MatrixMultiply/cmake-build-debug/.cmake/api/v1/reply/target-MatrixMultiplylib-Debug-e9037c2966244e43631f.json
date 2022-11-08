@@ -50,11 +50,11 @@
 			[
 				{
 					"backtrace" : 2,
-					"path" : "D:/xrCLang/Self-Study-For-Cpp/DataStructure/MatrixMultiply/header"
+					"path" : "D:/xrCLang/Cpp-Data-Struct/DataStructure/MatrixMultiply/header"
 				},
 				{
 					"backtrace" : 2,
-					"path" : "D:/xrCLang/Self-Study-For-Cpp/DataStructure/MatrixMultiply/src"
+					"path" : "D:/xrCLang/Cpp-Data-Struct/DataStructure/MatrixMultiply/src"
 				}
 			],
 			"language" : "CXX",

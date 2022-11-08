@@ -62,7 +62,7 @@ template<typename T>
 void Matrix<T>::matrixGenerator(const std::string &file_loc, int bottom, int top) {
     std::ofstream write_file{file_loc};
     assert(write_file.is_open());
-    static std::default_random_engine generator((unsigned int) time(nullptr));
+    static std::default_random_engine generator((unsigned int) 0);
     if constexpr (static_cast<bool>(is_int<T>())) {
         static std::uniform_int_distribution<T> uniform(bottom, top);
         for (int i = 0; i < this->row; ++i) {

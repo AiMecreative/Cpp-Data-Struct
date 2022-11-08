@@ -164,8 +164,8 @@
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
-		"build" : "D:/xrCLang/Self-Study-For-Cpp/DataStructure/MatrixMultiply/cmake-build-debug",
-		"source" : "D:/xrCLang/Self-Study-For-Cpp/DataStructure/MatrixMultiply"
+		"build" : "D:/xrCLang/Cpp-Data-Struct/DataStructure/MatrixMultiply/cmake-build-debug",
+		"source" : "D:/xrCLang/Cpp-Data-Struct/DataStructure/MatrixMultiply"
 	},
 	"version" : 
 	{

@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "d:/xrCLang/Self-Study-For-Cpp/DataStructure/MatrixMultiply/cmake-build-debug"
+			"value" : "d:/xrCLang/Cpp-Data-Struct/DataStructure/MatrixMultiply/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -707,7 +707,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "D:/xrCLang/Self-Study-For-Cpp/DataStructure/MatrixMultiply"
+			"value" : "D:/xrCLang/Cpp-Data-Struct/DataStructure/MatrixMultiply"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -1327,7 +1327,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "D:/xrCLang/Self-Study-For-Cpp/DataStructure/MatrixMultiply/cmake-build-debug"
+			"value" : "D:/xrCLang/Cpp-Data-Struct/DataStructure/MatrixMultiply/cmake-build-debug"
 		},
 		{
 			"name" : "MatrixMultiply_IS_TOP_LEVEL",
@@ -1351,7 +1351,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "D:/xrCLang/Self-Study-For-Cpp/DataStructure/MatrixMultiply"
+			"value" : "D:/xrCLang/Cpp-Data-Struct/DataStructure/MatrixMultiply"
 		}
 	],
 	"kind" : "cache",

@@ -138,7 +138,7 @@ T MatrixIO<T>::singleReadCache(const std::string &file_loc, int row_i, int col_j
             read_p.pop_back();
             read_p.pop_back();
             readBlockNum -= 1;
-            writeMissTimes += 1;
+            readMissTimes += 1;
             cache_ind += cacheSize;
             cacheRead(file_loc);
         }

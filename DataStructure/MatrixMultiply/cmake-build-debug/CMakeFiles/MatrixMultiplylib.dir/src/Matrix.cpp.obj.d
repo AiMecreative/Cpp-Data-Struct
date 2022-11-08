@@ -1,6 +1,6 @@
 CMakeFiles/MatrixMultiplylib.dir/src/Matrix.cpp.obj: \
- D:\xrCLang\Self-Study-For-Cpp\DataStructure\MatrixMultiply\src\Matrix.cpp \
- D:/xrCLang/Self-Study-For-Cpp/DataStructure/MatrixMultiply/header/Matrix.h \
+ D:\xrCLang\Cpp-Data-Struct\DataStructure\MatrixMultiply\src\Matrix.cpp \
+ D:/xrCLang/Cpp-Data-Struct/DataStructure/MatrixMultiply/header/Matrix.h \
  D:/xrCLang/CLion/CLion\ 2022.2.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/vector \
  D:/xrCLang/CLion/CLion\ 2022.2.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_algobase.h \
  D:/xrCLang/CLion/CLion\ 2022.2.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \

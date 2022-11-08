@@ -28,22 +28,27 @@ int main() {
         exam.close();
     }
 
-    int n = 30;
-    int cache_size = 107;
-
-    MatrixMultiplier<int> matrix_A(n, n, cache_size);
-    MatrixMultiplier<int> matrix_B(n, n, cache_size);
-    MatrixMultiplier<int> matrix_C(n, n, cache_size);
+    int n = 100;
+    int cache_size = 3136;
 
     std::vector<std::string> order_list{"ijk", "ikj", "jik",
                                         "jki", "kij", "kji"};
 
-//    std::vector<std::string> order_list{"ikj"};
+//    std::vector<std::string> order_list{"jki"};
 
     std::cout << "it takes some time to travel all situation" << std::endl;
     std::cout <<std::endl;
 
     for (const auto &it0: order_list) {
+        for (auto &it: file_vec) {
+            std::ofstream exam{it};
+            assert(exam.is_open());
+            exam.close();
+        }
+        MatrixMultiplier<int> matrix_A(n, n, cache_size);
+        MatrixMultiplier<int> matrix_B(n, n, cache_size);
+        MatrixMultiplier<int> matrix_C(n, n, cache_size);
+
         std::vector<Sequence> mul_order = Order::getOrder(it0);
 
         auto start_time = std::chrono::system_clock::now();
