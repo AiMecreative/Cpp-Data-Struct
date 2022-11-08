@@ -46,6 +46,9 @@ private:
         // parent == 0
         if (used(parent) && leaf_[tree_[parent]] >= leaf_[undef_index]) {
             parent = empty_index_;
+        } else if (used(parent) && leaf_[tree_[parent]] < leaf_[undef_index]) {
+            std::swap(undef_index, tree_[parent]);
+            parent = empty_index_;
         }
         return parent;
     }
@@ -58,14 +61,11 @@ public:
         top_value_ = 0;
     }
 
-    explicit LoserTree(std::vector<T> values) {
-        if (values.empty()) {
+    explicit LoserTree(int size) {
+        if (size == 0) {
             throw std::runtime_error("empty values in LoserTree constructor!");
         } else {
-            if (values.size() < leaf_size_) {
-                values.resize(leaf_size_, empty_flag_);
-            }
-            leaf_size_ = values.size();
+            leaf_size_ = size;
             int k = 1;
             int tree_size = 1;
             while (k < leaf_size_) {
@@ -76,7 +76,7 @@ public:
             top_value_ = empty_index_;
             // initial leaf values
             leaf_start_ = tree_size - leaf_size_;
-            leaf_ = values;
+            leaf_ = std::vector(size, empty_flag_);
             for (int i = 0; i < leaf_size_; ++i) {
                 tree_[leaf_start_ + i] = i;
             }
@@ -107,7 +107,7 @@ public:
     }
 
     // replace the old_value in vector[index] with value
-    void adjust(int index, int value) {
+    void adjust(int index) {
         assert(index >= 0 && index < tree_.size());
         int target = findTargetNode(index + leaf_start_, index);
         if (target != empty_index_) {
@@ -117,14 +117,58 @@ public:
         }
     }
 
+    void setEmpty(int idx) {
+        leaf_[idx] = empty_flag_;
+    }
+
+    void setLeafSize(int size) {
+        leaf_size_ = size;
+    }
+
+    int getLeafSize() {
+        return leaf_size_;
+    }
 
     T getMin() {
         return top_value_;
     }
 
+    void makeEmptyTree() {
+        for (int i = 0; i < tree_.size() - leaf_size_; ++i) {
+            tree_[i] = empty_index_;
+        }
+    }
+
+    void makeEmptyLeaf() {
+        for (int i = leaf_start_; i < tree_.size(); ++i) {
+            leaf_[i - leaf_start_] = empty_flag_;
+        }
+    }
 
     bool empty() {
-        return tree_.empty();
+        for (auto &value: leaf_) {
+            if (value != empty_flag_) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    void loadData(Buffer<T> &in_buf) {
+        makeEmptyTree();
+        makeEmptyLeaf();
+        for (int i = 0; i < leaf_size_; ++i) {
+            leaf_[i] = in_buf[i];
+        }
+        construct();
+    }
+
+    void popAll(Buffer<T> &out_buf) {
+        for (int i = 0; i < leaf_size_; ++i) {
+            out_buf[i] = leaf_[top_value_];
+            leaf_[top_value_] = empty_flag_;
+            adjust(top_value_);
+        }
     }
 
 

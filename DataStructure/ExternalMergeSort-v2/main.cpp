@@ -5,6 +5,7 @@
 namespace fs = std::filesystem;
 
 int main() {
+    setbuf(stdout, 0);
     /*
      * file define and clear
      */
@@ -49,11 +50,15 @@ int main() {
      * generator.loserTreeGenSeq(...) test
      */
 
-    long long file_size = 80;
-    Generator<int> generator;
-    generator.genRandomValue(file_A, 8, 1, 10);
-    generator.loserTreeGenSeq(file_A, file_B, 8, 5, 5, file_size);
-
+    MergeSort<int> sorter(512,
+                          "loser tree 2-way",
+                          8,
+                          16,
+                          8,
+                          8,
+                          2);
+    sorter.genTestValues(file_A, 0, 10);
+    sorter.loserTreeGenMergeSeq(file_A, file_B, 8, 8, 8);
 
     return 0;
 }

@@ -9,6 +9,7 @@
 #include <cassert>
 #include <algorithm>
 #include <iostream>
+#include <utility>
 
 #include <thread>
 #include <mutex>
@@ -25,10 +26,7 @@ constexpr bool is_int<int>() {
     return true;
 }
 
-std::atomic<int> NEXT_INPUT_BUF = 0;
-std::atomic<int> NEXT_OUTPUT_BUF = 0;
-std::atomic<bool> INPUT_READY = false;
-std::atomic<bool> OUTPUT_READY = false;
+// buffer number
 static int BUF_COUNT = 2;
 
 template<typename T>
@@ -119,6 +117,29 @@ public:
     }
 
     /*
+     * ATTENTION:
+     * inorder to generate merge sequences as little as possible, we define:
+     * output_size > leaf_size > input_size
+     */
+
+    void fillLoserTree(int start_idx, Buffer<T> &input_buf, LoserTree<T> &lt, int fill_num = 0) {
+        for (int i = start_idx; i < lt.getLeafSize() - fill_num; ++i) {
+            lt[i] = input_buf[i - start_idx];
+        }
+        for (int i = lt.getLeafSize() - 1; i >= lt.getLeafSize() - fill_num; --i) {
+            lt.setEmpty(i);
+        }
+    }
+
+    void popAll(int start_idx, Buffer<T> &output_buf, LoserTree<T> &lt, int fill_num = 0) {
+        for (int i = start_idx; i < output_buf.size() - fill_num; ++i) {
+            output_buf[i] = lt[i - start_idx];
+        }
+        output_buf.tagEmpty(output_buf.size() - 1 - fill_num);
+    }
+
+
+    /*
      * the length of merge sequence is equal to the size of output_buf
      * the length of loser tree **leaves** is equal to leaf_size
      */
@@ -128,122 +149,70 @@ public:
                                            int input_size,
                                            int output_size,
                                            long long &file_size) {
-        // recording the read/write location
-        long long read_p = 0;
-        long long write_p = 0;
-
-        // the return vector
-        std::vector<long long> seq_p;
-
-        // input/output buffers and initial
-        std::vector<Buffer<T> > input_buf;
-        std::vector<Buffer<T> > output_buf;
-        for (int _ = 0; _ < BUF_COUNT; ++_) {
-            input_buf.push_back(Buffer<T>(input_size));
-            output_buf.push_back(Buffer<T>(output_size));
-        }
-
-        // file location
         std::string file_in = in_file_loc;
         std::string file_out = out_file_loc;
 
+        long long read_p = std::ios::beg;
+        long long write_p = std::ios::beg;
+        long long read_bytes = input_size * sizeof(T);
+        long long write_bytes = output_size * sizeof(T);
+        std::vector<long long> seq_p;
+
         // initialize loser tree
-        LoserTree<T> loserTree(genLeaves(file_in, read_p, leaf_size));
-        loserTree.construct();
+        LoserTree<T> lt(leaf_size);
 
-        // mutex and condition variables
-        std::mutex read_mutex;
-        std::mutex write_mutex;
+        std::vector<Buffer<T> > input_pipe;
+        std::vector<Buffer<T> > output_pipe;
+        for (int i = 0; i < BUF_COUNT; ++i) {
+            input_pipe.push_back(Buffer<T>(input_size));
+            output_pipe.push_back(Buffer<T>(output_size));
+        }
 
-        // thread functions define
-        auto read_func = [&](long long start_p, long long read_bytes,
-                             std::promise<bool> &state, std::promise<int> &ready_buf) {
-            std::cout << "read_thread test" << std::endl;
-            std::unique_lock read_lock(read_mutex);
-            std::cout << "read_lock test" << std::endl;
-            std::cout << "this input buf: " << NEXT_INPUT_BUF << std::endl;
-            input_buf[NEXT_INPUT_BUF].read_n(file_in, start_p, read_bytes);
-            ready_buf.set_value(NEXT_INPUT_BUF);
-            NEXT_INPUT_BUF += 1;
-            NEXT_INPUT_BUF = NEXT_INPUT_BUF % 2;
-            read_bytes = 0;
-            std::cout << "read thread exit!" << std::endl;
-            state.set_value(true);
+        // start the multi-thread
+        std::mutex in_mutex;
+        std::mutex out_mutex;
+        std::mutex lt_mutex;
+
+        auto io = [&](int idx) {
+
+            std::cout << std::endl;
+            std::cout << "****" << idx << std::endl;
+
+            std::unique_lock in_lock(in_mutex);
+            std::cout << idx << " read" << std::endl;
+            input_pipe[idx].read_n(file_in, read_p, read_bytes);
+            for (int i = 0; i < input_size; ++i) {
+                std::cout << "read buf: " << input_pipe[idx][i] << std::endl;
+            }
+            in_lock.unlock();
+
+            std::unique_lock lt_lock(lt_mutex);
+            std::cout << idx << " lt" << std::endl;
+            lt.loadData(input_pipe[idx]);
+            lt.popAll(output_pipe[idx]);
+            lt_lock.unlock();
+
+            std::unique_lock out_lock(out_mutex);
+            std::cout << idx << " write" << std::endl;
+            for (int i = 0; i < output_size; ++i) {
+                std::cout << "out buf: " << output_pipe[idx][i] << std::endl;
+            }
+            output_pipe[idx].write_n(file_out, write_p, write_bytes);
+            seq_p.push_back(write_p);
+            out_lock.unlock();
         };
-
-        auto write_func = [&](long long start_p, long long write_bytes,
-                              std::promise<bool> &state, std::promise<int> &ready_buf) {
-            std::cout << "write_thread test" << std::endl;
-            std::unique_lock write_lock(write_mutex);
-            std::cout << "write_lock test" << std::endl;
-            std::cout << "this output buf: " << NEXT_OUTPUT_BUF << std::endl;
-            output_buf[NEXT_OUTPUT_BUF].write_n(file_out, start_p, write_bytes);
-            seq_p.push_back(start_p);
-            ready_buf.set_value(NEXT_OUTPUT_BUF);
-            NEXT_OUTPUT_BUF += 1;
-            NEXT_OUTPUT_BUF = NEXT_OUTPUT_BUF % 2;
-            write_bytes = 0;
-            std::cout << "write thread exit!" << std::endl;
-            state.set_value(true);
-        };
-
-        // create two threads
-        long long read_bytes = 0;
-        long long write_bytes = 0;
-
-        std::promise<int> ready_read_pro;
-        std::future<int> ready_read_fut;
-        std::promise<int> ready_write_pro;
-        std::future<int> read_write_fut;
-        std::promise<bool> read_state_pro;
-        std::future<bool> read_state_fut;
-        std::promise<bool> write_state_pro;
-        std::future<bool> write_state_fut;
-
-        int in_buf_idx = 0;
-        int out_buf_idx = 0;
 
         while (write_p < file_size) {
-
-            std::thread read_thread(read_func, read_p, read_bytes, ready_read_pro, read_state_pro);
-            std::thread write_thread(write_func, write_p, write_bytes, ready_write_pro, write_state_pro);
-
-            // write output buf when full
-            std::cout << "in main thread: next_output_buf " << NEXT_OUTPUT_BUF
-                      << " next_input_buf " << NEXT_INPUT_BUF << std::endl;
-            if (output_buf[NEXT_OUTPUT_BUF].isFull()) {
-                write_mutex.unlock();
-            }
-
-            // read input buf when free
-            if (input_buf[NEXT_INPUT_BUF].isFree()) {
-                read_mutex.unlock();
-            }
-
-            // sort for sequences
-            int min_idx = loserTree.getMin();
-            T min_value = loserTree[min_idx];
-
-            // get new value when input buffer is ready
-            T new_value = input_buf[NEXT_INPUT_BUF][in_buf_idx];
-            in_buf_idx += 1;
-            output_buf[NEXT_OUTPUT_BUF][out_buf_idx] = min_value;
-            out_buf_idx += 1;
-            loserTree.adjust(min_idx, new_value);
-            read_bytes += sizeof(T);
-            write_bytes += sizeof(T);
+            std::thread io00(io, 0);
+            std::cout << std::endl;
+            std::cout << "io00 id: " << io00.get_id() << std::endl;
+            io00.join();
+            std::thread io11(io, 1);
+            std::cout << std::endl;
+            std::cout << "io11 id: " << io11.get_id() << std::endl;
+            io11.join();
         }
-//        if (read_thread.joinable()) {
-//            read_thread.join();
-//        }
-//        if (write_thread.joinable()) {
-//            write_thread.join();
-//        }
-        std::cout << "seq_p " << std::endl;
-        for (auto &v: seq_p) {
-            std::cout << v << " ";
-        }
-        std::cout << std::endl;
+
         return seq_p;
     }
 };

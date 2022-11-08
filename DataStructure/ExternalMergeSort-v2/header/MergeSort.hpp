@@ -156,12 +156,13 @@ public:
 
     // use loser tree to divide sequences, length = gen_out_size_
     void loserTreeGenMergeSeq(const std::string &in_file_loc, const std::string &out_file_loc,
-                              int gen_leaf_size, int gen_in_size, int gen_out_size) {
+                              int leaf_size, int gen_in_size, int gen_out_size) {
         Generator<T> gen;
-        seq_end_p_ = gen.loserTreeGenSeq(in_file_loc, out_file_loc, gen_leaf_size,
+        seq_end_p_ = gen.loserTreeGenSeq(in_file_loc, out_file_loc, leaf_size,
                                          gen_in_size, gen_out_size, file_size_);
         seq_start_p_ = seq_end_p_;
         seq_start_p_.pop_back();
+        sequence_num_ = seq_start_p_.size();
     }
 
 

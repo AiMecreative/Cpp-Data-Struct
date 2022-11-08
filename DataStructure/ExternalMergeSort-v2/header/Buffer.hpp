@@ -5,7 +5,6 @@
  * add IO operation based on STL vector
  * includes Input buffer, Loser Tree buffer, Output buffer
  */
-#include "LoserTree.hpp"
 
 #include <vector>
 #include <string>
