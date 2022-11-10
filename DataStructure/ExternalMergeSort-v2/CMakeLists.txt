@@ -15,7 +15,7 @@ add_library(ExternalMergeSortlib
         src/SortFunc.cpp
         src/Generator.cpp
         src/MergeFunc.cpp
-        src/LoserTree.cpp)
+        src/LoserTree.cpp header/SorterWrapper.hpp)
 
 add_executable(main)
 target_sources(main PUBLIC main.cpp)
