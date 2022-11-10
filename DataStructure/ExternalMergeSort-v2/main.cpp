@@ -15,7 +15,7 @@ int main() {
      * - input buffer size = compare buffer size / merge_num
      */
 
-    SorterWrapper<int> sorter;
+    SorterWrapper<float> sorter;
     sorter.data_size_ = 512;
     sorter.input_buf_size_ = 16;
     sorter.main_memo_size_ = 64;

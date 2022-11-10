@@ -1,5 +1,12 @@
 #pragma once
 
+/*
+ * Generator.hpp
+ *
+ * define generators
+ * support generate random test values, merge sequences with loser tree or not
+ */
+
 #include "Buffer.hpp"
 #include "LoserTree.hpp"
 
@@ -38,12 +45,14 @@ public:
 
     ~Generator() = default;
 
+
     /*
      * out_file_loc: output file
      * data_size:
      * bottom, top: generate data from bottom to top randomly
      * return: file size
      */
+
     long long genRandomValue(const std::string &out_file_loc, int data_size,
                              int bottom, int top) {
         std::fstream out_file{out_file_loc, std::ios::binary | std::ios::in | std::ios::out};
@@ -52,19 +61,22 @@ public:
         static std::default_random_engine gen((unsigned int) 0);
         if constexpr (static_cast<bool>(is_int<T>())) {
             static std::uniform_int_distribution<T> uniform(bottom, top);
-            std::cout << "source data:" << std::endl;
+            std::cout << std::endl << "source data:" << std::endl;
             for (int _ = 0; _ < data_size; ++_) {
                 T value = uniform(gen);
                 std::cout << value << " ";
                 out_file.write((const char *) &value, sizeof(T));
             }
-            std::cout << std::endl;
+            std::cout << std::endl << std::endl;
         } else {
             static std::uniform_real_distribution<T> uniform(bottom, top);
+            std::cout << std::endl << "source data:" << std::endl;
             for (int _ = 0; _ < data_size; ++_) {
                 T value = uniform(gen);
+                std::cout << value << " ";
                 out_file.write((const char *) &value, sizeof(T));
             }
+            std::cout << std::endl << std::endl;
         }
         long long file_size = data_size * sizeof(T);
         out_file.close();
@@ -79,6 +91,7 @@ public:
      * file_size: the limit of file size
      * return: sequences' pointer in file
      */
+
     std::vector<long long> defaultGenSeq(const std::string &in_file_loc,
                                          const std::string &out_file_loc,
                                          int main_memo_size,
@@ -90,14 +103,12 @@ public:
         std::vector<long long> seq_p;
         Buffer<T> mainMem(main_memo_size);
         seq_p.push_back(std::ios::beg);
-        std::cout << "mainMemo:" << std::endl;
         while (read_p != file_size) {
             long long read_bytes = std::min((long long) (mainMem.size() * sizeof(T)),
                                             (file_size - read_p));
             mainMem.read_n(fin, read_p, read_bytes);
             mainMem.ascendSort();
-            for (int i = 0; i < read_bytes / sizeof(T); ++i) { std::cout << mainMem[i] << " "; }
-            mainMem.write_n(fout    , write_p, read_bytes);
+            mainMem.write_n(fout, write_p, read_bytes);
             seq_p.push_back(write_p);
         }
         std::cout << std::endl;
@@ -105,44 +116,18 @@ public:
     }
 
 
-    std::vector<T> genLeaves(const std::string &in_file_loc, long long &read_p, int leaf_size) {
-        std::fstream read_file{in_file_loc, std::ios::in | std::ios::out | std::ios::binary};
-        std::vector<T> leaves(leaf_size, 0);
-        long long read_bytes = leaf_size * sizeof(T);
-        read_file.seekg(read_p, std::ios::beg);
-        read_file.read(reinterpret_cast<char *>(leaves.data()), read_bytes);
-        read_p = read_file.tellg();
-        read_file.close();
-        return leaves;
-    }
-
     /*
-     * ATTENTION:
-     * inorder to generate merge sequences as little as possible, we define:
-     * output_size > leaf_size > input_size
+     * use multi-thread generation
+     *
+     * in_file_loc:
+     * out_file_loc:
+     * leaf_size: the leaf size used to generate loser tree
+     * input_size: input buffer size
+     * output_size: output buffer size
+     * file_size: limit
+     * return: sequences' pointers in file
      */
 
-    void fillLoserTree(int start_idx, Buffer<T> &input_buf, LoserTree<T> &lt, int fill_num = 0) {
-        for (int i = start_idx; i < lt.getLeafSize() - fill_num; ++i) {
-            lt[i] = input_buf[i - start_idx];
-        }
-        for (int i = lt.getLeafSize() - 1; i >= lt.getLeafSize() - fill_num; --i) {
-            lt.setEmpty(i);
-        }
-    }
-
-    void popAll(int start_idx, Buffer<T> &output_buf, LoserTree<T> &lt, int fill_num = 0) {
-        for (int i = start_idx; i < output_buf.size() - fill_num; ++i) {
-            output_buf[i] = lt[i - start_idx];
-        }
-        output_buf.tagEmpty(output_buf.size() - 1 - fill_num);
-    }
-
-
-    /*
-     * the length of merge sequence is equal to the size of output_buf
-     * the length of loser tree **leaves** is equal to leaf_size
-     */
     std::vector<long long> loserTreeGenSeq(const std::string &in_file_loc,
                                            const std::string &out_file_loc,
                                            int leaf_size,
@@ -175,28 +160,16 @@ public:
 
         auto io = [&](int idx) {
 
-//            std::cout << std::endl;
-//            std::cout << "****" << idx << std::endl;
-
             std::unique_lock in_lock(in_mutex);
-//            std::cout << idx << " read" << std::endl;
             input_pipe[idx].read_n(file_in, read_p, read_bytes);
-//            for (int i = 0; i < input_size; ++i) {
-//                std::cout << "read buf: " << input_pipe[idx][i] << std::endl;
-//            }
             in_lock.unlock();
 
             std::unique_lock lt_lock(lt_mutex);
-//            std::cout << idx << " lt" << std::endl;
             lt.loadData(input_pipe[idx]);
             lt.popAll(output_pipe[idx]);
             lt_lock.unlock();
 
             std::unique_lock out_lock(out_mutex);
-//            std::cout << idx << " write" << std::endl;
-//            for (int i = 0; i < output_size; ++i) {
-//                std::cout << "out buf: " << output_pipe[idx][i] << std::endl;
-//            }
             output_pipe[idx].write_n(file_out, write_p, write_bytes);
             seq_p.push_back(write_p);
             out_lock.unlock();
@@ -204,20 +177,11 @@ public:
 
         while (write_p < file_size) {
             std::thread io00(io, 0);
-//            std::cout << std::endl;
-//            std::cout << "io00 id: " << io00.get_id() << std::endl;
             io00.join();
             std::thread io11(io, 1);
-//            std::cout << std::endl;
-//            std::cout << "io11 id: " << io11.get_id() << std::endl;
             io11.join();
         }
 
-        std::cout << "seq_p in loser tree gePnerate sequences:" << std::endl;
-        for (auto &value: seq_p) {
-            std::cout << value << " ";
-        }
-        std::cout << seq_p.size() << std::endl;
         return seq_p;
     }
 };

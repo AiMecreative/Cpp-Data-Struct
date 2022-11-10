@@ -1,11 +1,17 @@
 #pragma once
 
-#include <mutex>
+/*
+ * SortFunc.hpp
+ *
+ * define namespace sortFunction
+ * support default compare and loser tree compare
+ */
+
 #include "Buffer.hpp"
 #include "LoserTree.hpp"
+#include <mutex>
 
 namespace sortFunction {
-
 
     template<typename T>
     void restWrite_n(std::string &out_file_loc, std::string &in_file_loc,
@@ -23,7 +29,6 @@ namespace sortFunction {
         target_file.close();
     }
 
-
     // 2-way merge
     template<typename T>
     int defaultCompare(int buf_loc, Buffer<T> &cmp_buf, std::vector<T> values) {
@@ -38,8 +43,7 @@ namespace sortFunction {
         return min_ind; // which input buffer
     }
 
-
-    // 2-way merge
+    // 2-way merge (ps: 这个函数最开始写复杂了, 不想改了)
     template<typename T>
     void defaultCompareWrapper(std::string &file_A, std::string &file_B,
                                std::vector<Buffer<T> > &input_buf_,
@@ -60,7 +64,7 @@ namespace sortFunction {
         std::vector<long long> next_end_p;
         next_end_p.push_back(std::ios::beg);
 
-        // merge 的整数倍进行归并
+        // choose 2 buffer to merge in order
         for (buf_tail = 1; buf_tail < buf_limit; buf_tail += 2) {
             buf_head = buf_tail - 1;
             for (int buf = buf_head; buf <= buf_tail; ++buf) {
@@ -77,53 +81,51 @@ namespace sortFunction {
             }
             int empty_seq = 0;
             int cmp_loc = 0;
-            // 记录每一次归并结束后的写指针
+            // record the write-pointer
             long long write_p = next_end_p.back();
-            // 遍历范围内每一个seq, 直到全部归并完
+            // traverse sequences chosen until to the end
             while (empty_seq != 2) {
-                // 下一个被填充数的buffer
+                // next buffer need to be fill
                 int next_ind = defaultCompare(cmp_loc, output_buf_, front_values);
                 cmp_loc += 1;
-                // 若compare_buffer已满, 则写入, 并更新下一次指针
+                // if compare_buffer is full, write to file, update pointer
                 if (cmp_loc == compare_buf_size_) {
                     long long write_bytes = std::min((long long) (compare_buf_size_ * sizeof(T)),
                                                      seq_end_p_.back() - write_p);
-                    std::cout << output_buf_;
                     output_buf_.write_n(file_B, write_p, write_bytes);
-                    // 更新compare buffer 的下标
+                    // update compare buffer index
                     cmp_loc = 0;
                 }
                 int in_buf_ind = front_indices[next_ind];
-                // 当前buffer到达底部
+                // buffer to the bottom
                 if (in_buf_ind == input_buf_[next_ind].size() - 1) {
-                    // 当前input buffer对应的归并段有剩余, 继续读取归并段
+                    // sequences has released values corresponding the input buffer , go on
                     if (reading_p[buf_head + next_ind] < seq_end_p_[buf_head + next_ind + 1]) {
-                        // 计算合法区
+                        // legal area
                         long long read_bytes = std::min((long long) (input_buf_size_ * sizeof(T)),
                                                         seq_end_p_[buf_head + next_ind + 1] -
                                                         reading_p[buf_head + next_ind]);
                         input_buf_[next_ind].read_n(file_A, reading_p[buf_head + next_ind], read_bytes);
-                        // 将非法读入的值为空
+                        // set empty if illegal
                         input_buf_[next_ind].tagEmpty(read_bytes / sizeof(T));
-                        // 且将当前buffer下标修改为0
                         front_indices[next_ind] = 0;
                         in_buf_ind = 0;
                     } else {
-                        // 无剩余则设为最大, 标志已空
+                        // tag empty if nothing released
                         input_buf_[next_ind].tagEmpty(0);
                         empty_seq += 1;
-                        // 若归并段结束, 则更新下一次的写指针, 和归并段的数目
+                        // sequences over
                         if (empty_seq == 2) {
                             next_end_p.push_back(write_p);
                             sequence_num_ = sequence_num_ - 1;
                         }
                     }
                 } else {
-                    // 未到达底部则相应的buffer中的下标+1
+                    // not to the bottom, buffer index+1
                     front_indices[next_ind] += 1;
                     in_buf_ind += 1;
                 }
-                // 更新front vector
+                // update front vector
                 front_values[next_ind] = input_buf_[next_ind][in_buf_ind];
             }
 
@@ -195,7 +197,6 @@ namespace sortFunction {
             if (input_state[idx] == 0) {
                 read_bytes = std::min(seq_end_p[idx + 1] - reading_p[idx], (long long) (input_size * sizeof(T)));
                 input_pipe[idx].read_n(file_A, reading_p[idx], read_bytes);
-                std::cout << "input buf " << idx << "read: " << std::endl << input_pipe[idx] << std::endl;
                 input_state[idx] = 1;
             } else if (input_state[idx] == -1) {
                 input_pipe[idx].tagEmpty(0);
@@ -207,7 +208,6 @@ namespace sortFunction {
             // get pop value and input buffer index
             pop_idx = lt.getMin();
             pop_value = lt[pop_idx];
-            std::cout << "lt pop: " << pop_value << std::endl;
             input_idx[pop_idx] += 1;
             if (input_idx[pop_idx] == input_size) {
                 input_state[pop_idx] = 0;
@@ -223,15 +223,12 @@ namespace sortFunction {
             lt.adjust(pop_idx);
         };
 
-        int write_times = 0;
         auto update_output = [&](int &output_idx, T value) {
             output_buf[output_idx] = value;
             output_idx += 1;
             if (output_idx == output_size) {
                 write_bytes = std::min((long long) (output_size * sizeof(T)), file_size - write_p);
-                std::cout << "write buf " << output_buf << std::endl;
                 output_buf.write_n(file_B, write_p, write_bytes);
-                write_times += 1;
                 output_idx = 0;
             }
 
@@ -241,7 +238,6 @@ namespace sortFunction {
             Buffer<T> temp(input_num);
             for (int i = 0; i < input_num; ++i) {
                 temp[i] = input_pipe[i][0];
-//                input_idx[i] += 1;
             }
             lt.loadData(temp);
         };
@@ -257,16 +253,9 @@ namespace sortFunction {
         int output_idx = 0;
         // loop when there are values haven't been written
         while (write_p < file_size) {
-            std::cout << "********** " << output_idx << " ***********" << std::endl;
-            if (output_idx % 4 == 3) {
-                std::cout << "break point here" << std::endl;
-            }
-            // write just one value for every loop
-            // check every input buffer's state
-            //update_input();
 
+            // init lt and input_pipe, only execute once
             std::call_once(init_in_once, init_input);
-            // init lt, only execute once
             std::call_once(init_lt_once, init_lt);
 
             // update loser tree
@@ -276,7 +265,6 @@ namespace sortFunction {
 
             // write to output buffer and write to file if needed
             update_output(output_idx, pop_value);
-            std::cout << "write times " << write_times << std::endl;
         }
 
         sequence_num = 1;

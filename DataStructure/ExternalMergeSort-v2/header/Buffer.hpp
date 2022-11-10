@@ -1,9 +1,9 @@
 #pragma once
 
 /*
- * Buffer class
- * add IO operation based on STL vector
- * includes Input buffer, Loser Tree buffer, Output buffer
+ * Buffer.hpp
+ *
+ * define Buffer class, IO wrapper with STL <vector>
  */
 
 #include <vector>
@@ -32,6 +32,25 @@ public:
 
     ~Buffer() = default;
 
+    void read_n(std::string &in_file, long long &start_p, long long &read_bytes) {
+        std::fstream read_file{in_file, std::ios::in | std::ios::out | std::ios::binary};
+        assert(read_file.is_open() && read_file.good());
+        read_file.seekg(start_p, std::fstream::beg);
+        read_file.read(reinterpret_cast<char *>(buf_.data()), read_bytes);
+        start_p = read_file.tellg();
+        read_file.close();
+    }
+
+    void write_n(std::string &out_file, long long &start_p, long long &write_bytes) {
+        std::fstream write_file{out_file, std::ios::out | std::ios::in | std::ios::binary};
+        assert(write_file.is_open() && write_file.good());
+        write_file.seekp(start_p, std::fstream::beg);
+        write_file.write(reinterpret_cast<const char *>(buf_.data()), write_bytes);
+        buf_.assign(size(), empty_flag_);
+        start_p = write_file.tellp();
+        write_file.close();
+    }
+
     void init(int size) {
         buf_.assign(size, empty_flag_);
     }
@@ -56,28 +75,8 @@ public:
         return buf_.back();
     }
 
-    void read_n(std::string &in_file, long long &start_p, long long &read_bytes) {
-        std::fstream read_file{in_file, std::ios::in | std::ios::out | std::ios::binary};
-        assert(read_file.is_open() && read_file.good());
-        read_file.seekg(start_p, std::fstream::beg);
-        read_file.read(reinterpret_cast<char *>(buf_.data()), read_bytes);
-        start_p = read_file.tellg();
-        read_file.close();
-    }
-
-    void write_n(std::string &out_file, long long &start_p, long long &write_bytes) {
-        std::fstream write_file{out_file, std::ios::out | std::ios::in | std::ios::binary};
-        assert(write_file.is_open() && write_file.good());
-        write_file.seekp(start_p, std::fstream::beg);
-        write_file.write(reinterpret_cast<const char *>(buf_.data()), write_bytes);
-        buf_.assign(size(), empty_flag_);
-        start_p = write_file.tellp();
-        write_file.close();
-    }
-
     static bool greaterThan(T a, T b) { return a < b; }
 
-    // use back, the back is the first value
     void ascendSort() {
         std::sort(buf_.begin(), buf_.end(), greaterThan);
     }
@@ -110,7 +109,6 @@ public:
         }
         return true;
     }
-
 
     friend
     std::ostream &operator<<(std::ostream &stream, const Buffer<T> &buf) {

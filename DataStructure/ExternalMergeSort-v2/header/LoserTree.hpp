@@ -1,5 +1,13 @@
 #pragma once
 
+/*
+ * LoserTree.hpp
+ *
+ * define loser tree data struct and interfaces
+ * support initialization, construct, adjust, make empty
+ */
+
+
 #include "Buffer.hpp"
 #include <limits>
 #include <vector>
@@ -17,10 +25,10 @@ private:
     int leaf_start_;
 
     // store the indices, including the leaf vector
-    std::vector<T> tree_;
+    std::vector<int> tree_;
 
     // store the values
-    std::vector<int> leaf_;
+    std::vector<T> leaf_;
     T top_value_;
 
     // judge if the node is used
@@ -170,7 +178,6 @@ public:
             adjust(top_value_);
         }
     }
-
 
     void printTree() {
         for (auto &ind: tree_) {
