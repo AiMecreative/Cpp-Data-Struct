@@ -1,8 +1,5 @@
 #include "SorterWrapper.hpp"
 
-#define RANDOM_MIN 1
-#define RANDOM_MAX 1000
-
 int main() {
     setbuf(stdout, 0);
 
