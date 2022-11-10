@@ -1,5 +1,6 @@
 #pragma once
 
+#include <mutex>
 #include "Buffer.hpp"
 #include "LoserTree.hpp"
 
@@ -190,25 +191,16 @@ namespace sortFunction {
         // record pointers in input buffers
         std::vector<int> input_idx(input_num, 0);
 
-        auto update_input = [&]() {
-            for (int i = 0; i < input_num; ++i) {
-                if (input_state[i] == 0) {
-                    read_bytes = std::min(seq_end_p[i + 1] - reading_p[i], (long long) (input_size * sizeof(T)));
-                    input_pipe[i].read_n(file_A, reading_p[i], read_bytes);
-                    std::cout << "input buf " << i << "read: " << std::endl << input_pipe[i] << std::endl;
-                    input_state[i] = 0;
-                } else if (input_state[i] == -1) {
-                    input_pipe[i].tagEmpty(0);
-                    input_state[i] = 0;
-                } else {
-                    return;
-                }
+        auto update_input = [&](int idx) {
+            if (input_state[idx] == 0) {
+                read_bytes = std::min(seq_end_p[idx + 1] - reading_p[idx], (long long) (input_size * sizeof(T)));
+                input_pipe[idx].read_n(file_A, reading_p[idx], read_bytes);
+                std::cout << "input buf " << idx << "read: " << std::endl << input_pipe[idx] << std::endl;
+                input_state[idx] = 1;
+            } else if (input_state[idx] == -1) {
+                input_pipe[idx].tagEmpty(0);
+                input_state[idx] = 1;
             }
-        };
-
-        auto init_lt = [&]() {
-            Buffer<T> temp(sequence_num);
-            temp.read_n(file_A, read)
         };
 
         auto update_lt = [&](T &pop_value, int &pop_idx) {
@@ -216,38 +208,66 @@ namespace sortFunction {
             pop_idx = lt.getMin();
             pop_value = lt[pop_idx];
             std::cout << "lt pop: " << pop_value << std::endl;
+            input_idx[pop_idx] += 1;
             if (input_idx[pop_idx] == input_size) {
-                input_state[pop_idx] = -1;
-                if (reading_p[pop_idx] < seq_end_p[pop_idx + 1]) {
-                    input_state[pop_idx] = 0;
+                input_state[pop_idx] = 0;
+                input_idx[pop_idx] = 0;
+                if (seq_end_p[pop_idx + 1] - reading_p[pop_idx] < input_size * sizeof(T)) {
+                    input_state[pop_idx] = -1;
                 }
             }
+            update_input(pop_idx);
             // update loser tree
-            input_idx[pop_idx] += 1;
             int in_input_idx = input_idx[pop_idx];
             lt[pop_idx] = input_pipe[pop_idx][in_input_idx];
             lt.adjust(pop_idx);
         };
 
-        auto update_out = [&](int output_idx, T value) {
+        int write_times = 0;
+        auto update_output = [&](int &output_idx, T value) {
             output_buf[output_idx] = value;
-            if (output_idx == output_size - 1) {
-                write_bytes = output_size * sizeof(T);
+            output_idx += 1;
+            if (output_idx == output_size) {
+                write_bytes = std::min((long long) (output_size * sizeof(T)), file_size - write_p);
                 std::cout << "write buf " << output_buf << std::endl;
                 output_buf.write_n(file_B, write_p, write_bytes);
-            } else if (write_p == file_size) {
-                write_bytes = file_size - write_p;
-                output_buf.write_n(file_B, write_p, write_bytes);
-                std::cout << "write buf " << output_buf << std::endl;
+                write_times += 1;
+                output_idx = 0;
+            }
+
+        };
+
+        auto init_lt = [&]() {
+            Buffer<T> temp(input_num);
+            for (int i = 0; i < input_num; ++i) {
+                temp[i] = input_pipe[i][0];
+//                input_idx[i] += 1;
+            }
+            lt.loadData(temp);
+        };
+
+        auto init_input = [&]() {
+            for (int i = 0; i < input_num; ++i) {
+                update_input(i);
             }
         };
 
+        std::once_flag init_lt_once;
+        std::once_flag init_in_once;
         int output_idx = 0;
         // loop when there are values haven't been written
         while (write_p < file_size) {
+            std::cout << "********** " << output_idx << " ***********" << std::endl;
+            if (output_idx % 4 == 3) {
+                std::cout << "break point here" << std::endl;
+            }
             // write just one value for every loop
             // check every input buffer's state
-            update_input();
+            //update_input();
+
+            std::call_once(init_in_once, init_input);
+            // init lt, only execute once
+            std::call_once(init_lt_once, init_lt);
 
             // update loser tree
             T pop_value = 0;
@@ -255,8 +275,8 @@ namespace sortFunction {
             update_lt(pop_value, pop_idx);
 
             // write to output buffer and write to file if needed
-            update_out(output_idx, pop_value);
-            output_idx += 1;
+            update_output(output_idx, pop_value);
+            std::cout << "write times " << write_times << std::endl;
         }
 
         sequence_num = 1;

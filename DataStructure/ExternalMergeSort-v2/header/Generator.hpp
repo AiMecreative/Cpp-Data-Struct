@@ -175,28 +175,28 @@ public:
 
         auto io = [&](int idx) {
 
-            std::cout << std::endl;
-            std::cout << "****" << idx << std::endl;
+//            std::cout << std::endl;
+//            std::cout << "****" << idx << std::endl;
 
             std::unique_lock in_lock(in_mutex);
-            std::cout << idx << " read" << std::endl;
+//            std::cout << idx << " read" << std::endl;
             input_pipe[idx].read_n(file_in, read_p, read_bytes);
-            for (int i = 0; i < input_size; ++i) {
-                std::cout << "read buf: " << input_pipe[idx][i] << std::endl;
-            }
+//            for (int i = 0; i < input_size; ++i) {
+//                std::cout << "read buf: " << input_pipe[idx][i] << std::endl;
+//            }
             in_lock.unlock();
 
             std::unique_lock lt_lock(lt_mutex);
-            std::cout << idx << " lt" << std::endl;
+//            std::cout << idx << " lt" << std::endl;
             lt.loadData(input_pipe[idx]);
             lt.popAll(output_pipe[idx]);
             lt_lock.unlock();
 
             std::unique_lock out_lock(out_mutex);
-            std::cout << idx << " write" << std::endl;
-            for (int i = 0; i < output_size; ++i) {
-                std::cout << "out buf: " << output_pipe[idx][i] << std::endl;
-            }
+//            std::cout << idx << " write" << std::endl;
+//            for (int i = 0; i < output_size; ++i) {
+//                std::cout << "out buf: " << output_pipe[idx][i] << std::endl;
+//            }
             output_pipe[idx].write_n(file_out, write_p, write_bytes);
             seq_p.push_back(write_p);
             out_lock.unlock();
@@ -204,12 +204,12 @@ public:
 
         while (write_p < file_size) {
             std::thread io00(io, 0);
-            std::cout << std::endl;
-            std::cout << "io00 id: " << io00.get_id() << std::endl;
+//            std::cout << std::endl;
+//            std::cout << "io00 id: " << io00.get_id() << std::endl;
             io00.join();
             std::thread io11(io, 1);
-            std::cout << std::endl;
-            std::cout << "io11 id: " << io11.get_id() << std::endl;
+//            std::cout << std::endl;
+//            std::cout << "io11 id: " << io11.get_id() << std::endl;
             io11.join();
         }
 
