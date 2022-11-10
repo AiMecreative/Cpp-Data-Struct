@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\xrCLang\Cpp-Data-Struct\DataStructure\ExternalMergeSort-v2\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\xrCLang\Cpp-Data-Struct\DataStructure\ExternalMergeSort-v2\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{418845B5-BC0C-37DB-8F0F-C21CFCD79507}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

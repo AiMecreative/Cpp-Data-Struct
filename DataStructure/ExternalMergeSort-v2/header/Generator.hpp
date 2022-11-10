@@ -97,7 +97,7 @@ public:
             mainMem.read_n(fin, read_p, read_bytes);
             mainMem.ascendSort();
             for (int i = 0; i < read_bytes / sizeof(T); ++i) { std::cout << mainMem[i] << " "; }
-            mainMem.write_n(fout, write_p, read_bytes);
+            mainMem.write_n(fout    , write_p, read_bytes);
             seq_p.push_back(write_p);
         }
         std::cout << std::endl;
@@ -168,7 +168,6 @@ public:
             output_pipe.push_back(Buffer<T>(output_size));
         }
 
-
         // start the multi-thread
         std::mutex in_mutex;
         std::mutex out_mutex;
@@ -214,7 +213,7 @@ public:
             io11.join();
         }
 
-        std::cout << "seq_p in loser tree generate sequences:" << std::endl;
+        std::cout << "seq_p in loser tree gePnerate sequences:" << std::endl;
         for (auto &value: seq_p) {
             std::cout << value << " ";
         }

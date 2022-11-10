@@ -14,6 +14,8 @@
 		"commands" : 
 		[
 			"add_executable",
+			"target_link_libraries",
+			"target_compile_definitions",
 			"include_directories",
 			"target_sources"
 		],
@@ -35,11 +37,23 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 6,
+				"line" : 22,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
+				"file" : 0,
+				"line" : 24,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 6,
+				"parent" : 0
+			},
+			{
+				"command" : 4,
 				"file" : 0,
 				"line" : 21,
 				"parent" : 0
@@ -53,16 +67,26 @@
 			[
 				{
 					"fragment" : "-g"
+				},
+				{
+					"fragment" : "-std=gnu++17"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 3,
+					"define" : "DATA_DIR=\"D:/xrCLang/Cpp-Data-Struct/DataStructure/ExternalMergeSort-v2\""
 				}
 			],
 			"includes" : 
 			[
 				{
-					"backtrace" : 2,
+					"backtrace" : 4,
 					"path" : "D:/xrCLang/Cpp-Data-Struct/DataStructure/ExternalMergeSort-v2/header"
 				},
 				{
-					"backtrace" : 2,
+					"backtrace" : 4,
 					"path" : "D:/xrCLang/Cpp-Data-Struct/DataStructure/ExternalMergeSort-v2/src"
 				}
 			],
@@ -81,6 +105,13 @@
 			]
 		}
 	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "ExternalMergeSortlib::@6890427a1f51a3e7e1df"
+		}
+	],
 	"id" : "main::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
@@ -93,6 +124,11 @@
 			{
 				"fragment" : "",
 				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "libExternalMergeSortlib.a",
+				"role" : "libraries"
 			},
 			{
 				"fragment" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
@@ -121,7 +157,7 @@
 	"sources" : 
 	[
 		{
-			"backtrace" : 3,
+			"backtrace" : 5,
 			"compileGroupIndex" : 0,
 			"path" : "main.cpp",
 			"sourceGroupIndex" : 0

@@ -1,9 +1,18 @@
 {
-	"archive" : {},
+	"archive" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "/machine:X86",
+				"role" : "flags"
+			}
+		]
+	},
 	"artifacts" : 
 	[
 		{
-			"path" : "libExternalMergeSortlib.a"
+			"path" : "RelWithDebInfo/ExternalMergeSortlib.lib"
 		}
 	],
 	"backtrace" : 1,
@@ -43,7 +52,10 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g"
+					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG -MD"
+				},
+				{
+					"fragment" : "-std:c++17"
 				}
 			],
 			"includes" : 
@@ -76,9 +88,15 @@
 			]
 		}
 	],
+	"dependencies" : 
+	[
+		{
+			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
+		}
+	],
 	"id" : "ExternalMergeSortlib::@6890427a1f51a3e7e1df",
 	"name" : "ExternalMergeSortlib",
-	"nameOnDisk" : "libExternalMergeSortlib.a",
+	"nameOnDisk" : "ExternalMergeSortlib.lib",
 	"paths" : 
 	{
 		"build" : ".",

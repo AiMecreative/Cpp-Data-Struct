@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.23)
+cmake_minimum_required(VERSION 3.17)
 project(ExternalMergeSort-v2)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -19,4 +19,6 @@ add_library(ExternalMergeSortlib
 
 add_executable(main)
 target_sources(main PUBLIC main.cpp)
-link_libraries(main PUBLIC ExternalMergeSortlib)
+target_link_libraries(main PUBLIC ExternalMergeSortlib)
+
+target_compile_definitions(main PUBLIC -DDATA_DIR="${PROJECT_SOURCE_DIR}")

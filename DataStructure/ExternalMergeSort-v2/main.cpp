@@ -12,8 +12,8 @@ int main() {
     fs::path path = fs::current_path().parent_path();
     const std::string cur_path = path.u8string();
 
-    const std::string file_A = cur_path + R"(\data\file_A.txt)";
-    const std::string file_B = cur_path + R"(\data\file_B.txt)";
+    const std::string file_A = DATA_DIR  "/data/file_A.txt";
+    const std::string file_B = DATA_DIR  "/data/file_B.txt";
 
     // clear file content
     std::ifstream source_demo{file_A};
@@ -47,11 +47,11 @@ int main() {
 //    sorter.printSortedValues();
 
     // input buffer size = 16
-    MergeSort<int> sorter(512, "loser tree k-way", 16);
+    MergeSort<int> sorter(512, "loser tree k-way", 32);
     sorter.genTestValues(file_A, 1, 10);
     // generate sequences with 32 length, 16 in total.
     // so the output buffer size is 16, leaf size is 16
-    sorter.loserTreeGenMergeSeq(file_A, file_B, 32,  32, 32);
+    sorter.loserTreeGenMergeSeq(file_A, file_A, 32,  32, 32);
     sorter.loserTreeMerge(file_A, file_B);
     sorter.printSortedValues();
     return 0;

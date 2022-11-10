@@ -171,6 +171,7 @@ namespace sortFunction {
                           std::vector<long long> &seq_end_p,
                           int &sequence_num) {
         std::vector<long long> reading_p = seq_start_p;
+        int input_num = input_pipe.size();
         int input_size = input_pipe[0].size();
         int output_size = output_buf.size();
         long long read_bytes = input_size * sizeof(T);
@@ -179,24 +180,85 @@ namespace sortFunction {
 
         long long write_p = std::ios::beg;
 
-        // initialize loser tree
+        // initialize loser tree, the length of leaf is equal to sequence number
         LoserTree<T> lt(sequence_num);
 
-        while (write_p < file_size) { // kidding me CLion?
-            // fill the input buffer
-            Buffer<T> temp(input_pipe.size());
-            for (int i = 0; i < input_pipe.size(); ++i) {
-                input_pipe[i].read_n(file_A, reading_p[i], read_bytes);
-            }
-            for (int i = 0; i < input_size; ++i) {
-                for (int j = 0; j < temp.size(); ++j) {
-                    temp[j] = input_pipe[j][i];
+        // record which input buffer needs to read new value or fill max value
+        // 0: need to read, 1: normal, -1: fill with empty
+        std::vector<int> input_state(input_num, 0);
+
+        // record pointers in input buffers
+        std::vector<int> input_idx(input_num, 0);
+
+        auto update_input = [&]() {
+            for (int i = 0; i < input_num; ++i) {
+                if (input_state[i] == 0) {
+                    read_bytes = std::min(seq_end_p[i + 1] - reading_p[i], (long long) (input_size * sizeof(T)));
+                    input_pipe[i].read_n(file_A, reading_p[i], read_bytes);
+                    std::cout << "input buf " << i << "read: " << std::endl << input_pipe[i] << std::endl;
+                    input_state[i] = 0;
+                } else if (input_state[i] == -1) {
+                    input_pipe[i].tagEmpty(0);
+                    input_state[i] = 0;
+                } else {
+                    return;
                 }
-                lt.loadData(temp);
-                lt.popAll(output_buf);
-                output_buf.write_n(file_B, write_p, write_bytes);
             }
+        };
+
+        auto init_lt = [&]() {
+            Buffer<T> temp(sequence_num);
+            temp.read_n(file_A, read)
+        };
+
+        auto update_lt = [&](T &pop_value, int &pop_idx) {
+            // get pop value and input buffer index
+            pop_idx = lt.getMin();
+            pop_value = lt[pop_idx];
+            std::cout << "lt pop: " << pop_value << std::endl;
+            if (input_idx[pop_idx] == input_size) {
+                input_state[pop_idx] = -1;
+                if (reading_p[pop_idx] < seq_end_p[pop_idx + 1]) {
+                    input_state[pop_idx] = 0;
+                }
+            }
+            // update loser tree
+            input_idx[pop_idx] += 1;
+            int in_input_idx = input_idx[pop_idx];
+            lt[pop_idx] = input_pipe[pop_idx][in_input_idx];
+            lt.adjust(pop_idx);
+        };
+
+        auto update_out = [&](int output_idx, T value) {
+            output_buf[output_idx] = value;
+            if (output_idx == output_size - 1) {
+                write_bytes = output_size * sizeof(T);
+                std::cout << "write buf " << output_buf << std::endl;
+                output_buf.write_n(file_B, write_p, write_bytes);
+            } else if (write_p == file_size) {
+                write_bytes = file_size - write_p;
+                output_buf.write_n(file_B, write_p, write_bytes);
+                std::cout << "write buf " << output_buf << std::endl;
+            }
+        };
+
+        int output_idx = 0;
+        // loop when there are values haven't been written
+        while (write_p < file_size) {
+            // write just one value for every loop
+            // check every input buffer's state
+            update_input();
+
+            // update loser tree
+            T pop_value = 0;
+            int pop_idx = 0;
+            update_lt(pop_value, pop_idx);
+
+            // write to output buffer and write to file if needed
+            update_out(output_idx, pop_value);
+            output_idx += 1;
         }
+
         sequence_num = 1;
     }
 

@@ -1,0 +1,10 @@
+^D:\XRCLANG\CPP-DATA-STRUCT\DATASTRUCTURE\EXTERNALMERGESORT-V2\CMAKELISTS.TXT
+setlocal
+D:\xrCLang\VisualStudio\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe -SD:/xrCLang/Cpp-Data-Struct/DataStructure/ExternalMergeSort-v2 -BD:/xrCLang/Cpp-Data-Struct/DataStructure/ExternalMergeSort-v2/build --check-stamp-file D:/xrCLang/Cpp-Data-Struct/DataStructure/ExternalMergeSort-v2/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

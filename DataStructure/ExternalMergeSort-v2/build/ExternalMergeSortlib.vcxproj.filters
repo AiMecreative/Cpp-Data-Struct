@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\xrCLang\Cpp-Data-Struct\DataStructure\ExternalMergeSort-v2\src\Buffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\xrCLang\Cpp-Data-Struct\DataStructure\ExternalMergeSort-v2\src\SortFunc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\xrCLang\Cpp-Data-Struct\DataStructure\ExternalMergeSort-v2\src\Generator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\xrCLang\Cpp-Data-Struct\DataStructure\ExternalMergeSort-v2\src\MergeFunc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\xrCLang\Cpp-Data-Struct\DataStructure\ExternalMergeSort-v2\src\LoserTree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\xrCLang\Cpp-Data-Struct\DataStructure\ExternalMergeSort-v2\header\Buffer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\xrCLang\Cpp-Data-Struct\DataStructure\ExternalMergeSort-v2\header\MergeSort.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\xrCLang\Cpp-Data-Struct\DataStructure\ExternalMergeSort-v2\header\SortFunc.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\xrCLang\Cpp-Data-Struct\DataStructure\ExternalMergeSort-v2\header\Generator.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\xrCLang\Cpp-Data-Struct\DataStructure\ExternalMergeSort-v2\header\LoserTree.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\xrCLang\Cpp-Data-Struct\DataStructure\ExternalMergeSort-v2\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{C8FA61DA-7EEF-3386-8BBB-9A45F2D3F972}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{418845B5-BC0C-37DB-8F0F-C21CFCD79507}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
